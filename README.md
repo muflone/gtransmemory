@@ -6,7 +6,7 @@ gTransMemory [![Build Status](https://travis-ci.org/muflone/gtransmemory.svg?bra
 
 **License:** GPL-2+
 
-**Codice sorgente:** https://github.com/muflone/gtransmemory
+**Source code:** https://github.com/muflone/gtransmemory
 
 **Documentazione:** http://www.muflone.com/gtransmemory/
 
