@@ -1,0 +1,141 @@
+# English translations for gTransMemory package.
+# Copyright (C) 2016 Fabio Castelli
+# This file is distributed under the same license as the gTransMemory package.
+# Automatically generated, 2016.
+#
+# Translators:
+# Muflone <webreg(at)vbsimple.net>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: gTransMemory\n"
+"Report-Msgid-Bugs-To: muflone(at)vbsimple.net\n"
+"POT-Creation-Date: 2016-06-19 00:47+0200\n"
+"PO-Revision-Date: 2016-06-12 01:29+0200\n"
+"Last-Translator: Muflone (muflone(at)vbsimple.net)\n"
+"Language-Team: none\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gtransmemory/ui/about.py:59
+msgid "Contributors:"
+msgstr "Contributors:"
+
+#: gtransmemory/ui/main.py:240
+msgid "Add a new message"
+msgstr "Add a new message"
+
+#: gtransmemory/ui/main.py:265
+msgid "Edit message"
+msgstr "Edit message"
+
+#: gtransmemory/ui/main.py:288
+msgid "Remove message"
+msgstr "Remove message"
+
+#: gtransmemory/ui/main.py:289
+msgid "Remove the selected message?"
+msgstr "Remove the selected message?"
+
+#: gtransmemory/ui/memories.py:96
+msgid "Add new memory"
+msgstr "Add new memory"
+
+#: gtransmemory/ui/memories.py:119
+msgid "Remove the memory"
+msgstr "Remove the memory"
+
+#: gtransmemory/ui/memories.py:120
+#, python-format
+msgid "Remove the memory %s?"
+msgstr "Remove the memory %s?"
+
+#: gtransmemory/ui/memory_detail.py:90
+msgid "The memory name is missing"
+msgstr "The memory name is missing"
+
+#: gtransmemory/ui/memory_detail.py:95
+msgid "The memory name is invalid"
+msgstr "The memory name is invalid"
+
+#: gtransmemory/ui/memory_detail.py:100
+msgid "A memory with that name already exists"
+msgstr "A memory with that name already exists"
+
+#: gtransmemory/ui/memory_detail.py:105
+msgid "The memory description is missing"
+msgstr "The memory description is missing"
+
+#: gtransmemory/ui/message.py:107
+msgid "The message is missing"
+msgstr "The message is missing"
+
+#: gtransmemory/ui/message.py:112
+msgid "The message is invalid"
+msgstr "The message is invalid"
+
+#: gtransmemory/ui/message.py:117
+msgid "The specified message already exists"
+msgstr "The specified message already exists"
+
+#: ui/appmenu.ui:6
+msgid "Open _Settings folder"
+msgstr "Open _Settings folder"
+
+#: ui/appmenu.ui:12
+msgid "_About gTransMemory"
+msgstr "_About gTransMemory"
+
+#: ui/appmenu.ui:17
+msgid "_Quit"
+msgstr "_Quit"
+
+#: ui/main.ui:28
+msgid "Previous memory"
+msgstr "Previous memory"
+
+#: ui/main.ui:35
+msgid "Next memory"
+msgstr "Next memory"
+
+#: ui/main.ui:42
+msgid "_Memories"
+msgstr "_Memories"
+
+#: ui/main.ui:272
+msgid "Memory"
+msgstr "Memory"
+
+#: ui/main.ui:314
+msgid "Message"
+msgstr "Message"
+
+#: ui/main.ui:329
+msgid "Translation"
+msgstr "Translation"
+
+#: ui/memories.ui:43
+msgid "Configure memories"
+msgstr "Configure memories"
+
+#: ui/memories.ui:122
+msgid "Description"
+msgstr "Description"
+
+#: ui/memory_detail.ui:164
+msgid "_Description:"
+msgstr "_Description:"
+
+#: ui/message.ui:23
+msgid "Configure message"
+msgstr "Configure message"
+
+#: ui/message.ui:145
+msgid "_Message:"
+msgstr "_Message:"
+
+#: ui/message.ui:173
+msgid "_Translation:"
+msgstr "_Translation:"
