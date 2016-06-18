@@ -1,5 +1,6 @@
 /locale/
 *.pyc
 *.glade~
+*.ui~
 \#*.glade#
 /build/
