@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkAccelGroup" id="accelerators"/>
+  <object class="GtkActionGroup" id="actions_application">
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkAction" id="action_about">
+        <property name="label" comments="Use domain gtk30">_About</property>
+        <property name="icon_name">help-about</property>
+        <signal name="activate" handler="on_action_about_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkAction" id="action_quit">
+        <property name="label" comments="Use domain gtk30">_Quit</property>
+        <property name="icon_name">application-exit</property>
+        <signal name="activate" handler="on_action_quit_activate" swapped="no"/>
+      </object>
+      <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
+    </child>
+  </object>
+  <object class="GtkActionGroup" id="actions_memories">
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkAction" id="action_memories_previous">
+        <property name="label" translatable="yes">Previous memory</property>
+        <signal name="activate" handler="on_action_memories_previous_activate" swapped="no"/>
+      </object>
+      <accelerator key="Page_Up" modifiers="GDK_CONTROL_MASK"/>
+    </child>
+    <child>
+      <object class="GtkAction" id="action_memories_next">
+        <property name="label" translatable="yes">Next memory</property>
+        <signal name="activate" handler="on_action_memories_next_activate" swapped="no"/>
+      </object>
+      <accelerator key="Page_Down" modifiers="GDK_CONTROL_MASK"/>
+    </child>
+    <child>
+      <object class="GtkAction" id="action_memories">
+        <property name="label" translatable="yes">_Memories</property>
+        <property name="icon_name">folder</property>
+        <signal name="activate" handler="on_action_memories_activate" swapped="no"/>
+      </object>
+      <accelerator key="m" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
+    </child>
+  </object>
+  <object class="GtkMenu" id="menu_memories">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_groups">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_memories</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkActionGroup" id="actions_message">
+    <property name="sensitive">False</property>
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkAction" id="action_edit">
+        <property name="label" comments="Use domain gtk30">_Edit</property>
+        <property name="icon_name">document-properties</property>
+        <signal name="activate" handler="on_action_edit_activate" swapped="no"/>
+      </object>
+      <accelerator key="Return" modifiers="GDK_MOD1_MASK"/>
+    </child>
+    <child>
+      <object class="GtkAction" id="action_delete">
+        <property name="label" comments="Use domain gtk30">_Delete</property>
+        <property name="icon_name">edit-delete</property>
+        <signal name="activate" handler="on_action_delete_activate" swapped="no"/>
+      </object>
+      <accelerator key="Delete" modifiers="GDK_CONTROL_MASK"/>
+    </child>
+  </object>
+  <object class="GtkActionGroup" id="actions_messages">
+    <property name="sensitive">False</property>
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkAction" id="action_new">
+        <property name="label" comments="Use domain gtk30">_New</property>
+        <property name="icon_name">document-new</property>
+        <signal name="activate" handler="on_action_new_activate" swapped="no"/>
+      </object>
+      <accelerator key="Insert"/>
+    </child>
+  </object>
+  <object class="GtkMenu" id="menu_messages">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_new">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_new</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_edit">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_edit</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_delete">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_delete</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListStore" id="store_memories">
+    <columns>
+      <!-- column-name Name -->
+      <column type="gchararray"/>
+      <!-- column-name Filename -->
+      <column type="gchararray"/>
+      <!-- column-name Description -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkTreeStore" id="store_messages">
+    <columns>
+      <!-- column-name Message -->
+      <column type="gchararray"/>
+      <!-- column-name Translation -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <object class="GtkApplicationWindow" id="win_main">
+    <property name="can_focus">False</property>
+    <property name="default_width">500</property>
+    <property name="default_height">200</property>
+    <property name="show_menubar">False</property>
+    <accel-groups>
+      <group name="accelerators"/>
+    </accel-groups>
+    <signal name="delete-event" handler="on_win_main_delete_event" swapped="no"/>
+    <child>
+      <object class="GtkBox" id="box_main">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkToolbar" id="toolbar_main">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkToolButton" id="tlb_new">
+                <property name="use_action_appearance">True</property>
+                <property name="related_action">action_new</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="tlb_edit">
+                <property name="use_action_appearance">True</property>
+                <property name="related_action">action_edit</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="tlb_delete">
+                <property name="use_action_appearance">True</property>
+                <property name="related_action">action_delete</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="tlb_separator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="tlb_groups">
+                <property name="use_action_appearance">True</property>
+                <property name="related_action">action_memories</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="tlb_about">
+                <property name="use_action_appearance">True</property>
+                <property name="related_action">action_about</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkPaned" id="paned_group_connections">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="position">150</property>
+            <child>
+              <object class="GtkScrolledWindow" id="scroll_memories">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="no_show_all">True</property>
+                <property name="shadow_type">in</property>
+                <property name="min_content_width">50</property>
+                <child>
+                  <object class="GtkTreeView" id="tvw_memories">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hscroll_policy">natural</property>
+                    <property name="model">store_memories</property>
+                    <property name="search_column">2</property>
+                    <signal name="button-release-event" handler="on_tvw_memories_button_release_event" swapped="no"/>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="tvw_selection_memories">
+                        <signal name="changed" handler="on_tvw_selection_memories_changed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="column_memory">
+                        <property name="title" translatable="yes">Memory</property>
+                        <property name="reorderable">True</property>
+                        <property name="sort_column_id">2</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cell_memory_description"/>
+                          <attributes>
+                            <attribute name="text">2</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="resize">False</property>
+                <property name="shrink">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="scroll_messages">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="shadow_type">in</property>
+                <property name="min_content_width">100</property>
+                <child>
+                  <object class="GtkTreeView" id="tvw_messages">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="has_focus">True</property>
+                    <property name="is_focus">True</property>
+                    <property name="model">store_messages</property>
+                    <signal name="button-release-event" handler="on_tvw_messages_button_release_event" swapped="no"/>
+                    <signal name="row-activated" handler="on_tvw_messages_row_activated" swapped="no"/>
+                    <child internal-child="selection">
+                      <object class="GtkTreeSelection" id="tvw_selection_messages">
+                        <signal name="changed" handler="on_tvw_selection_messages_changed" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="column_message">
+                        <property name="resizable">True</property>
+                        <property name="title" translatable="yes">Message</property>
+                        <property name="reorderable">True</property>
+                        <property name="sort_indicator">True</property>
+                        <property name="sort_column_id">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cell_message"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="column_translation">
+                        <property name="resizable">True</property>
+                        <property name="title" translatable="yes">Translation</property>
+                        <property name="reorderable">True</property>
+                        <property name="sort_column_id">1</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cell_translation"/>
+                          <attributes>
+                            <attribute name="text">1</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="resize">True</property>
+                <property name="shrink">False</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

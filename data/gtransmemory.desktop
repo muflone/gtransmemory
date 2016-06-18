@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Type=Application
+Name=gTransMemory
+Comment=Translator with learning memory
+Comment[en]=Translator with learning memory
+Comment[it]=Traduttore con memoria di apprendimento
+Terminal=false
+Categories=Network;GTK;
+Icon=gtransmemory
+TryExec=gtransmemory
+Exec=gtransmemory
