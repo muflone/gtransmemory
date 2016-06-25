@@ -285,8 +285,8 @@ class UIMain(object):
                 parent=self.ui.win_main,
                 message_type=Gtk.MessageType.QUESTION,
                 title=None,
-                msg1=_("Remove message"),
-                msg2=_("Remove the selected message?"),
+                msg1=_('Remove message'),
+                msg2=_('Remove the selected message?'),
                 is_response_id=Gtk.ResponseType.YES):
             message = self.messages[self.model_messages.get_key(selected_row)]
             self.remove_message(message=message, update_settings=True)

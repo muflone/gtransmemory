@@ -47,7 +47,7 @@ class Install_Scripts(install_scripts):
     def rename_python_scripts(self):
         "Rename main executable python script without .py extension"
         for script in self.get_outputs():
-            if script.endswith(".py"):
+            if script.endswith('.py'):
                 info('renaming the python script %s -> %s' % (
                     script, script[:-3]))
                 shutil.move(script, script[:-3])
