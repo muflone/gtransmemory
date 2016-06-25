@@ -45,9 +45,11 @@ class UIFileChooser(Gtk.Window):
         new_filter = Gtk.FileFilter()
         new_filter.set_name(title)
         if mime_types:
-            new_filter.add_mime_type(mime_types)
+            for mime_type in mime_types:
+                new_filter.add_mime_type(mime_type)
         if file_patterns:
-            new_filter.add_pattern(file_patterns)
+            for file_pattern in file_patterns:
+                new_filter.add_pattern(file_pattern)
         self.dialog.add_filter(new_filter)
 
     def get_local_only(self):
