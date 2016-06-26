@@ -29,7 +29,8 @@ from gtransmemory.constants import (
     APP_NAME,
     FILE_SETTINGS, FILE_WINDOWS_POSITION, DIR_MEMORIES)
 from gtransmemory.functions import (
-    get_ui_file, get_treeview_selected_row, show_popup_menu, text, _)
+    get_ui_file, get_treeview_selected_row, show_popup_menu, create_filefilter,
+    text, _)
 import gtransmemory.preferences as preferences
 import gtransmemory.settings as settings
 from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
@@ -45,7 +46,7 @@ from gtransmemory.ui.memories import UIMemories
 from gtransmemory.ui.message import UIMessage
 from gtransmemory.ui.message_dialog import (
     show_message_dialog, UIMessageDialogNoYes)
-from gtransmemory.ui.file_chooser import UIFileChooserOpenFile
+from gtransmemory.ui.messages_import import UIMessagesImport
 
 SECTION_WINDOW_NAME = 'main'
 
@@ -311,20 +312,22 @@ class UIMain(object):
     def on_action_import_activate(self, action):
         """Import messages from a PO/POT file"""
         # Show the import file dialog
-        dialog = UIFileChooserOpenFile(self.ui.win_main,
-                                       text('Select a File'))
-        dialog.add_filter(_('GNU gettext translation files'),
-                          None,
-                          ('*.po', '*.pot'))
-        dialog.add_filter(_('All Files'), None, '*')
-        # Show the browse for icon dialog
-        filename = dialog.show()
-        if filename is not None:
+        dialog = UIMessagesImport(self.ui.win_main)
+        dialog.ui.file_chooser_import.add_filter(
+            create_filefilter(_('GNU gettext translation files'),
+                              None,
+                              ('*.po', '*.pot')))
+        dialog.ui.file_chooser_import.add_filter(
+            create_filefilter(_('All Files'),
+                              None,
+                              ('*', )))
+        response = dialog.show(_('Import messages from file'))
+        if response == Gtk.ResponseType.OK:
             # Load messages from a gettext PO/POT file
-            for entry in polib.pofile(filename):
+            for entry in polib.pofile(dialog.filename):
                 message = MessageInfo(entry.msgid,
                                       entry.msgstr,
-                                      filename)
+                                      dialog.source)
                 self.add_message(message=message, update_settings=True)
         dialog.destroy()
 
