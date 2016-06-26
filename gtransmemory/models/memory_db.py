@@ -90,5 +90,5 @@ class MemoryDB(object):
 
     def remove_message(self, message):
         """Remove an existing message"""
-        self.execute('DELETE FROM messages WHERE message=?',
-                     (message.msgid, ))
+        self.execute('DELETE FROM messages WHERE message=? and source=?',
+                     (message.msgid, message.source))
