@@ -127,6 +127,19 @@ def show_popup_menu(menu, button=Gdk.BUTTON_SECONDARY):
                       activate_time=Gtk.get_current_event_time())
 
 
+def create_filefilter(title, mime_types=None, file_patterns=None):
+    """Add a new filter to the dialog"""
+    new_filter = Gtk.FileFilter()
+    new_filter.set_name(title)
+    if mime_types:
+        for mime_type in mime_types:
+            new_filter.add_mime_type(mime_type)
+    if file_patterns:
+        for file_pattern in file_patterns:
+            new_filter.add_pattern(file_pattern)
+    return new_filter
+
+
 # This special alias is used to track localization requests to catch
 # by xgettext. The text() calls aren't tracked by xgettext
 _ = text
@@ -142,5 +155,6 @@ __all__ = [
     'set_error_message_on_infobar',
     'recursive_glob',
     'get_treeview_selected_row',
-    'show_popup_menu'
+    'show_popup_menu',
+    'create_filefilter'
 ]
