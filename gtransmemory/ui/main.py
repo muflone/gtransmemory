@@ -252,7 +252,8 @@ class UIMain(object):
                              update_settings=True)
             # Automatically select the newly added message
             self.ui.tvw_messages.set_cursor(
-                path=self.model_messages.get_path_by_name(dialog.message),
+                path=self.model_messages.get_path_by_name(
+                    '%s\%s' % (dialog.source, dialog.message)),
                 column=None,
                 start_editing=False)
         dialog.destroy()
@@ -263,6 +264,7 @@ class UIMain(object):
         if selected_row:
             key = self.model_messages.get_key(selected_row)
             message_id = self.model_messages.get_message(selected_row)
+            messageid = self.model_messages.get_translation(selected_row)
             translation = self.model_messages.get_translation(selected_row)
             source = self.model_messages.get_source(selected_row)
             selected_iter = self.model_messages.get_iter(key)
@@ -308,7 +310,7 @@ class UIMain(object):
 
     def on_action_import_activate(self, action):
         """Import messages from a PO/POT file"""
-        # Prepare the browse for icon dialog
+        # Show the import file dialog
         dialog = UIFileChooserOpenFile(self.ui.win_main,
                                        text('Select a File'))
         dialog.add_filter(_('GNU gettext translation files'),
