@@ -28,12 +28,12 @@ class ModelMemories(ModelAbstract):
     def add_data(self, item):
         """Add a new row to the model if it doesn't exists"""
         super(self.__class__, self).add_data(item)
-        if item.name not in self.rows:
+        if item.key not in self.rows:
             new_row = self.model.append((
-                item.name,
+                item.key,
                 item.filename,
                 item.description))
-            self.rows[item.name] = new_row
+            self.rows[item.key] = new_row
             return new_row
 
     def get_filename(self, treeiter):

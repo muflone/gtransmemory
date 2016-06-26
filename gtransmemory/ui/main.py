@@ -252,7 +252,7 @@ class UIMain(object):
                              update_settings=True)
             # Automatically select the newly added message
             self.ui.tvw_messages.set_cursor(
-                path=self.model_messages.get_path_by_name(
+                path=self.model_messages.get_path_by_key(
                     '%s\%s' % (dialog.source, dialog.message)),
                 column=None,
                 start_editing=False)
@@ -287,7 +287,7 @@ class UIMain(object):
                                       dialog.source)
                 self.add_message(message=message, update_settings=True)
                 # Get the path of the message
-                path = self.model_messages.get_path_by_name(
+                path = self.model_messages.get_path_by_key(
                     '%s\%s' % (dialog.source, dialog.message))
                 # Automatically select again the previously selected message
                 self.ui.tvw_messages.set_cursor(path=path,

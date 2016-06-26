@@ -44,9 +44,9 @@ class ModelAbstract(object):
         old_key = self.get_key(treeiter)
         # If the new name differs from the old name then update the
         # TreeIters map in self.rows
-        if old_key != item.name:
+        if old_key != item.key:
             self.rows.pop(old_key)
-            self.rows[item.name] = treeiter
+            self.rows[item.key] = treeiter
 
     def get_key(self, treeiter):
         """Get the name from a TreeIter"""
@@ -64,7 +64,7 @@ class ModelAbstract(object):
         """Get the path from a TreeIter"""
         return self.get_model_row(treeiter).path
 
-    def get_path_by_name(self, name):
+    def get_path_by_key(self, name):
         """Get the path from a name"""
         return self.get_model_row(self.get_iter(name)).path
 
