@@ -26,7 +26,7 @@ from xdg import BaseDirectory
 
 # Application constants
 APP_NAME = 'gTransMemory'
-APP_VERSION = '0.0.1'
+APP_VERSION = '0.0.2'
 APP_DESCRIPTION = 'Translator with learning memory'
 APP_ID = 'gtransmemory.muflone.com'
 APP_URL = 'http://www.muflone.com/gtransmemory/'
