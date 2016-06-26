@@ -145,7 +145,6 @@
                 <property name="label" translatable="yes">_Message:</property>
                 <property name="use_underline">True</property>
                 <property name="mnemonic_widget">txt_message</property>
-                <property name="ellipsize">middle</property>
                 <property name="xalign">1</property>
               </object>
               <packing>
