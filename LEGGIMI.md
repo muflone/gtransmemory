@@ -18,6 +18,7 @@ Requisiti di sistema
 * Libreria GObject per Python 2.x
 * Libreria XDG per Python 2.x (https://pypi.python.org/pypi/pyxdg/)
 * Libreria Distutils per Python 2.x (generalmente fornita col pacchetto Python)
+* Libreria POlib per Python 2.x (https://pypi.python.org/pypi/polib)
 
 Installazione
 -------------

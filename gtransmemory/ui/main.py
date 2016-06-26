@@ -21,6 +21,7 @@
 import os
 import os.path
 
+import polib
 from gi.repository import Gtk
 from gi.repository import Gdk
 
@@ -44,6 +45,7 @@ from gtransmemory.ui.memories import UIMemories
 from gtransmemory.ui.message import UIMessage
 from gtransmemory.ui.message_dialog import (
     show_message_dialog, UIMessageDialogNoYes)
+from gtransmemory.ui.file_chooser import UIFileChooserOpenFile
 
 SECTION_WINDOW_NAME = 'main'
 
@@ -153,7 +155,9 @@ class UIMain(object):
         header_bar.set_show_close_button(True)
         self.ui.win_main.set_titlebar(header_bar)
         # Add buttons to the left side
-        for action in (self.ui.action_new, self.ui.action_edit,
+        for action in (self.ui.action_new,
+                       self.ui.action_import,
+                       self.ui.action_edit,
                        self.ui.action_delete):
             header_bar.pack_start(create_button_from_action(action))
         # Add buttons to the right side (in reverse order)
@@ -196,14 +200,14 @@ class UIMain(object):
         memory_path = self.model_memories.get_filename(
             get_treeview_selected_row(self.ui.tvw_memories))
         self.database = MemoryDB(memory_path)
-        for msgid, translation in self.database.get_messages():
-            message = MessageInfo(msgid, translation)
+        for msgid, translation, source in self.database.get_messages():
+            message = MessageInfo(msgid, translation, source)
             self.add_message(message, False)
         self.ui.action_new.set_sensitive(True)
 
     def add_message(self, message, update_settings):
         """Add a new message to the data and to the model"""
-        self.messages[message.msgid] = message
+        self.messages[message.key] = message
         self.model_messages.add_data(message)
         # Update settings file if requested
         if update_settings:
@@ -211,8 +215,8 @@ class UIMain(object):
 
     def remove_message(self, message, update_settings):
         """Remove a message"""
-        self.messages.pop(message.msgid)
-        self.model_messages.remove(self.model_messages.get_iter(message.msgid))
+        self.messages.pop(message.key)
+        self.model_messages.remove(self.model_messages.get_iter(message.key))
         if update_settings:
             self.database.remove_message(message)
 
@@ -237,10 +241,13 @@ class UIMain(object):
                            messages=self.model_messages)
         response = dialog.show(default_message='',
                                default_translation='',
+                               default_source='',
                                title=_('Add a new message'),
                                treeiter=None)
         if response == Gtk.ResponseType.OK:
-            message = MessageInfo(dialog.message, dialog.translation)
+            message = MessageInfo(dialog.message,
+                                  dialog.translation,
+                                  dialog.source)
             self.add_message(message=message,
                              update_settings=True)
             # Automatically select the newly added message
@@ -254,24 +261,32 @@ class UIMain(object):
         """Edit an existing message"""
         selected_row = get_treeview_selected_row(self.ui.tvw_messages)
         if selected_row:
-            message_id = self.model_messages.get_key(selected_row)
+            key = self.model_messages.get_key(selected_row)
+            message_id = self.model_messages.get_message(selected_row)
             translation = self.model_messages.get_translation(selected_row)
-            selected_iter = self.model_messages.get_iter(message_id)
+            source = self.model_messages.get_source(selected_row)
+            selected_iter = self.model_messages.get_iter(key)
             dialog = UIMessage(parent=self.ui.win_main,
                                messages=self.model_messages)
             # Show the edit message dialog
             response = dialog.show(default_message=message_id,
                                    default_translation=translation,
+                                   default_source=source,
                                    title=_('Edit message'),
                                    treeiter=selected_iter)
             if response == Gtk.ResponseType.OK:
                 # Remove older message and add the newer
-                self.remove_message(message=MessageInfo(message_id, ''),
+                self.remove_message(message=MessageInfo(message_id,
+                                                        '',
+                                                        source),
                                     update_settings=True)
-                message = MessageInfo(dialog.message, dialog.translation)
+                message = MessageInfo(dialog.message,
+                                      dialog.translation,
+                                      dialog.source)
                 self.add_message(message=message, update_settings=True)
                 # Get the path of the message
-                path = self.model_messages.get_path_by_name(dialog.message)
+                path = self.model_messages.get_path_by_name(
+                    '%s\%s' % (dialog.source, dialog.message))
                 # Automatically select again the previously selected message
                 self.ui.tvw_messages.set_cursor(path=path,
                                                 column=None,
@@ -290,6 +305,26 @@ class UIMain(object):
                 is_response_id=Gtk.ResponseType.YES):
             message = self.messages[self.model_messages.get_key(selected_row)]
             self.remove_message(message=message, update_settings=True)
+
+    def on_action_import_activate(self, action):
+        """Import messages from a PO/POT file"""
+        # Prepare the browse for icon dialog
+        dialog = UIFileChooserOpenFile(self.ui.win_main,
+                                       text('Select a File'))
+        dialog.add_filter(_('GNU gettext translation files'),
+                          None,
+                          ('*.po', '*.pot'))
+        dialog.add_filter(_('All Files'), None, '*')
+        # Show the browse for icon dialog
+        filename = dialog.show()
+        if filename is not None:
+            # Load messages from a gettext PO/POT file
+            for entry in polib.pofile(filename):
+                message = MessageInfo(entry.msgid,
+                                      entry.msgstr,
+                                      filename)
+                self.add_message(message=message, update_settings=True)
+        dialog.destroy()
 
     def on_tvw_messages_row_activated(self, widget, treepath, column):
         """Edit the selected row on activation"""

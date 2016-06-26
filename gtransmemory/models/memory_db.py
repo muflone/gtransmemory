@@ -35,8 +35,10 @@ class MemoryDB(object):
             self.execute('CREATE TABLE settings(name varchar, value varchar)')
             tables.append('settings')
         if 'messages' not in tables:
-            self.execute('CREATE TABLE messages'
-                         '(message varchar, value varchar)')
+            self.execute('CREATE TABLE messages('
+                         'message varchar, '
+                         'value varchar, '
+                         'source varchar)')
             tables.append('messages')
 
     def close(self):
@@ -76,15 +78,15 @@ class MemoryDB(object):
 
     def get_messages(self):
         """Return the memory messages"""
-        data = self.execute('SELECT message, value '
+        data = self.execute('SELECT message, value, source '
                             'FROM messages ORDER BY message')
         return data[1]
 
     def add_message(self, message):
         """Add a new message or update an existing"""
         self.remove_message(message)
-        self.execute('INSERT INTO messages VALUES(?, ?)',
-                     (message.msgid, message.translation))
+        self.execute('INSERT INTO messages VALUES(?, ?, ?)',
+                     (message.msgid, message.translation, message.source))
 
     def remove_message(self, message):
         """Remove an existing message"""

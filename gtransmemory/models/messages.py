@@ -24,7 +24,9 @@ from gtransmemory.models.abstract import ModelAbstract
 
 
 class ModelMessages(ModelAbstract):
-    COL_TRANSLATION = 1
+    COL_MESSAGE = 1
+    COL_TRANSLATION = 2
+    COL_SOURCE = 3
 
     def __init__(self, model):
         """Create a new messages database"""
@@ -44,10 +46,12 @@ class ModelMessages(ModelAbstract):
     def add_data(self, item):
         """Add a new row to the model if it doesn't exists"""
         super(self.__class__, self).add_data(item)
-        if item.msgid not in self.rows:
-            new_row = self.model.append(None, (item.msgid,
-                                               item.translation))
-            self.rows[item.msgid] = new_row
+        if item.key not in self.rows:
+            new_row = self.model.append(None, (item.key,
+                                               item.msgid,
+                                               item.translation,
+                                               item.source))
+            self.rows[item.key] = new_row
             return new_row
 
     def set_data(self, treeiter, item):
@@ -55,7 +59,16 @@ class ModelMessages(ModelAbstract):
         super(self.__class__, self).set_data(treeiter, item)
         self.model.set_value(treeiter, self.COL_KEY, item.msgid)
         self.model.set_value(treeiter, self.COL_TRANSLATION, item.translation)
+        self.model.set_value(treeiter, self.COL_SOURCE, item.source)
+
+    def get_message(self, treeiter):
+        """Get the message from a TreeIter"""
+        return self.model[treeiter][self.COL_MESSAGE]
 
     def get_translation(self, treeiter):
         """Get the translation from a TreeIter"""
         return self.model[treeiter][self.COL_TRANSLATION]
+
+    def get_source(self, treeiter):
+        """Get the source from a TreeIter"""
+        return self.model[treeiter][self.COL_SOURCE]

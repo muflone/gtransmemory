@@ -91,6 +91,13 @@
       </object>
       <accelerator key="Insert"/>
     </child>
+    <child>
+      <object class="GtkAction" id="action_import">
+        <property name="label" translatable="yes">_Import</property>
+        <property name="icon_name">document-open</property>
+        <signal name="activate" handler="on_action_import_activate" swapped="no"/>
+      </object>
+    </child>
   </object>
   <object class="GtkMenu" id="menu_messages">
     <property name="visible">True</property>
@@ -136,9 +143,13 @@
   </object>
   <object class="GtkTreeStore" id="store_messages">
     <columns>
+      <!-- column-name Key -->
+      <column type="gchararray"/>
       <!-- column-name Message -->
       <column type="gchararray"/>
       <!-- column-name Translation -->
+      <column type="gchararray"/>
+      <!-- column-name Source -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -164,6 +175,19 @@
               <object class="GtkToolButton" id="tlb_new">
                 <property name="use_action_appearance">True</property>
                 <property name="related_action">action_new</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="tlb_import">
+                <property name="use_action_appearance">True</property>
+                <property name="related_action">action_import</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_underline">True</property>
@@ -314,11 +338,11 @@
                         <property name="title" translatable="yes">Message</property>
                         <property name="reorderable">True</property>
                         <property name="sort_indicator">True</property>
-                        <property name="sort_column_id">0</property>
+                        <property name="sort_column_id">1</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_message"/>
                           <attributes>
-                            <attribute name="text">0</attribute>
+                            <attribute name="text">1</attribute>
                           </attributes>
                         </child>
                       </object>
@@ -328,11 +352,22 @@
                         <property name="resizable">True</property>
                         <property name="title" translatable="yes">Translation</property>
                         <property name="reorderable">True</property>
-                        <property name="sort_column_id">1</property>
+                        <property name="sort_column_id">2</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_translation"/>
                           <attributes>
-                            <attribute name="text">1</attribute>
+                            <attribute name="text">2</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="column_source">
+                        <property name="title" translatable="yes">Source</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cell_source"/>
+                          <attributes>
+                            <attribute name="text">0</attribute>
                           </attributes>
                         </child>
                       </object>

@@ -68,10 +68,12 @@ class UIMessage(object):
         # Connect signals from the glade file to the module functions
         self.ui.connect_signals(self)
 
-    def show(self, default_message, default_translation, title, treeiter):
+    def show(self, default_message, default_translation, default_source,
+             title, treeiter):
         """Show the dialog"""
         self.ui.txt_message.set_text(default_message)
         self.ui.txt_translation.set_text(default_translation)
+        self.ui.txt_source.set_text(default_source)
         self.ui.txt_message.grab_focus()
         self.ui.dialog_message.set_title(title)
         self.selected_iter = treeiter
@@ -80,6 +82,7 @@ class UIMessage(object):
         self.ui.dialog_message.hide()
         self.message = self.ui.txt_message.get_text().strip()
         self.translation = self.ui.txt_translation.get_text().strip()
+        self.source = self.ui.txt_source.get_text().strip()
         return response
 
     def destroy(self):

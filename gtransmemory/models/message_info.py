@@ -20,6 +20,8 @@
 
 
 class MessageInfo(object):
-    def __init__(self, msgid, translation):
+    def __init__(self, msgid, translation, source):
+        self.key = '%s\%s' % (source, msgid)
         self.msgid = msgid
         self.translation = translation
+        self.source = source

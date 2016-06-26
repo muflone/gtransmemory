@@ -10,6 +10,7 @@ addons:
     - python-gi                               # GObject
     - gir1.2-gtk-3.0                          # gi.repository.gtk
     - python-xdg                              # PyXDG
+    - python-polib                            # polib
 install:
   - pip install -r requirements.txt
 before_install:
