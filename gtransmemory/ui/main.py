@@ -209,7 +209,11 @@ class UIMain(object):
     def add_message(self, message, update_settings):
         """Add a new message to the data and to the model"""
         self.messages[message.key] = message
-        self.model_messages.add_data(message)
+        if message.key not in self.model_messages.rows:
+            self.model_messages.add_data(message)
+        else:
+            self.model_messages.set_data(self.model_messages.rows[message.key],
+                                         message)
         # Update settings file if requested
         if update_settings:
             self.database.add_message(message)
