@@ -108,11 +108,6 @@ class UIMessage(object):
             show_error_message_on_infobar(
                 self.ui.txt_message,
                 _('The message is missing'))
-        elif '\'' in message or '\\' in message or '/' in message:
-            # Show error for invalid message
-            show_error_message_on_infobar(
-                self.ui.txt_message,
-                _('The message is invalid'))
         elif self.messages.get_iter(message) not in (None, self.selected_iter):
             # Show error for existing message
             show_error_message_on_infobar(
@@ -128,4 +123,4 @@ class UIMessage(object):
 
     def on_txt_message_changed(self, widget):
         """Check the message field"""
-        check_invalid_input(widget, False, False, False)
+        check_invalid_input(widget, False, False, True)
