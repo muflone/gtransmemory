@@ -202,7 +202,9 @@ class UIMain(object):
             get_treeview_selected_row(self.ui.tvw_memories))
         self.database = MemoryDB(memory_path)
         for msgid, translation, source in self.database.get_messages():
-            message = MessageInfo(msgid, translation, source)
+            message = MessageInfo(msgid.replace('\n', '\\n'),
+                                  translation.replace('\n', '\\n'),
+                                  source)
             self.add_message(message, False)
         self.ui.action_new.set_sensitive(True)
 
