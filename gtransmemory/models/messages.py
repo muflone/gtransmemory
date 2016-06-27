@@ -57,7 +57,7 @@ class ModelMessages(ModelAbstract):
     def set_data(self, treeiter, item):
         """Update an existing TreeIter"""
         super(self.__class__, self).set_data(treeiter, item)
-        self.model.set_value(treeiter, self.COL_KEY, item.msgid)
+        self.model.set_value(treeiter, self.COL_MESSAGE, item.msgid)
         self.model.set_value(treeiter, self.COL_TRANSLATION, item.translation)
         self.model.set_value(treeiter, self.COL_SOURCE, item.source)
 
