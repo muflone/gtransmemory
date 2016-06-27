@@ -45,7 +45,12 @@ class ModelAbstract(object):
         # If the new name differs from the old name then update the
         # TreeIters map in self.rows
         if old_key != item.key:
-            self.rows.pop(old_key)
+            try:
+                self.rows.pop(old_key)
+            except Exception as e:
+                # Don't fail when the previous key is not found
+                # like strings with wrong encoding
+                pass
             self.rows[item.key] = treeiter
 
     def get_key(self, treeiter):
