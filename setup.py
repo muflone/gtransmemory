@@ -29,13 +29,14 @@ import os
 import os.path
 import shutil
 import subprocess
+import fileinput
 from itertools import chain
 from glob import glob
 
 from gtransmemory.functions import recursive_glob
 from gtransmemory.constants import (
     APP_NAME, APP_VERSION, APP_DESCRIPTION,
-    APP_AUTHOR, APP_AUTHOR_EMAIL, APP_URL,
+    APP_AUTHOR, APP_AUTHOR_EMAIL, APP_URL, APP_COPYRIGHT,
     DOMAIN_NAME)
 
 
@@ -151,6 +152,15 @@ class Command_CreatePOT(Command):
                         '--msgid-bugs-address=%s' % APP_AUTHOR_EMAIL),
                        list_files_process),
             cwd=self.dir_base)
+        # Fix the first lines of the file
+        finput = fileinput.input(file_pot, inplace=1)
+        line = finput.readline()
+        print('# %s' % APP_NAME)
+        line = finput.readline()
+        print('# %s' % APP_COPYRIGHT)
+        for line in finput:
+            print(line.strip())
+        finput.close()
         # Remove uneeded files if requested
         if not self.keep_headers:
             for filename in list_files_remove:
