@@ -82,6 +82,7 @@ class UIMessagesImport(object):
         self.ui.dialog_import.response(Gtk.ResponseType.OK)
 
     def on_check_for_input_values(self, widget):
+        """Check the filename and source arguments"""
         self.ui.action_confirm.set_sensitive(
             bool(self.ui.file_chooser_import.get_filename() and
-            bool(self.ui.txt_source.get_text().strip())))
+                 bool(self.ui.txt_source.get_text().strip())))
