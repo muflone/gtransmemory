@@ -99,6 +99,11 @@ class UIMain(object):
                 label = widget.get_short_label()
             widget.set_label(text(label))
             widget.set_short_label(label)
+        # Add extra accelerators
+        self.ui.accelerators.connect(accel_key=Gdk.keyval_from_name('Escape'),
+                                     accel_mods=0,
+                                     accel_flags=0,
+                                     closure=self._end_selection)
         # Initialize tooltips
         for widget in self.ui.get_objects_by_type(Gtk.ToolButton):
             action = widget.get_related_action()
@@ -442,6 +447,10 @@ class UIMain(object):
         self.ui.actions_selection_action.set_sensitive(False)
         self.ui.column_selection.set_visible(status)
         self.ui.tvw_memories.set_sensitive(not status)
+
+    def _end_selection(self, accel_group, acceleratable, keyval, modifier):
+        """End of the selection mode"""
+        self.ui.action_selection.set_active(False)
 
     def on_cell_selection_toggled(self, widget, treepath):
         """Toggle the selection status"""
