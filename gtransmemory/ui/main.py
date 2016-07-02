@@ -360,11 +360,6 @@ class UIMain(object):
             # Start message edit
             self.ui.action_edit.activate()
 
-    def get_current_memory_path(self):
-        """Return the name of the currently selected memory"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        return self.model_memories.get_key(selected_row)
-
     def on_action_memories_activate(self, widget):
         """Edit memories"""
         dialog = UIMemories(parent=self.ui.win_main)
