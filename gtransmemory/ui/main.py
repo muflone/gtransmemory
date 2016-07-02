@@ -413,6 +413,10 @@ class UIMain(object):
             self.ui.tvw_messages.set_cursor(0)
         else:
             self.ui.actions_message.set_sensitive(False)
+            # Close the messages database
+            if self.database:
+                self.database.close()
+                self.database = None
 
     def on_tvw_selection_messages_changed(self, widget):
         """Set action sensitiveness on selection change"""
