@@ -362,6 +362,7 @@ class UIMain(object):
 
     def on_action_memories_activate(self, widget):
         """Edit memories"""
+        self.ui.tvw_selection_memories.unselect_all()
         dialog = UIMemories(parent=self.ui.win_main)
         dialog.model = self.model_memories
         dialog.ui.tvw_memories.set_model(self.model_memories.model)
