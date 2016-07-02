@@ -325,7 +325,7 @@ class UIMain(object):
                 message = self.messages[key]
                 self.remove_message(message=message, update_settings=True)
         self.ui.action_selection.set_active(False)
-        
+
     def on_action_import_activate(self, action):
         """Import messages from a PO/POT file"""
         # Show the import file dialog
