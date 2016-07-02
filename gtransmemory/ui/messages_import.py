@@ -1,6 +1,6 @@
 ##
 #     Project: gTransMemory
-# Description: Translator with learning memory
+# Description: Learn memory for translators
 #      Author: Fabio Castelli (Muflone) <muflone@vbsimple.net>
 #   Copyright: 2016 Fabio Castelli
 #     License: GPL-2+
