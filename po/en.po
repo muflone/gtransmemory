@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
-"Report-Msgid-Bugs-To: muflone(at)vbsimple.net\n"
-"POT-Creation-Date: 2016-06-19 00:47+0200\n"
+"Report-Msgid-Bugs-To: muflone@vbsimple.net\n"
+"POT-Creation-Date: 2016-07-02 02:42+0200\n"
 "PO-Revision-Date: 2016-06-12 01:29+0200\n"
 "Last-Translator: Muflone (muflone(at)vbsimple.net)\n"
 "Language-Team: none\n"
@@ -19,25 +19,58 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: gtransmemory/__init__.py:50
+msgid "Project home page"
+msgstr "Project home page"
+
+#: gtransmemory/__init__.py:51
+msgid "Source code"
+msgstr "Source code"
+
+#: gtransmemory/__init__.py:52
+msgid "Author information"
+msgstr "Author information"
+
+#: gtransmemory/__init__.py:53
+msgid "Issues and bugs tracking"
+msgstr "Issues and bugs tracking"
+
+#: gtransmemory/__init__.py:54
+msgid "Translations"
+msgstr "Translations"
+
+#: gtransmemory/constants.py:30
+msgid "Learn memory for translators"
+msgstr "Learn memory for translators"
+
+#: gtransmemory/ui/about.py:49
+#, python-format
+msgid "Version %s"
+msgstr "Version %s"
+
 #: gtransmemory/ui/about.py:59
 msgid "Contributors:"
 msgstr "Contributors:"
 
-#: gtransmemory/ui/main.py:240
+#: gtransmemory/ui/main.py:269
 msgid "Add a new message"
 msgstr "Add a new message"
 
-#: gtransmemory/ui/main.py:265
+#: gtransmemory/ui/main.py:301
 msgid "Edit message"
 msgstr "Edit message"
 
-#: gtransmemory/ui/main.py:288
-msgid "Remove message"
-msgstr "Remove message"
+#: gtransmemory/ui/main.py:334
+msgid "GNU gettext translation files"
+msgstr "GNU gettext translation files"
 
-#: gtransmemory/ui/main.py:289
-msgid "Remove the selected message?"
-msgstr "Remove the selected message?"
+#: gtransmemory/ui/main.py:338
+msgid "All Files"
+msgstr "All Files"
+
+#: gtransmemory/ui/main.py:341
+msgid "Import messages from file"
+msgstr "Import messages from file"
 
 #: gtransmemory/ui/memories.py:96
 msgid "Add new memory"
@@ -68,15 +101,11 @@ msgstr "A memory with that name already exists"
 msgid "The memory description is missing"
 msgstr "The memory description is missing"
 
-#: gtransmemory/ui/message.py:107
+#: gtransmemory/ui/message.py:110
 msgid "The message is missing"
 msgstr "The message is missing"
 
-#: gtransmemory/ui/message.py:112
-msgid "The message is invalid"
-msgstr "The message is invalid"
-
-#: gtransmemory/ui/message.py:117
+#: gtransmemory/ui/message.py:115
 msgid "The specified message already exists"
 msgstr "The specified message already exists"
 
@@ -104,17 +133,29 @@ msgstr "Next memory"
 msgid "_Memories"
 msgstr "_Memories"
 
-#: ui/main.ui:272
+#: ui/main.ui:88
+msgid "_Import"
+msgstr "_Import"
+
+#: ui/main.ui:122
+msgid "_Selection"
+msgstr "_Selection"
+
+#: ui/main.ui:316
 msgid "Memory"
 msgstr "Memory"
 
-#: ui/main.ui:314
+#: ui/main.ui:373
 msgid "Message"
 msgstr "Message"
 
-#: ui/main.ui:329
+#: ui/main.ui:391
 msgid "Translation"
 msgstr "Translation"
+
+#: ui/main.ui:407
+msgid "Source"
+msgstr "Source"
 
 #: ui/memories.ui:43
 msgid "Configure memories"
@@ -136,6 +177,18 @@ msgstr "Configure message"
 msgid "_Message:"
 msgstr "_Message:"
 
-#: ui/message.ui:173
+#: ui/message.ui:172
 msgid "_Translation:"
 msgstr "_Translation:"
+
+#: ui/message.ui:198 ui/messages_import.ui:88
+msgid "_Source:"
+msgstr "_Source:"
+
+#: ui/messages_import.ui:115
+msgid "_File to import:"
+msgstr "_File to import:"
+
+#: ui/messages_import.ui:130
+msgid "Select the file to import"
+msgstr "Select the file to import"

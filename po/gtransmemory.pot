@@ -1,5 +1,5 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Fabio Castelli
+# gTransMemory
+# Copyright 2016 Fabio Castelli
 # This file is distributed under the same license as the gTransMemory package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
-"Report-Msgid-Bugs-To: muflone(at)vbsimple.net\n"
-"POT-Creation-Date: 2016-06-19 00:47+0200\n"
+"Report-Msgid-Bugs-To: muflone@vbsimple.net\n"
+"POT-Creation-Date: 2016-07-02 02:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,57 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: gtransmemory/__init__.py:50
+msgid "Project home page"
+msgstr ""
+
+#: gtransmemory/__init__.py:51
+msgid "Source code"
+msgstr ""
+
+#: gtransmemory/__init__.py:52
+msgid "Author information"
+msgstr ""
+
+#: gtransmemory/__init__.py:53
+msgid "Issues and bugs tracking"
+msgstr ""
+
+#: gtransmemory/__init__.py:54
+msgid "Translations"
+msgstr ""
+
+#: gtransmemory/constants.py:30
+msgid "Learn memory for translators"
+msgstr ""
+
+#: gtransmemory/ui/about.py:49
+#, python-format
+msgid "Version %s"
+msgstr ""
+
 #: gtransmemory/ui/about.py:59
 msgid "Contributors:"
 msgstr ""
 
-#: gtransmemory/ui/main.py:240
+#: gtransmemory/ui/main.py:269
 msgid "Add a new message"
 msgstr ""
 
-#: gtransmemory/ui/main.py:265
+#: gtransmemory/ui/main.py:301
 msgid "Edit message"
 msgstr ""
 
-#: gtransmemory/ui/main.py:288
-msgid "Remove message"
+#: gtransmemory/ui/main.py:334
+msgid "GNU gettext translation files"
 msgstr ""
 
-#: gtransmemory/ui/main.py:289
-msgid "Remove the selected message?"
+#: gtransmemory/ui/main.py:338
+msgid "All Files"
+msgstr ""
+
+#: gtransmemory/ui/main.py:341
+msgid "Import messages from file"
 msgstr ""
 
 #: gtransmemory/ui/memories.py:96
@@ -66,15 +99,11 @@ msgstr ""
 msgid "The memory description is missing"
 msgstr ""
 
-#: gtransmemory/ui/message.py:107
+#: gtransmemory/ui/message.py:110
 msgid "The message is missing"
 msgstr ""
 
-#: gtransmemory/ui/message.py:112
-msgid "The message is invalid"
-msgstr ""
-
-#: gtransmemory/ui/message.py:117
+#: gtransmemory/ui/message.py:115
 msgid "The specified message already exists"
 msgstr ""
 
@@ -102,16 +131,28 @@ msgstr ""
 msgid "_Memories"
 msgstr ""
 
-#: ui/main.ui:272
+#: ui/main.ui:88
+msgid "_Import"
+msgstr ""
+
+#: ui/main.ui:122
+msgid "_Selection"
+msgstr ""
+
+#: ui/main.ui:316
 msgid "Memory"
 msgstr ""
 
-#: ui/main.ui:314
+#: ui/main.ui:373
 msgid "Message"
 msgstr ""
 
-#: ui/main.ui:329
+#: ui/main.ui:391
 msgid "Translation"
+msgstr ""
+
+#: ui/main.ui:407
+msgid "Source"
 msgstr ""
 
 #: ui/memories.ui:43
@@ -134,6 +175,18 @@ msgstr ""
 msgid "_Message:"
 msgstr ""
 
-#: ui/message.ui:173
+#: ui/message.ui:172
 msgid "_Translation:"
+msgstr ""
+
+#: ui/message.ui:198 ui/messages_import.ui:88
+msgid "_Source:"
+msgstr ""
+
+#: ui/messages_import.ui:115
+msgid "_File to import:"
+msgstr ""
+
+#: ui/messages_import.ui:130
+msgid "Select the file to import"
 msgstr ""
