@@ -55,7 +55,7 @@ class ModelAbstract(object):
 
     def get_key(self, treeiter):
         """Get the name from a TreeIter"""
-        return self.model[treeiter][self.COL_KEY]
+        return self.model[treeiter][self.COL_KEY].decode('utf-8')
 
     def get_iter(self, name):
         """Get a TreeIter from a name"""
