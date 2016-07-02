@@ -22,12 +22,12 @@ import sys
 import os.path
 
 from xdg import BaseDirectory
-
+from gettext import gettext as _
 
 # Application constants
 APP_NAME = 'gTransMemory'
 APP_VERSION = '0.1.0'
-APP_DESCRIPTION = 'Translator with learning memory'
+APP_DESCRIPTION = _('Learn memory for translators')
 APP_ID = 'gtransmemory.muflone.com'
 APP_URL = 'http://www.muflone.com/gtransmemory/'
 APP_AUTHOR = 'Fabio Castelli'

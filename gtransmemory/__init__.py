@@ -44,3 +44,9 @@ for message in ('_Add', '_Remove', '_Edit', '_New', '_Quit', '_About'):
 # Remove the underscore
 for message in ('_Add', '_Remove', '_Edit', '_New', '_Connect', '_Delete'):
     store_message(message.replace('_', ''), _(message).replace('_', ''))
+# Import fixed texts
+store_message('Project home page', _('Project home page'))
+store_message('Source code', _('Source code'))
+store_message('Author information', _('Author information'))
+store_message('Issues and bugs tracking', _('Issues and bugs tracking'))
+store_message('Translations', _('Translations'))
