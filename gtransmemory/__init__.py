@@ -31,6 +31,8 @@ for module in (gettext, locale):
     module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
     module.textdomain(DOMAIN_NAME)
 
+# Set default empty translation for empty string
+store_message('', '')
 # Import some translated messages from GTK+ domain
 store_message('_Icon:', '_%s:' % text(message='Icon', gtk30=True))
 for message in ('_OK', '_Cancel', '_Close', '_Open', '_Save', '_Connect',

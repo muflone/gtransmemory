@@ -71,14 +71,6 @@
       </object>
       <accelerator key="Return" modifiers="GDK_MOD1_MASK"/>
     </child>
-    <child>
-      <object class="GtkAction" id="action_delete">
-        <property name="label" comments="Use domain gtk30">_Delete</property>
-        <property name="icon_name">edit-delete</property>
-        <signal name="activate" handler="on_action_delete_activate" swapped="no"/>
-      </object>
-      <accelerator key="Delete" modifiers="GDK_CONTROL_MASK"/>
-    </child>
   </object>
   <object class="GtkActionGroup" id="actions_messages">
     <property name="sensitive">False</property>
@@ -121,13 +113,26 @@
         <property name="use_underline">True</property>
       </object>
     </child>
+  </object>
+  <object class="GtkActionGroup" id="actions_selection">
+    <property name="sensitive">False</property>
+    <property name="accel_group">accelerators</property>
     <child>
-      <object class="GtkMenuItem" id="menuitem_delete">
-        <property name="use_action_appearance">True</property>
-        <property name="related_action">action_delete</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="use_underline">True</property>
+      <object class="GtkToggleAction" id="action_selection">
+        <property name="label" translatable="yes">_Selection</property>
+        <property name="icon_name">object-select-symbolic</property>
+        <signal name="toggled" handler="on_action_selection_toggled" swapped="no"/>
+      </object>
+    </child>
+  </object>
+  <object class="GtkActionGroup" id="actions_selection_action">
+    <property name="sensitive">False</property>
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkAction" id="action_remove">
+        <property name="label" comments="Use domain gtk30">_Remove</property>
+        <property name="icon_name">user-trash</property>
+        <signal name="activate" handler="on_action_remove_activate" swapped="no"/>
       </object>
     </child>
   </object>
@@ -151,6 +156,8 @@
       <column type="gchararray"/>
       <!-- column-name Source -->
       <column type="gchararray"/>
+      <!-- column-name Selection -->
+      <column type="gboolean"/>
     </columns>
   </object>
   <object class="GtkApplicationWindow" id="win_main">
@@ -211,9 +218,9 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="tlb_delete">
+              <object class="GtkToolButton" id="tlb_remove">
                 <property name="use_action_appearance">True</property>
-                <property name="related_action">action_delete</property>
+                <property name="related_action">action_remove</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_underline">True</property>
@@ -237,6 +244,19 @@
               <object class="GtkToolButton" id="tlb_groups">
                 <property name="use_action_appearance">True</property>
                 <property name="related_action">action_memories</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="tlb_selection">
+                <property name="use_action_appearance">True</property>
+                <property name="related_action">action_selection</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="use_underline">True</property>
@@ -325,6 +345,7 @@
                     <property name="has_focus">True</property>
                     <property name="is_focus">True</property>
                     <property name="model">store_messages</property>
+                    <property name="search_column">1</property>
                     <signal name="button-release-event" handler="on_tvw_messages_button_release_event" swapped="no"/>
                     <signal name="row-activated" handler="on_tvw_messages_row_activated" swapped="no"/>
                     <child internal-child="selection">
@@ -333,14 +354,30 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkTreeViewColumn" id="column_selection">
+                        <property name="visible">False</property>
+                        <child>
+                          <object class="GtkCellRendererToggle" id="cell_selection">
+                            <signal name="toggled" handler="on_cell_selection_toggled" swapped="no"/>
+                          </object>
+                          <attributes>
+                            <attribute name="active">4</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkTreeViewColumn" id="column_message">
                         <property name="resizable">True</property>
+                        <property name="fixed_width">250</property>
                         <property name="title" translatable="yes">Message</property>
                         <property name="reorderable">True</property>
                         <property name="sort_indicator">True</property>
                         <property name="sort_column_id">1</property>
                         <child>
-                          <object class="GtkCellRendererText" id="cell_message"/>
+                          <object class="GtkCellRendererText" id="cell_message">
+                            <property name="ellipsize">end</property>
+                          </object>
                           <attributes>
                             <attribute name="text">1</attribute>
                           </attributes>
@@ -350,11 +387,14 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="column_translation">
                         <property name="resizable">True</property>
+                        <property name="fixed_width">250</property>
                         <property name="title" translatable="yes">Translation</property>
                         <property name="reorderable">True</property>
                         <property name="sort_column_id">2</property>
                         <child>
-                          <object class="GtkCellRendererText" id="cell_translation"/>
+                          <object class="GtkCellRendererText" id="cell_translation">
+                            <property name="ellipsize">end</property>
+                          </object>
                           <attributes>
                             <attribute name="text">2</attribute>
                           </attributes>
@@ -363,6 +403,7 @@
                     </child>
                     <child>
                       <object class="GtkTreeViewColumn" id="column_source">
+                        <property name="fixed_width">100</property>
                         <property name="title" translatable="yes">Source</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_source"/>

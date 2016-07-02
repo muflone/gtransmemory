@@ -27,6 +27,7 @@ class ModelMessages(ModelAbstract):
     COL_MESSAGE = 1
     COL_TRANSLATION = 2
     COL_SOURCE = 3
+    COL_SELECTION = 4
 
     def __init__(self, model):
         """Create a new messages database"""
@@ -50,7 +51,8 @@ class ModelMessages(ModelAbstract):
             new_row = self.model.append(None, (item.key,
                                                item.msgid,
                                                item.translation,
-                                               item.source))
+                                               item.source,
+                                               False))
             self.rows[item.key] = new_row
             return new_row
 
@@ -60,6 +62,14 @@ class ModelMessages(ModelAbstract):
         self.model.set_value(treeiter, self.COL_MESSAGE, item.msgid)
         self.model.set_value(treeiter, self.COL_TRANSLATION, item.translation)
         self.model.set_value(treeiter, self.COL_SOURCE, item.source)
+
+    def get_selection(self, treeiter):
+        """Get the selection from a TreeIter"""
+        return self.model[treeiter][self.COL_SELECTION]
+
+    def set_selection(self, treeiter, value):
+        """Set the selection for a TreeIter"""
+        self.model.set_value(treeiter, self.COL_SELECTION, value)
 
     def get_message(self, treeiter):
         """Get the message from a TreeIter"""

@@ -62,6 +62,8 @@ class UIMain(object):
         self.model_messages = ModelMessages(self.ui.store_messages)
         self.model_memories = ModelMemories(self.ui.store_memories)
         self.database = None
+        self.selection_mode = False
+        self.selected_count = 0
         # Load the messages list
         self.messages = {}
         self.reload_memories()
@@ -124,6 +126,9 @@ class UIMain(object):
             # Flatten the Gtk.ScrolledWindows
             self.ui.scroll_memories.set_shadow_type(Gtk.ShadowType.NONE)
             self.ui.scroll_messages.set_shadow_type(Gtk.ShadowType.NONE)
+        else:
+            # No headerbar
+            self.ui.headerbar = None
         # Connect signals from the glade file to the module functions
         self.ui.connect_signals(self)
 
@@ -143,7 +148,8 @@ class UIMain(object):
             setattr(self.ui, name, new_button)
             # Use icon from the action
             icon_name = action.get_icon_name()
-            if preferences.get(preferences.HEADERBARS_SYMBOLIC_ICONS):
+            if (preferences.get(preferences.HEADERBARS_SYMBOLIC_ICONS) and
+                    not icon_name.endswith('-symbolic')):
                 icon_name += '-symbolic'
             # Get desired icon size
             icon_size = (Gtk.IconSize.BUTTON
@@ -156,6 +162,7 @@ class UIMain(object):
             return new_button
         # Add the Gtk.HeaderBar
         header_bar = Gtk.HeaderBar()
+        self.ui.headerbar = header_bar
         header_bar.props.title = self.ui.win_main.get_title()
         header_bar.set_show_close_button(True)
         self.ui.win_main.set_titlebar(header_bar)
@@ -163,12 +170,18 @@ class UIMain(object):
         for action in (self.ui.action_new,
                        self.ui.action_import,
                        self.ui.action_edit,
-                       self.ui.action_delete):
+                       self.ui.action_remove):
             header_bar.pack_start(create_button_from_action(action))
         # Add buttons to the right side (in reverse order)
         for action in reversed((self.ui.action_memories,
+                                self.ui.action_selection,
                                 self.ui.action_about)):
             header_bar.pack_end(create_button_from_action(action))
+        # Initially hide the remove messages button
+        # (there's a bug in the GtkActions that show the button, regardless
+        # the initial visibility
+        self.ui.actions_selection_action.set_visible(False)
+        self.ui.button_action_remove.set_no_show_all(True)
 
     def run(self):
         """Show the UI"""
@@ -305,20 +318,14 @@ class UIMain(object):
                                                 column=None,
                                                 start_editing=False)
 
-    def on_action_delete_activate(self, action):
-        """Remove the selected message"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_messages)
-        if selected_row and show_message_dialog(
-                class_=UIMessageDialogNoYes,
-                parent=self.ui.win_main,
-                message_type=Gtk.MessageType.QUESTION,
-                title=None,
-                msg1=_('Remove message'),
-                msg2=_('Remove the selected message?'),
-                is_response_id=Gtk.ResponseType.YES):
-            message = self.messages[self.model_messages.get_key(selected_row)]
-            self.remove_message(message=message, update_settings=True)
-
+    def on_action_remove_activate(self, action):
+        """Remove the selected items"""
+        for key, row in self.model_messages.rows.items():
+            if self.model_messages.get_selection(row):
+                message = self.messages[key]
+                self.remove_message(message=message, update_settings=True)
+        self.ui.action_selection.set_active(False)
+        
     def on_action_import_activate(self, action):
         """Import messages from a PO/POT file"""
         # Show the import file dialog
@@ -344,7 +351,7 @@ class UIMain(object):
     def on_tvw_messages_row_activated(self, widget, treepath, column):
         """Edit the selected row on activation"""
         selected_row = get_treeview_selected_row(self.ui.tvw_messages)
-        if selected_row:
+        if selected_row and not self.selection_mode:
             # Start message edit
             self.ui.action_edit.activate()
 
@@ -368,7 +375,7 @@ class UIMain(object):
 
     def on_tvw_messages_button_release_event(self, widget, event):
         """Show connections popup menu on right click"""
-        if event.button == Gdk.BUTTON_SECONDARY:
+        if event.button == Gdk.BUTTON_SECONDARY and not self.selection_mode:
             show_popup_menu(self.ui.menu_messages, event.button)
 
     def on_action_memories_previous_activate(self, action):
@@ -393,6 +400,7 @@ class UIMain(object):
         """Set action sensitiveness on selection change"""
         selected_row = get_treeview_selected_row(self.ui.tvw_memories)
         self.ui.actions_messages.set_sensitive(bool(selected_row))
+        self.ui.actions_selection.set_sensitive(bool(selected_row))
         self.model_messages.clear()
         if selected_row:
             self.reload_messages()
@@ -405,3 +413,42 @@ class UIMain(object):
         """Set action sensitiveness on selection change"""
         selected_row = get_treeview_selected_row(self.ui.tvw_messages)
         self.ui.actions_message.set_sensitive(bool(selected_row))
+
+    def on_action_selection_toggled(self, action):
+        """Enable or disable the selection mode and change style accordingly"""
+        status = action.get_active()
+        self.selection_mode = status
+        # Remove any previous selection
+        if not status:
+            for row in self.model_messages.rows.values():
+                self.model_messages.set_selection(row, False)
+        self.selected_count = 0
+        if self.ui.headerbar:
+            # Change headerbar style
+            style_context = self.ui.headerbar.get_style_context()
+            if status:
+                style_context.add_class('selection-mode')
+            else:
+                style_context.remove_class('selection-mode')
+            self.ui.actions_messages.set_visible(not status)
+            self.ui.actions_message.set_visible(not status)
+            self.ui.actions_memories.set_visible(not status)
+            self.ui.actions_selection_action.set_visible(status)
+        else:
+            # No headerbar, therefore simply enable and disable toolbuttons
+            self.ui.actions_messages.set_sensitive(not status)
+            self.ui.actions_message.set_sensitive(not status)
+            self.ui.actions_selection_action.set_sensitive(status)
+        self.ui.actions_selection_action.set_sensitive(False)
+        self.ui.column_selection.set_visible(status)
+        self.ui.tvw_memories.set_sensitive(not status)
+
+    def on_cell_selection_toggled(self, widget, treepath):
+        """Toggle the selection status"""
+        key = self.model_messages.get_key(treepath)
+        treeiter = self.model_messages.get_iter(key)
+        status = not self.model_messages.get_selection(treeiter)
+        self.model_messages.set_selection(treeiter, status)
+        # Set the selection action state
+        self.selected_count += 1 if status else -1
+        self.ui.actions_selection_action.set_sensitive(self.selected_count)
