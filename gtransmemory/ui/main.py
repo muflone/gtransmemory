@@ -379,9 +379,14 @@ class UIMain(object):
             show_popup_menu(self.ui.menu_memories, event.button)
 
     def on_tvw_messages_button_release_event(self, widget, event):
-        """Show connections popup menu on right click"""
-        if event.button == Gdk.BUTTON_SECONDARY and not self.selection_mode:
-            show_popup_menu(self.ui.menu_messages, event.button)
+        """Show popup menu on right click"""
+        if event.button == Gdk.BUTTON_SECONDARY:
+            if self.selection_mode:
+                # Show selection menu
+                show_popup_menu(self.ui.menu_selection, event.button)
+            else:
+                # Show messages menu
+                show_popup_menu(self.ui.menu_messages, event.button)
 
     def on_action_memories_previous_activate(self, action):
         """Move to the previous memory"""
@@ -451,6 +456,18 @@ class UIMain(object):
     def _end_selection(self, accel_group, acceleratable, keyval, modifier):
         """End of the selection mode"""
         self.ui.action_selection.set_active(False)
+
+    def on_action_select_all_activate(self, action):
+        """Select or deselect all messages"""
+        self.ui.action_selection.set_active(True)
+        self.selected_count = 0
+        status = action == self.ui.action_select_all
+        # Iterate over all the Gtk.TreeIter
+        for row in self.model_messages.rows.values():
+            self.model_messages.set_selection(row, status)
+            if status:
+                self.selected_count += 1
+        self.ui.actions_selection_action.set_sensitive(self.selected_count)
 
     def on_cell_selection_toggled(self, widget, treepath):
         """Toggle the selection status"""
