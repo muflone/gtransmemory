@@ -188,7 +188,7 @@ msgstr "O_rigine:"
 
 #: ui/messages_import.ui:115
 msgid "_File to import:"
-msgstr "_File da importare"
+msgstr "_File da importare:"
 
 #: ui/messages_import.ui:130
 msgid "Select the file to import"
