@@ -24,13 +24,14 @@ import os.path
 import polib
 from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import GObject
 
 from gtransmemory.constants import (
     APP_NAME,
     FILE_SETTINGS, FILE_WINDOWS_POSITION, DIR_MEMORIES)
 from gtransmemory.functions import (
     get_ui_file, get_treeview_selected_row, show_popup_menu, create_filefilter,
-    text, _)
+    process_events, text, _)
 import gtransmemory.preferences as preferences
 import gtransmemory.settings as settings
 from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
@@ -64,6 +65,8 @@ class UIMain(object):
         self.database = None
         self.selection_mode = False
         self.selected_count = 0
+        self.loading_id = None
+        self.loading_cancel = False
         # Load the messages list
         self.messages = {}
         self.reload_memories()
@@ -216,19 +219,46 @@ class UIMain(object):
 
     def reload_messages(self):
         """Load messages from the database memory"""
+        def do_reload(messages):
+            step = 1
+            count = len(messages)
+            # Load messages
+            for msgid, translation, source in messages:
+                # Break any previous loading
+                if self.loading_cancel:
+                    yield False
+                message = MessageInfo(msgid.replace('\n', '\\n'),
+                                      translation.replace('\n', '\\n'),
+                                      source)
+                self.add_message(message, False)
+                step += 1
+                self.ui.progress_loading.set_fraction(1.0 / count * step)
+                self.ui.progress_loading.set_text(
+                    _('Loading message %d of %d') % (step, count))
+                yield True
+            self.ui.progress_loading.set_visible(False)
+            self.ui.action_new.set_sensitive(True)
+            self.loading_id = None
+            self.loading_cancel = False
+            yield False
         if self.database:
             self.database.close()
+        # Cancel any previously running loading
+        if self.loading_id:
+            self.loading_cancel = True
+            process_events()
+        # Clear previos data
         self.model_messages.clear()
         self.messages.clear()
+        self.ui.progress_loading.set_fraction(0.0)
+        self.ui.progress_loading.set_visible(True)
         memory_path = self.model_memories.get_filename(
             get_treeview_selected_row(self.ui.tvw_memories))
         self.database = MemoryDB(memory_path)
-        for msgid, translation, source in self.database.get_messages():
-            message = MessageInfo(msgid.replace('\n', '\\n'),
-                                  translation.replace('\n', '\\n'),
-                                  source)
-            self.add_message(message, False)
-        self.ui.action_new.set_sensitive(True)
+        self.loading_cancel = False
+        # Start messages loading in idle
+        task = do_reload(self.database.get_messages())
+        self.loading_id = GObject.idle_add(task.next)
 
     def add_message(self, message, update_settings):
         """Add a new message to the data and to the model"""
