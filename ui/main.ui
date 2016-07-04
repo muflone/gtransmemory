@@ -91,29 +91,6 @@
       </object>
     </child>
   </object>
-  <object class="GtkMenu" id="menu_messages">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="accel_group">accelerators</property>
-    <child>
-      <object class="GtkMenuItem" id="menuitem_new">
-        <property name="use_action_appearance">True</property>
-        <property name="related_action">action_new</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="use_underline">True</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkMenuItem" id="menuitem_edit">
-        <property name="use_action_appearance">True</property>
-        <property name="related_action">action_edit</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="use_underline">True</property>
-      </object>
-    </child>
-  </object>
   <object class="GtkActionGroup" id="actions_selection">
     <property name="sensitive">False</property>
     <property name="accel_group">accelerators</property>
@@ -142,10 +119,51 @@
       <accelerator key="a" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
     </child>
   </object>
+  <object class="GtkMenu" id="menu_messages">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkCheckMenuItem" id="menuitem_selection">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_selection</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_new">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_new</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_edit">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_edit</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+  </object>
   <object class="GtkMenu" id="menu_selection">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkCheckMenuItem" id="menuitem_selection2">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_selection</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
     <child>
       <object class="GtkMenuItem" id="menuitem_select_all">
         <property name="use_action_appearance">True</property>
