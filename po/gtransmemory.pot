@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: muflone@vbsimple.net\n"
-"POT-Creation-Date: 2016-07-02 02:52+0200\n"
+"POT-Creation-Date: 2016-07-06 00:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,23 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gtransmemory/__init__.py:50
+#: gtransmemory/__init__.py:52
 msgid "Project home page"
 msgstr ""
 
-#: gtransmemory/__init__.py:51
+#: gtransmemory/__init__.py:53
 msgid "Source code"
 msgstr ""
 
-#: gtransmemory/__init__.py:52
+#: gtransmemory/__init__.py:54
 msgid "Author information"
 msgstr ""
 
-#: gtransmemory/__init__.py:53
+#: gtransmemory/__init__.py:55
 msgid "Issues and bugs tracking"
 msgstr ""
 
-#: gtransmemory/__init__.py:54
+#: gtransmemory/__init__.py:56
 msgid "Translations"
 msgstr ""
 
@@ -50,23 +50,28 @@ msgstr ""
 msgid "Contributors:"
 msgstr ""
 
-#: gtransmemory/ui/main.py:269
+#: gtransmemory/ui/main.py:260
+#, python-brace-format
+msgid "Loading message {step} of {count}"
+msgstr ""
+
+#: gtransmemory/ui/main.py:328
 msgid "Add a new message"
 msgstr ""
 
-#: gtransmemory/ui/main.py:301
+#: gtransmemory/ui/main.py:360
 msgid "Edit message"
 msgstr ""
 
-#: gtransmemory/ui/main.py:334
+#: gtransmemory/ui/main.py:393
 msgid "GNU gettext translation files"
 msgstr ""
 
-#: gtransmemory/ui/main.py:338
-msgid "All Files"
+#: gtransmemory/ui/main.py:397
+msgid "All files"
 msgstr ""
 
-#: gtransmemory/ui/main.py:341
+#: gtransmemory/ui/main.py:400
 msgid "Import messages from file"
 msgstr ""
 
@@ -135,23 +140,23 @@ msgstr ""
 msgid "_Import"
 msgstr ""
 
-#: ui/main.ui:122
-msgid "_Selection"
+#: ui/main.ui:125
+msgid "_Deselect all"
 msgstr ""
 
-#: ui/main.ui:316
+#: ui/main.ui:449
 msgid "Memory"
 msgstr ""
 
-#: ui/main.ui:373
+#: ui/main.ui:507
 msgid "Message"
 msgstr ""
 
-#: ui/main.ui:391
+#: ui/main.ui:524
 msgid "Translation"
 msgstr ""
 
-#: ui/main.ui:407
+#: ui/main.ui:539
 msgid "Source"
 msgstr ""
 

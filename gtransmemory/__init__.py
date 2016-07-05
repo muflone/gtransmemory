@@ -35,16 +35,14 @@ for module in (gettext, locale):
 store_message('', '')
 # Import some translated messages from GTK+ domain
 store_message('_Icon:', '_%s:' % text(message='Icon', gtk30=True))
-for message in ('_OK', '_Cancel', '_Close', '_Open', '_Save', '_Connect',
-                '_Copy', '_Delete', 'Select a File', 'Services',
-                'Name', 'Value', '_Name:', '_Value:',
-                'If you delete an item, it will be permanently lost.'):
+for message in ('_OK', '_Cancel', '_Close', 'Se_lection', 'Search'):
     text(message=message, gtk30=True)
 # With domain context
-for message in ('_Add', '_Remove', '_Edit', '_New', '_Quit', '_About'):
+for message in ('_Add', '_Remove', '_Edit', '_New', '_About', '_Clear',
+                'Select _All'):
     text(message=message, gtk30=True, context='Stock label')
 # Remove the underscore
-for message in ('_Add', '_Remove', '_Edit', '_New', '_Connect', '_Delete'):
+for message in ('_Add', '_Clear'):
     store_message(message.replace('_', ''), _(message).replace('_', ''))
 # Import fixed texts
 store_message('Project home page', _('Project home page'))

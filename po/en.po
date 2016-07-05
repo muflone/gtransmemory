@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: muflone@vbsimple.net\n"
-"POT-Creation-Date: 2016-07-02 02:42+0200\n"
+"POT-Creation-Date: 2016-07-06 00:26+0200\n"
 "PO-Revision-Date: 2016-06-12 01:29+0200\n"
 "Last-Translator: Muflone (muflone(at)vbsimple.net)\n"
 "Language-Team: none\n"
@@ -19,23 +19,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gtransmemory/__init__.py:50
+#: gtransmemory/__init__.py:52
 msgid "Project home page"
 msgstr "Project home page"
 
-#: gtransmemory/__init__.py:51
+#: gtransmemory/__init__.py:53
 msgid "Source code"
 msgstr "Source code"
 
-#: gtransmemory/__init__.py:52
+#: gtransmemory/__init__.py:54
 msgid "Author information"
 msgstr "Author information"
 
-#: gtransmemory/__init__.py:53
+#: gtransmemory/__init__.py:55
 msgid "Issues and bugs tracking"
 msgstr "Issues and bugs tracking"
 
-#: gtransmemory/__init__.py:54
+#: gtransmemory/__init__.py:56
 msgid "Translations"
 msgstr "Translations"
 
@@ -52,23 +52,28 @@ msgstr "Version %s"
 msgid "Contributors:"
 msgstr "Contributors:"
 
-#: gtransmemory/ui/main.py:269
+#: gtransmemory/ui/main.py:260
+#, python-brace-format
+msgid "Loading message {step} of {count}"
+msgstr "Loading message {step} of {count}"
+
+#: gtransmemory/ui/main.py:328
 msgid "Add a new message"
 msgstr "Add a new message"
 
-#: gtransmemory/ui/main.py:301
+#: gtransmemory/ui/main.py:360
 msgid "Edit message"
 msgstr "Edit message"
 
-#: gtransmemory/ui/main.py:334
+#: gtransmemory/ui/main.py:393
 msgid "GNU gettext translation files"
 msgstr "GNU gettext translation files"
 
-#: gtransmemory/ui/main.py:338
-msgid "All Files"
-msgstr "All Files"
+#: gtransmemory/ui/main.py:397
+msgid "All files"
+msgstr "All files"
 
-#: gtransmemory/ui/main.py:341
+#: gtransmemory/ui/main.py:400
 msgid "Import messages from file"
 msgstr "Import messages from file"
 
@@ -137,23 +142,23 @@ msgstr "_Memories"
 msgid "_Import"
 msgstr "_Import"
 
-#: ui/main.ui:122
-msgid "_Selection"
-msgstr "_Selection"
+#: ui/main.ui:125
+msgid "_Deselect all"
+msgstr "_Deselect all"
 
-#: ui/main.ui:316
+#: ui/main.ui:449
 msgid "Memory"
 msgstr "Memory"
 
-#: ui/main.ui:373
+#: ui/main.ui:507
 msgid "Message"
 msgstr "Message"
 
-#: ui/main.ui:391
+#: ui/main.ui:524
 msgid "Translation"
 msgstr "Translation"
 
-#: ui/main.ui:407
+#: ui/main.ui:539
 msgid "Source"
 msgstr "Source"
 

@@ -106,7 +106,7 @@
     <property name="accel_group">accelerators</property>
     <child>
       <object class="GtkToggleAction" id="action_selection">
-        <property name="label" translatable="yes">_Selection</property>
+        <property name="label" comments="Use domain gtk30">Se_lection</property>
         <property name="icon_name">object-select-symbolic</property>
         <signal name="toggled" handler="on_action_selection_toggled" swapped="no"/>
       </object>
@@ -114,7 +114,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_select_all">
-        <property name="label" comments="Use domain gtk30">_Select All</property>
+        <property name="label" comments="Use domain gtk30">Select _All</property>
         <property name="icon_name">edit-select-all</property>
         <signal name="activate" handler="on_action_select_all_activate" swapped="no"/>
       </object>
@@ -122,7 +122,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_deselect_all">
-        <property name="label" translatable="yes">_Deselect All</property>
+        <property name="label" translatable="yes">_Deselect all</property>
         <property name="icon_name">edit-select-all</property>
         <signal name="activate" handler="on_action_select_all_activate" swapped="no"/>
       </object>
@@ -180,7 +180,6 @@
         <property name="related_action">action_select_all</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">_New</property>
         <property name="use_underline">True</property>
       </object>
     </child>
@@ -190,7 +189,6 @@
         <property name="related_action">action_deselect_all</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">_Edit</property>
         <property name="use_underline">True</property>
       </object>
     </child>

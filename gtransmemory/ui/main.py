@@ -257,7 +257,8 @@ class UIMain(object):
                 step += 1
                 self.ui.progress_loading.set_fraction(1.0 / count * step)
                 self.ui.progress_loading.set_text(
-                    _('Loading message %d of %d') % (step, count))
+                    _('Loading message {step} of {count}').format(step=step,
+                                                                  count=count))
                 yield True
             self.ui.progress_loading.set_visible(False)
             self.ui.action_new.set_sensitive(True)
@@ -393,7 +394,7 @@ class UIMain(object):
                               None,
                               ('*.po', '*.pot')))
         dialog.ui.file_chooser_import.add_filter(
-            create_filefilter(_('All Files'),
+            create_filefilter(_('All files'),
                               None,
                               ('*', )))
         response = dialog.show(_('Import messages from file'))
