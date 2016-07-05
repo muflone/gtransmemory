@@ -561,8 +561,3 @@ class UIMain(object):
         """Click an icon next to a Entry"""
         if icon_position == Gtk.EntryIconPosition.SECONDARY:
             self.ui.entry_search.set_text('')
-
-    def on_entry_search_key_press_event(self, widget, event):
-        """Hide the search entry pressing the Escape key"""
-        if Gdk.keyval_name(event.keyval) == 'Escape':
-            self.on_entry_search_focus_out_event(widget, event)
