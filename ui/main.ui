@@ -387,7 +387,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="tlb_selection">
+              <object class="GtkToggleToolButton" id="tlb_selection">
                 <property name="use_action_appearance">True</property>
                 <property name="related_action">action_selection</property>
                 <property name="visible">True</property>
