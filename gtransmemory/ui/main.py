@@ -552,6 +552,6 @@ class UIMain(object):
         self.ui.action_search.set_active(False)
 
     def on_entry_search_icon_release(self, widget, icon_position, event):
-        """Click an icon next to a Entry"""
+        """Clear the search text by clicking the icon next to the Gtk.Entry"""
         if icon_position == Gtk.EntryIconPosition.SECONDARY:
             self.ui.entry_search.set_text('')
