@@ -144,10 +144,6 @@ class UIMain(object):
         else:
             # No headerbar
             self.ui.headerbar = None
-        # Disable interactive search on Gtk.TreeView
-        Gtk.binding_entry_remove(Gtk.binding_set_find('GtkTreeView'),
-                                 Gdk.KEY_f,
-                                 Gdk.ModifierType.CONTROL_MASK)
         # Prepare the search bar
         self.ui.revealer_search = None
         # Add a Gtk.Revealer, only for GTK+ 3.10.0 and higher
