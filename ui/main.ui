@@ -152,6 +152,15 @@
       </object>
     </child>
     <child>
+      <object class="GtkMenuItem" id="menuitem_import">
+        <property name="use_action_appearance">True</property>
+        <property name="related_action">action_import</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkMenuItem" id="menuitem_new">
         <property name="use_action_appearance">True</property>
         <property name="related_action">action_new</property>
