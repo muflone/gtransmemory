@@ -112,6 +112,12 @@ class UIMain(object):
             action = widget.get_related_action()
             if action:
                 widget.set_tooltip_text(action.get_label().replace('_', ''))
+        self.ui.button_search_close.set_tooltip_text(
+            self.ui.action_search_close.get_label().replace('_', ''))
+        self.ui.entry_search.set_icon_tooltip_text(
+            Gtk.EntryIconPosition.PRIMARY, text('Search'))
+        self.ui.entry_search.set_icon_tooltip_text(
+            Gtk.EntryIconPosition.SECONDARY, text('Clear'))
         # Initialize column headers
         for widget in self.ui.get_objects_by_type(Gtk.TreeViewColumn):
             widget.set_title(text(widget.get_title()))
@@ -137,6 +143,23 @@ class UIMain(object):
         else:
             # No headerbar
             self.ui.headerbar = None
+        # Disable interactive search on Gtk.TreeView
+        Gtk.binding_entry_remove(Gtk.binding_set_find('GtkTreeView'),
+                                 Gdk.KEY_f,
+                                 Gdk.ModifierType.CONTROL_MASK)
+        # Prepare the search bar
+        self.ui.revealer_search = None
+        # Add a Gtk.Revealer, only for GTK+ 3.10.0 and higher
+        if not Gtk.check_version(3, 10, 0):
+            self.ui.box_main.remove(self.ui.frame_search)
+            self.ui.revealer_search = Gtk.Revealer()
+            self.ui.revealer_search.add(self.ui.frame_search)
+            self.ui.box_main.add(self.ui.revealer_search)
+            self.ui.box_main.reorder_child(child=self.ui.revealer_search,
+                                           position=0)
+            self.ui.frame_search.set_visible(True)
+        # Set custom search entry for messages
+        self.ui.tvw_messages.set_search_entry(self.ui.entry_search)
         # Connect signals from the glade file to the module functions
         self.ui.connect_signals(self)
 
@@ -508,3 +531,37 @@ class UIMain(object):
         # Set the selection action state
         self.selected_count += 1 if status else -1
         self.ui.actions_selection_action.set_sensitive(self.selected_count)
+
+    def on_win_main_key_press_event(self, widget, event):
+        """Show and hide the search bar"""
+        shortcut = Gtk.accelerator_get_label(event.keyval, event.state)
+        if shortcut in ("Ctrl+F", "Ctrl+Mod2+F"):
+            if self.ui.revealer_search:
+                # There's a Gtk.Revealer, show and hide the child
+                self.ui.revealer_search.set_reveal_child(
+                    not self.ui.revealer_search.get_reveal_child())
+                if self.ui.revealer_search.get_reveal_child():
+                    self.ui.entry_search.grab_focus()
+            else:
+                # No Gtk.Revealer, simply show and hide the Gtk.Frame
+                self.ui.frame_search.set_visible(
+                    not self.ui.frame_search.get_visible())
+                if self.ui.frame_search.get_visible():
+                    self.ui.entry_search.grab_focus()
+
+    def on_action_search_close_activate(self, action):
+        """Hide the search bar"""
+        if self.ui.revealer_search:
+            self.ui.revealer_search.set_reveal_child(False)
+        else:
+            self.ui.frame_search.set_visible(False)
+
+    def on_entry_search_icon_release(self, widget, icon_position, event):
+        """Click an icon next to a Entry"""
+        if icon_position == Gtk.EntryIconPosition.SECONDARY:
+            self.ui.entry_search.set_text('')
+
+    def on_entry_search_key_press_event(self, widget, event):
+        """Hide the search entry pressing the Escape key"""
+        if Gdk.keyval_name(event.keyval) == 'Escape':
+            self.on_entry_search_focus_out_event(widget, event)

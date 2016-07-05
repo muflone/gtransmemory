@@ -91,6 +91,16 @@
       </object>
     </child>
   </object>
+  <object class="GtkActionGroup" id="actions_search">
+    <property name="accel_group">accelerators</property>
+    <child>
+      <object class="GtkAction" id="action_search_close">
+        <property name="label" comments="Use domain gtk30">_Close</property>
+        <signal name="activate" handler="on_action_search_close_activate" swapped="no"/>
+      </object>
+      <accelerator key="Escape"/>
+    </child>
+  </object>
   <object class="GtkActionGroup" id="actions_selection">
     <property name="sensitive">False</property>
     <property name="accel_group">accelerators</property>
@@ -230,11 +240,75 @@
       <group name="accelerators"/>
     </accel-groups>
     <signal name="delete-event" handler="on_win_main_delete_event" swapped="no"/>
+    <signal name="key-press-event" handler="on_win_main_key_press_event" swapped="no"/>
     <child>
       <object class="GtkBox" id="box_main">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkFrame" id="frame_search">
+            <property name="can_focus">False</property>
+            <property name="no_show_all">True</property>
+            <property name="border_width">5</property>
+            <property name="label_xalign">0</property>
+            <property name="shadow_type">none</property>
+            <child>
+              <object class="GtkBox" id="box_search">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="spacing">4</property>
+                <child>
+                  <object class="GtkEntry" id="entry_search">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="primary_icon_name">edit-find-symbolic</property>
+                    <property name="secondary_icon_name">edit-clear-symbolic</property>
+                    <property name="primary_icon_activatable">False</property>
+                    <property name="primary_icon_tooltip_text" comments="Use domain gtk30">SEARCH</property>
+                    <property name="secondary_icon_tooltip_text" comments="Use domain gtk30">CLEAR</property>
+                    <signal name="icon-release" handler="on_entry_search_icon_release" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button_search_close">
+                    <property name="use_action_appearance">False</property>
+                    <property name="related_action">action_search_close</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="relief">none</property>
+                    <child>
+                      <object class="GtkImage" id="images_search_close">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="icon_name">window-close</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+            <child type="label_item">
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
         <child>
           <object class="GtkToolbar" id="toolbar_main">
             <property name="visible">True</property>
@@ -344,7 +418,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">0</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
@@ -486,7 +560,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
@@ -498,7 +572,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="position">2</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>
