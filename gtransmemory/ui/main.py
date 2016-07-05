@@ -137,6 +137,7 @@ class UIMain(object):
                 # This is only for development, it should always be True
                 # Remove the redundant toolbar
                 self.ui.toolbar_main.destroy()
+                self.ui.toolbar_main = None
             # Flatten the Gtk.ScrolledWindows
             self.ui.scroll_memories.set_shadow_type(Gtk.ShadowType.NONE)
             self.ui.scroll_messages.set_shadow_type(Gtk.ShadowType.NONE)
@@ -155,8 +156,9 @@ class UIMain(object):
             self.ui.revealer_search = Gtk.Revealer()
             self.ui.revealer_search.add(self.ui.frame_search)
             self.ui.box_main.add(self.ui.revealer_search)
-            self.ui.box_main.reorder_child(child=self.ui.revealer_search,
-                                           position=0)
+            self.ui.box_main.reorder_child(
+                child=self.ui.revealer_search,
+                position=1 if self.ui.toolbar_main else 0)
             self.ui.frame_search.set_visible(True)
         # Set custom search entry for messages
         self.ui.tvw_messages.set_search_entry(self.ui.entry_search)
