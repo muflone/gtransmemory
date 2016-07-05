@@ -207,6 +207,7 @@ class UIMain(object):
             header_bar.pack_start(create_button_from_action(action))
         # Add buttons to the right side (in reverse order)
         for action in reversed((self.ui.action_memories,
+                                self.ui.action_search,
                                 self.ui.action_selection,
                                 self.ui.action_about)):
             header_bar.pack_end(create_button_from_action(action))
@@ -535,29 +536,24 @@ class UIMain(object):
         self.selected_count += 1 if status else -1
         self.ui.actions_selection_action.set_sensitive(self.selected_count)
 
-    def on_win_main_key_press_event(self, widget, event):
+    def on_action_search_toggled(self, action):
         """Show and hide the search bar"""
-        shortcut = Gtk.accelerator_get_label(event.keyval, event.state)
-        if shortcut in ("Ctrl+F", "Ctrl+Mod2+F"):
-            if self.ui.revealer_search:
-                # There's a Gtk.Revealer, show and hide the child
-                self.ui.revealer_search.set_reveal_child(
-                    not self.ui.revealer_search.get_reveal_child())
-                if self.ui.revealer_search.get_reveal_child():
-                    self.ui.entry_search.grab_focus()
-            else:
-                # No Gtk.Revealer, simply show and hide the Gtk.Frame
-                self.ui.frame_search.set_visible(
-                    not self.ui.frame_search.get_visible())
-                if self.ui.frame_search.get_visible():
-                    self.ui.entry_search.grab_focus()
+        if self.ui.revealer_search:
+            # There's a Gtk.Revealer, show and hide the child
+            self.ui.revealer_search.set_reveal_child(
+                not self.ui.revealer_search.get_reveal_child())
+            if self.ui.revealer_search.get_reveal_child():
+                self.ui.entry_search.grab_focus()
+        else:
+            # No Gtk.Revealer, simply show and hide the Gtk.Frame
+            self.ui.frame_search.set_visible(
+                not self.ui.frame_search.get_visible())
+            if self.ui.frame_search.get_visible():
+                self.ui.entry_search.grab_focus()
 
     def on_action_search_close_activate(self, action):
         """Hide the search bar"""
-        if self.ui.revealer_search:
-            self.ui.revealer_search.set_reveal_child(False)
-        else:
-            self.ui.frame_search.set_visible(False)
+        self.ui.action_search.set_active(False)
 
     def on_entry_search_icon_release(self, widget, icon_position, event):
         """Click an icon next to a Entry"""
