@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: muflone@vbsimple.net\n"
-"POT-Creation-Date: 2016-07-06 01:14+0200\n"
+"POT-Creation-Date: 2016-07-07 23:35+0200\n"
 "PO-Revision-Date: 2016-06-12 01:29+0200\n"
 "Last-Translator: Muflone (muflone(at)vbsimple.net)\n"
 "Language-Team: Italian (http://www.transifex.com/muflone/gtransmemory/"
@@ -53,28 +53,28 @@ msgstr "Versione %s"
 msgid "Contributors:"
 msgstr "Contributi:"
 
-#: gtransmemory/ui/main.py:259
+#: gtransmemory/ui/main.py:265
 #, python-brace-format
 msgid "Loading message {step} of {count}"
 msgstr "Caricamento messaggio {step} di {count}"
 
-#: gtransmemory/ui/main.py:327
+#: gtransmemory/ui/main.py:333 ui/shortcuts.ui:79
 msgid "Add a new message"
 msgstr "Aggiungi un nuovo messaggio"
 
-#: gtransmemory/ui/main.py:359
+#: gtransmemory/ui/main.py:365 ui/shortcuts.ui:86
 msgid "Edit message"
 msgstr "Modifica messaggio"
 
-#: gtransmemory/ui/main.py:392
+#: gtransmemory/ui/main.py:398
 msgid "GNU gettext translation files"
 msgstr "File di traduzione GNU gettext"
 
-#: gtransmemory/ui/main.py:396
+#: gtransmemory/ui/main.py:402
 msgid "All files"
 msgstr "Tutti i file"
 
-#: gtransmemory/ui/main.py:399
+#: gtransmemory/ui/main.py:405 ui/shortcuts.ui:93
 msgid "Import messages from file"
 msgstr "Importa messaggi da file"
 
@@ -116,22 +116,26 @@ msgid "The specified message already exists"
 msgstr "Il messaggio specificato esiste già"
 
 #: ui/appmenu.ui:6
-msgid "Open _Settings folder"
-msgstr "Apri cartella impo_stazioni"
-
-#: ui/appmenu.ui:12
 msgid "_About gTransMemory"
 msgstr "Inform_azioni su gTransMemory"
 
-#: ui/appmenu.ui:17
+#: ui/appmenu.ui:11
+msgid "Open _Settings folder"
+msgstr "Apri cartella impo_stazioni"
+
+#: ui/appmenu.ui:15
+msgid "Show keyboard _shortcuts"
+msgstr "Mostra _scorciatoie di tastiera"
+
+#: ui/appmenu.ui:22
 msgid "_Quit"
 msgstr "_Esci"
 
-#: ui/main.ui:28
+#: ui/main.ui:28 ui/shortcuts.ui:57
 msgid "Previous memory"
 msgstr "Memoria precedente"
 
-#: ui/main.ui:35
+#: ui/main.ui:35 ui/shortcuts.ui:64
 msgid "Next memory"
 msgstr "Memoria successiva"
 
@@ -143,23 +147,23 @@ msgstr "_Memorie"
 msgid "_Import"
 msgstr "_Importa"
 
-#: ui/main.ui:133
+#: ui/main.ui:134
 msgid "_Deselect all"
 msgstr "_Deseleziona tutto"
 
-#: ui/main.ui:469
+#: ui/main.ui:479
 msgid "Memory"
 msgstr "Memoria"
 
-#: ui/main.ui:527
+#: ui/main.ui:537
 msgid "Message"
 msgstr "Messaggio"
 
-#: ui/main.ui:544
+#: ui/main.ui:554
 msgid "Translation"
 msgstr "Traduzione"
 
-#: ui/main.ui:559
+#: ui/main.ui:569
 msgid "Source"
 msgstr "Origine"
 
@@ -198,3 +202,39 @@ msgstr "_File da importare:"
 #: ui/messages_import.ui:130
 msgid "Select the file to import"
 msgstr "Seleziona il file da importare"
+
+#: ui/shortcuts.ui:16
+msgid "General"
+msgstr "Generale"
+
+#: ui/shortcuts.ui:21
+msgid "Show the about dialog"
+msgstr "Mostra finestra informazioni"
+
+#: ui/shortcuts.ui:28
+msgid "Show the shortcuts window"
+msgstr "Mostra finestra delle scorciatoie"
+
+#: ui/shortcuts.ui:35
+msgid "Quit"
+msgstr "Esci"
+
+#: ui/shortcuts.ui:45
+msgid "Memories"
+msgstr "Memorie"
+
+#: ui/shortcuts.ui:50
+msgid "Show the memories dialog"
+msgstr "Mostra la finestra di dialogo delle memorie"
+
+#: ui/shortcuts.ui:74
+msgid "Messages"
+msgstr "Messaggi"
+
+#: ui/shortcuts.ui:100
+msgid "Toggle selection mode"
+msgstr "Commuta modalità di selezione"
+
+#: ui/shortcuts.ui:107
+msgid "Show the search bar"
+msgstr "Mostra la barra di ricerca"

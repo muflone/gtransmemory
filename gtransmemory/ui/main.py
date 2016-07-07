@@ -43,6 +43,7 @@ from gtransmemory.models.memory_info import MemoryInfo
 from gtransmemory.models.memories import ModelMemories
 
 from gtransmemory.ui.about import UIAbout
+from gtransmemory.ui.shortcuts import UIShortcuts
 from gtransmemory.ui.memories import UIMemories
 from gtransmemory.ui.message import UIMessage
 from gtransmemory.ui.message_dialog import (
@@ -232,6 +233,11 @@ class UIMain(object):
         dialog = UIAbout(self.ui.win_main)
         dialog.show()
         dialog.destroy()
+
+    def on_action_shortcuts_activate(self, action):
+        """Show the shortcuts dialog"""
+        dialog = UIShortcuts(self.ui.win_main)
+        dialog.show()
 
     def on_action_quit_activate(self, action):
         """Close the application by closing the main window"""
