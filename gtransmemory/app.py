@@ -33,29 +33,29 @@ class Application(Gtk.Application):
     def __init__(self):
         """Create the application object"""
         super(self.__class__, self).__init__(application_id=APP_ID)
-        self.connect("activate", self.activate)
+        self.connect('activate', self.activate)
         self.connect('startup', self.startup)
 
     def startup(self, application):
         """Configure the application during the startup"""
         self.ui = UIMain(self)
         # Add the about action to the app menu
-        action = Gio.SimpleAction(name="settings_folder")
-        action.connect("activate", self.on_app_settings_folder_activate)
+        action = Gio.SimpleAction(name='settings_folder')
+        action.connect('activate', self.on_app_settings_folder_activate)
         self.add_action(action)
         # Add the about action to the app menu
-        action = Gio.SimpleAction(name="about")
-        action.connect("activate", self.on_app_about_activate)
+        action = Gio.SimpleAction(name='about')
+        action.connect('activate', self.on_app_about_activate)
         self.add_action(action)
         # Add the shortcut action to the app menu
         # only for GTK+ 3.20.0 and higher
         if not Gtk.check_version(3, 20, 0):
-            action = Gio.SimpleAction(name="shortcuts")
-            action.connect("activate", self.on_app_shortcuts_activate)
+            action = Gio.SimpleAction(name='shortcuts')
+            action.connect('activate', self.on_app_shortcuts_activate)
             self.add_action(action)
         # Add the quit action to the app menu
-        action = Gio.SimpleAction(name="quit")
-        action.connect("activate", self.on_app_quit_activate)
+        action = Gio.SimpleAction(name='quit')
+        action.connect('activate', self.on_app_quit_activate)
         self.add_action(action)
         # Add the app menu
         builder_appmenu = GtkBuilderLoader(get_ui_file('appmenu.ui'))
