@@ -123,4 +123,4 @@ class UIMessage(object):
 
     def on_txt_message_changed(self, widget):
         """Check the message field"""
-        check_invalid_input(widget, False, False, True)
+        check_invalid_input(widget, False, True, True)
