@@ -1,6 +1,6 @@
 ##
 #     Project: gTransMemory
-# Description: Learn memory for translators
+# Description: Memory of terms for translators
 #      Author: Fabio Castelli (Muflone) <muflone@vbsimple.net>
 #   Copyright: 2016 Fabio Castelli
 #     License: GPL-2+
@@ -27,7 +27,7 @@ from gettext import gettext as _
 # Application constants
 APP_NAME = 'gTransMemory'
 APP_VERSION = '0.4.0'
-APP_DESCRIPTION = _('Learn memory for translators')
+APP_DESCRIPTION = _('Memory of terms for translators')
 APP_ID = 'gtransmemory.muflone.com'
 APP_URL = 'http://www.muflone.com/gtransmemory/'
 APP_AUTHOR = 'Fabio Castelli'

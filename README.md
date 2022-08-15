@@ -1,6 +1,6 @@
 gTransMemory [![Build Status](https://travis-ci.org/muflone/gtransmemory.svg?branch=master)](https://travis-ci.org/muflone/gtransmemory)
 =====
-**Description:** Learn memory for translators.
+**Description:** Memory of terms for translators
 
 **Copyright:** 2016 Fabio Castelli (Muflone) <muflone(at)vbsimple.net>
 

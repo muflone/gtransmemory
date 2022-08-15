@@ -38,7 +38,7 @@ msgid "Translations"
 msgstr ""
 
 #: gtransmemory/constants.py:30
-msgid "Learn memory for translators"
+msgid "Memory of terms for translators"
 msgstr ""
 
 #: gtransmemory/ui/about.py:49

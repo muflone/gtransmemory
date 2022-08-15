@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 ##
 #     Project: gTransMemory
-# Description: Learn memory for translators
+# Description: Memory of terms for translators
 #      Author: Fabio Castelli (Muflone) <muflone@vbsimple.net>
 #   Copyright: 2016 Fabio Castelli
 #     License: GPL-2+

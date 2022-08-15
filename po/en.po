@@ -40,8 +40,8 @@ msgid "Translations"
 msgstr "Translations"
 
 #: gtransmemory/constants.py:30
-msgid "Learn memory for translators"
-msgstr "Learn memory for translators"
+msgid "Memory of terms for translators"
+msgstr "Memory of terms for translators"
 
 #: gtransmemory/ui/about.py:49
 #, python-format
