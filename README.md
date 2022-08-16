@@ -16,12 +16,11 @@
 System Requirements
 -------------------
 
-* Python 2.x (developed and tested for Python 2.7.5)
-* GTK+ 3.0 libraries for Python 2.x
-* GObject libraries for Python 2.x
-* XDG library for Python 2.x (https://pypi.python.org/pypi/pyxdg/)
-* Distutils library for Python 2.x (usually shipped with Python distribution)
-* POlib for Python 2.x (https://pypi.python.org/pypi/polib)
+* Python >= 3.6 (developed and tested for Python 3.9 and 3.10)
+* XDG library for Python 3 ( https://pypi.org/project/pyxdg/ )
+* GTK+ 3.0 libraries for Python 3
+* GObject libraries for Python 3 ( https://pypi.org/project/PyGObject/ )
+* POlib for Python 3 ( https://pypi.python.org/pypi/polib )
 
 Installation
 ------------
