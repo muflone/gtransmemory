@@ -19,6 +19,7 @@
 ##
 
 import json
+import pathlib
 
 from gi.repository import Gtk
 
@@ -31,7 +32,7 @@ SECTION_WINDOW_NAME = 'messages import'
 
 
 class UIMessagesImport(object):
-    def __init__(self, parent):
+    def __init__(self, parent, latest_imported_file):
         """Prepare the message dialog"""
         # Load the user interface
         self.ui = GtkBuilderLoader(get_ui_file('messages_import.ui'))
@@ -57,6 +58,9 @@ class UIMessagesImport(object):
                 widget.set_tooltip_text(action.get_label().replace('_', ''))
         self.filename = ''
         self.source = ''
+        if latest_imported_file:
+            self.ui.file_chooser_import.set_current_folder(
+                str(pathlib.Path(latest_imported_file).parent))
         # Connect signals from the glade file to the module functions
         self.ui.connect_signals(self)
 

@@ -68,6 +68,7 @@ class UIMain(object):
         self.selected_count = 0
         self.loading_id = None
         self.loading_cancel = False
+        self.latest_imported_file = None
         # Load the messages list
         self.messages = {}
         self.reload_memories()
@@ -393,7 +394,7 @@ class UIMain(object):
     def on_action_import_activate(self, action):
         """Import messages from a PO/POT file"""
         # Show the import file dialog
-        dialog = UIMessagesImport(self.ui.win_main)
+        dialog = UIMessagesImport(self.ui.win_main, self.latest_imported_file)
         dialog.ui.file_chooser_import.add_filter(
             create_filefilter(_('GNU gettext translation files'),
                               None,
@@ -404,6 +405,7 @@ class UIMain(object):
                               ('*', )))
         response = dialog.show(_('Import messages from file'))
         if response == Gtk.ResponseType.OK:
+            self.latest_imported_file = dialog.filename
             # Load messages from a gettext PO/POT file
             for entry in polib.pofile(dialog.filename):
                 message = MessageInfo(entry.msgid,
