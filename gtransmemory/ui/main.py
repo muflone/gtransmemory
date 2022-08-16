@@ -29,9 +29,12 @@ from gi.repository import GObject
 from gtransmemory.constants import (
     APP_NAME,
     FILE_SETTINGS, FILE_WINDOWS_POSITION, DIR_MEMORIES)
-from gtransmemory.functions import (
-    get_ui_file, get_treeview_selected_row, show_popup_menu, create_filefilter,
-    process_events, text, _)
+from gtransmemory.functions import (get_ui_file,
+                                    get_treeview_selected_row,
+                                    show_popup_menu,
+                                    create_filefilter,
+                                    process_events)
+from gtransmemory.localize import _, text
 import gtransmemory.preferences as preferences
 import gtransmemory.settings as settings
 from gtransmemory.gtkbuilder_loader import GtkBuilderLoader

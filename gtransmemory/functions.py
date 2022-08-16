@@ -21,14 +21,11 @@
 import os
 import os.path
 import fnmatch
-from gettext import gettext, dgettext
 
 from gi.repository import Gtk
 from gi.repository import Gdk
 
 from gtransmemory.constants import DIR_UI
-
-localized_messages = {}
 
 
 def readlines(filename, empty_lines=False):
@@ -47,27 +44,6 @@ def process_events():
     """Process every pending GTK+ event"""
     while Gtk.events_pending():
         Gtk.main_iteration()
-
-
-def text(message, gtk30=False, context=None):
-    """Return a translated message and cache it for reuse"""
-    if message not in localized_messages:
-        if gtk30:
-            # Get a message translated from GTK+ 3 domain
-            full_message = message if not context else '%s\04%s' % (
-                context, message)
-            localized_messages[message] = dgettext('gtk30', full_message)
-            # Fix for untranslated messages with context
-            if context and localized_messages[message] == full_message:
-                localized_messages[message] = dgettext('gtk30', message)
-        else:
-            localized_messages[message] = gettext(message)
-    return localized_messages[message]
-
-
-def store_message(message, translated):
-    """Store a translated message in the localized_messages list"""
-    localized_messages[message] = translated
 
 
 def get_ui_file(filename):
@@ -139,23 +115,3 @@ def create_filefilter(title, mime_types=None, file_patterns=None):
         for file_pattern in file_patterns:
             new_filter.add_pattern(file_pattern)
     return new_filter
-
-
-# This special alias is used to track localization requests to catch
-# by xgettext. The text() calls aren't tracked by xgettext
-_ = text
-
-__all__ = [
-    'readlines',
-    'process_events',
-    'text',
-    '_',
-    'localized_messages',
-    'get_ui_file',
-    'check_invalid_input',
-    'set_error_message_on_infobar',
-    'recursive_glob',
-    'get_treeview_selected_row',
-    'show_popup_menu',
-    'create_filefilter'
-]

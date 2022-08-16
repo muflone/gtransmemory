@@ -25,8 +25,9 @@ from gi.repository import Gtk
 
 from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
 from gtransmemory.constants import DIR_MEMORIES
-from gtransmemory.functions import (
-    get_ui_file, get_treeview_selected_row, text, _)
+from gtransmemory.functions import (get_ui_file,
+                                    get_treeview_selected_row)
+from gtransmemory.localize import _, text
 import gtransmemory.preferences as preferences
 import gtransmemory.settings as settings
 

@@ -23,8 +23,9 @@ import locale
 
 import gtransmemory.requires
 
-from gtransmemory.functions import store_message, text, _
 from gtransmemory.constants import DOMAIN_NAME, DIR_LOCALE
+from gtransmemory.localize import store_message, text, _
+
 
 # Load domain for translation
 for module in (gettext, locale):

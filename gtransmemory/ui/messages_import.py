@@ -23,7 +23,8 @@ import pathlib
 from gi.repository import Gtk
 
 from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
-from gtransmemory.functions import get_ui_file, text
+from gtransmemory.functions import get_ui_file
+from gtransmemory.localize import text
 import gtransmemory.preferences as preferences
 import gtransmemory.settings as settings
 

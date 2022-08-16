@@ -23,9 +23,8 @@ from gi.repository import Gtk
 from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
 from gtransmemory.functions import (check_invalid_input,
                                     get_ui_file,
-                                    set_error_message_on_infobar,
-                                    text,
-                                    _)
+                                    set_error_message_on_infobar)
+from gtransmemory.localize import _, text
 import gtransmemory.preferences as preferences
 import gtransmemory.settings as settings
 

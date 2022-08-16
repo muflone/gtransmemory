@@ -28,7 +28,8 @@ from gtransmemory.constants import (
     APP_AUTHOR, APP_AUTHOR_EMAIL,
     FILE_CONTRIBUTORS, FILE_LICENSE, FILE_TRANSLATORS, FILE_RESOURCES,
     FILE_ICON)
-from gtransmemory.functions import readlines, get_ui_file, _
+from gtransmemory.functions import readlines, get_ui_file
+from gtransmemory.localize import _
 
 
 class UIAbout(object):
