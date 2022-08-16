@@ -385,7 +385,7 @@ class UIMain(object):
 
     def on_action_remove_activate(self, action):
         """Remove the selected items"""
-        for key, row in self.model_messages.rows.items():
+        for key, row in list(self.model_messages.rows.items())[:]:
             if self.model_messages.get_selection(row):
                 message = self.messages[key]
                 self.remove_message(message=message, update_settings=True)
