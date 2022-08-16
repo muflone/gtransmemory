@@ -21,8 +21,6 @@
 import os
 import os.path
 import fnmatch
-import json
-import string
 from gettext import gettext, dgettext
 
 from gi.repository import Gtk

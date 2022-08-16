@@ -34,7 +34,7 @@ class ModelMessages(ModelAbstract):
         super(self.__class__, self).__init__(model)
         self.db = None
 
-    def open(file_path):
+    def open(self, file_path):
         self.db = sqlite3.connect(file_path)
 
     def save(self):

@@ -46,8 +46,6 @@ from gtransmemory.ui.about import UIAbout
 from gtransmemory.ui.shortcuts import UIShortcuts
 from gtransmemory.ui.memories import UIMemories
 from gtransmemory.ui.message import UIMessage
-from gtransmemory.ui.message_dialog import (
-    show_message_dialog, UIMessageDialogNoYes)
 from gtransmemory.ui.messages_import import UIMessagesImport
 
 SECTION_WINDOW_NAME = 'main'
@@ -342,7 +340,7 @@ class UIMain(object):
             # Automatically select the newly added message
             self.ui.tvw_messages.set_cursor(
                 path=self.model_messages.get_path_by_key(
-                    '%s\%s' % (dialog.source, dialog.message)),
+                    f'{dialog.source}\\{dialog.message}'),
                 column=None,
                 start_editing=False)
         dialog.destroy()
@@ -353,7 +351,6 @@ class UIMain(object):
         if selected_row:
             key = self.model_messages.get_key(selected_row)
             message_id = self.model_messages.get_message(selected_row)
-            messageid = self.model_messages.get_translation(selected_row)
             translation = self.model_messages.get_translation(selected_row)
             source = self.model_messages.get_source(selected_row)
             selected_iter = self.model_messages.get_iter(key)
@@ -377,7 +374,7 @@ class UIMain(object):
                 self.add_message(message=message, update_settings=True)
                 # Get the path of the message
                 path = self.model_messages.get_path_by_key(
-                    '%s\%s' % (dialog.source, dialog.message))
+                    f'{dialog.source}\\{dialog.message}')
                 # Automatically select again the previously selected message
                 self.ui.tvw_messages.set_cursor(path=path,
                                                 column=None,

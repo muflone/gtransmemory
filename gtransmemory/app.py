@@ -75,7 +75,6 @@ class Application(Gtk.Application):
 
     def on_app_shortcuts_activate(self, action, data):
         """Show the shortcuts dialog from the app menu"""
-        __pychecker__ = 'unusednames=data'
         self.ui.on_action_shortcuts_activate(action)
 
     def on_app_quit_activate(self, action, data):
