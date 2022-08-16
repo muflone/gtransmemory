@@ -408,10 +408,11 @@ class UIMain(object):
             self.latest_imported_file = dialog.filename
             # Load messages from a gettext PO/POT file
             for entry in polib.pofile(dialog.filename):
-                message = MessageInfo(entry.msgid,
-                                      entry.msgstr,
-                                      dialog.source)
-                self.add_message(message=message, update_settings=True)
+                if entry.msgstr:
+                    message = MessageInfo(entry.msgid,
+                                          entry.msgstr,
+                                          dialog.source)
+                    self.add_message(message=message, update_settings=True)
         dialog.destroy()
 
     def on_tvw_messages_row_activated(self, widget, treepath, column):
