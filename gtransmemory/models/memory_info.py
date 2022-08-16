@@ -18,7 +18,6 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-
 class MemoryInfo(object):
     def __init__(self, name, filename, description):
         self.key = name

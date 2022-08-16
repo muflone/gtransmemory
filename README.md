@@ -1,5 +1,8 @@
-gTransMemory [![Build Status](https://travis-ci.org/muflone/gtransmemory.svg?branch=master)](https://travis-ci.org/muflone/gtransmemory)
-=====
+# gTransMemory
+
+[![Travis CI Build Status](https://img.shields.io/travis/com/muflone/gtransmemory/master.svg)](https://www.travis-ci.com/github/muflone/gtransmemory)
+[![CircleCI Build Status](https://img.shields.io/circleci/project/github/muflone/gtransmemory/master.svg)](https://circleci.com/gh/muflone/gtransmemory)
+
 **Description:** Memory of terms for translators
 
 **Copyright:** 2016-2022 Fabio Castelli (Muflone) <muflone(at)muflone.com>
@@ -8,7 +11,7 @@ gTransMemory [![Build Status](https://travis-ci.org/muflone/gtransmemory.svg?bra
 
 **Source code:** https://github.com/muflone/gtransmemory
 
-**Documentazione:** http://www.muflone.com/gtransmemory/
+**Documentation:** http://www.muflone.com/gtransmemory/
 
 System Requirements
 -------------------

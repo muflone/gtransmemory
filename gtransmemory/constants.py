@@ -32,7 +32,7 @@ APP_ID = 'gtransmemory.muflone.com'
 APP_URL = 'http://www.muflone.com/gtransmemory/'
 APP_AUTHOR = 'Fabio Castelli'
 APP_AUTHOR_EMAIL = 'muflone@muflone.com'
-APP_COPYRIGHT = 'Copyright 2016 %s' % APP_AUTHOR
+APP_COPYRIGHT = f'Copyright 2016-2022 {APP_AUTHOR}'
 # Other constants
 DOMAIN_NAME = 'gtransmemory'
 VERBOSE_LEVEL_QUIET = 0

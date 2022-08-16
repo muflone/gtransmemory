@@ -18,7 +18,6 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-
 class ModelAbstract(object):
     COL_KEY = 0
 

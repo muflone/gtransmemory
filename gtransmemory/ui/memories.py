@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 ##
 #     Project: gTransMemory
 # Description: Memory of terms for translators

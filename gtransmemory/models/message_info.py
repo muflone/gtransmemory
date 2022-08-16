@@ -18,7 +18,6 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-
 class MessageInfo(object):
     def __init__(self, msgid, translation, source):
         self.key = '%s\%s' % (source, msgid)
