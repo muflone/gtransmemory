@@ -11,7 +11,7 @@
 
 **Source code:** https://github.com/muflone/gtransmemory
 
-**Documentation:** http://www.muflone.com/gtransmemory/
+**Documentation:** https://www.muflone.com/gtransmemory/
 
 **Translations:** https://explore.transifex.com/muflone/gtransmemory/
 
