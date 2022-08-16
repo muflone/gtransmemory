@@ -27,7 +27,7 @@ from gettext import gettext as _
 # Application constants
 APP_NAME = 'gTransMemory'
 APP_VERSION = '0.4.0'
-APP_DESCRIPTION = _('Memory of terms for translators')
+APP_DESCRIPTION = 'Memory of terms for translators'
 APP_ID = 'gtransmemory.muflone.com'
 APP_URL = 'https://www.muflone.com/gtransmemory/'
 APP_AUTHOR = 'Fabio Castelli'

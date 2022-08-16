@@ -28,29 +28,6 @@ from gi.repository import Gdk
 from gtransmemory.constants import DIR_UI
 
 
-def readlines(filename, empty_lines=False):
-    """Read all the lines of a filename, optionally skipping empty lines"""
-    result = []
-    with open(filename) as f:
-        for line in f.readlines():
-            line = line.strip()
-            if line or empty_lines:
-                result.append(line)
-        f.close()
-    return result
-
-
-def process_events():
-    """Process every pending GTK+ event"""
-    while Gtk.events_pending():
-        Gtk.main_iteration()
-
-
-def get_ui_file(filename):
-    """Return the full path of a Glade/UI file"""
-    return os.path.join(DIR_UI, filename)
-
-
 def check_invalid_input(widget, empty, separators, invalid_chars):
     """Check the input for empty value or invalid characters"""
     text = widget.get_text().strip()
@@ -63,6 +40,56 @@ def check_invalid_input(widget, empty, separators, invalid_chars):
     widget.set_icon_from_icon_name(
         Gtk.EntryIconPosition.SECONDARY, icon_name)
     return bool(icon_name)
+
+
+def create_filefilter(title, mime_types=None, file_patterns=None):
+    """Add a new filter to the dialog"""
+    new_filter = Gtk.FileFilter()
+    new_filter.set_name(title)
+    if mime_types:
+        for mime_type in mime_types:
+            new_filter.add_mime_type(mime_type)
+    if file_patterns:
+        for file_pattern in file_patterns:
+            new_filter.add_pattern(file_pattern)
+    return new_filter
+
+
+def get_treeview_selected_row(widget):
+    """Return the selected row in a GtkTreeView"""
+    return widget.get_selection().get_selected()[1]
+
+
+def get_ui_file(filename):
+    """Return the full path of a Glade/UI file"""
+    return str(DIR_UI / filename)
+
+
+def process_events():
+    """Process every pending GTK+ event"""
+    while Gtk.events_pending():
+        Gtk.main_iteration()
+
+
+def readlines(filename, empty_lines=False):
+    """Read all the lines of a filename, optionally skipping empty lines"""
+    result = []
+    with open(filename) as f:
+        for line in f.readlines():
+            line = line.strip()
+            if line or empty_lines:
+                result.append(line)
+        f.close()
+    return result
+
+
+def recursive_glob(starting_path, pattern):
+    """Return a list of all the matching files recursively"""
+    result = []
+    for root, dirnames, filenames in os.walk(starting_path):
+        for filename in fnmatch.filter(filenames, pattern):
+            result.append(os.path.join(root, filename))
+    return result
 
 
 def set_error_message_on_infobar(widget, widgets, label, infobar, error_msg):
@@ -80,20 +107,6 @@ def set_error_message_on_infobar(widget, widgets, label, infobar, error_msg):
             w.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, None)
 
 
-def recursive_glob(starting_path, pattern):
-    """Return a list of all the matching files recursively"""
-    result = []
-    for root, dirnames, filenames in os.walk(starting_path):
-        for filename in fnmatch.filter(filenames, pattern):
-            result.append(os.path.join(root, filename))
-    return result
-
-
-def get_treeview_selected_row(widget):
-    """Return the selected row in a GtkTreeView"""
-    return widget.get_selection().get_selected()[1]
-
-
 def show_popup_menu(menu, button=Gdk.BUTTON_SECONDARY):
     """Show a GtkMenu popup"""
     return menu.popup(parent_menu_shell=None,
@@ -102,16 +115,3 @@ def show_popup_menu(menu, button=Gdk.BUTTON_SECONDARY):
                       data=None,
                       button=button,
                       activate_time=Gtk.get_current_event_time())
-
-
-def create_filefilter(title, mime_types=None, file_patterns=None):
-    """Add a new filter to the dialog"""
-    new_filter = Gtk.FileFilter()
-    new_filter.set_name(title)
-    if mime_types:
-        for mime_type in mime_types:
-            new_filter.add_mime_type(mime_type)
-    if file_patterns:
-        for file_pattern in file_patterns:
-            new_filter.add_pattern(file_pattern)
-    return new_filter

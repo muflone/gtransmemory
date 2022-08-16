@@ -33,10 +33,14 @@ from itertools import chain
 from glob import glob
 
 from gtransmemory.functions import recursive_glob
-from gtransmemory.constants import (
-    APP_NAME, APP_VERSION, APP_DESCRIPTION,
-    APP_AUTHOR, APP_AUTHOR_EMAIL, APP_URL, APP_COPYRIGHT,
-    DOMAIN_NAME)
+from gtransmemory.constants import (APP_NAME,
+                                    APP_VERSION,
+                                    APP_DESCRIPTION,
+                                    APP_AUTHOR,
+                                    APP_AUTHOR_EMAIL,
+                                    APP_URL,
+                                    APP_COPYRIGHT,
+                                    DOMAIN_NAME)
 
 
 class Install_Scripts(install_scripts):

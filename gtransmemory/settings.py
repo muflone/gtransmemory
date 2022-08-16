@@ -54,7 +54,7 @@ class Settings(object):
             self.config.optionxform = str
         # Determine which filename to use for settings
         self.filename = filename
-        self.logText('Loading settings from %s' % self.filename,
+        self.logText(f'Loading settings from {self.filename}',
                      VERBOSE_LEVEL_MAX)
         self.config.read(self.filename)
 
@@ -119,7 +119,7 @@ class Settings(object):
     def save(self):
         """Save the whole configuration"""
         file_settings = open(self.filename, mode='w')
-        self.logText('Saving settings to %s' % self.filename,
+        self.logText(f'Saving settings to {self.filename}',
                      VERBOSE_LEVEL_MAX)
         self.config.write(file_settings)
         file_settings.close()
@@ -145,7 +145,8 @@ class Settings(object):
         """Print a text with current date and time based on the
         verbose level"""
         if verbose_level <= self.options.verbose_level:
-            print('[%s] %s' % (time.strftime('%Y/%m/%d %H:%M:%S'), text))
+            timestamp = time.strftime('%Y/%m/%d %H:%M:%S')
+            print(f'[{timestamp}] {text}')
 
     def restore_window_position(self, window, section):
         """Restore the saved window size and position"""

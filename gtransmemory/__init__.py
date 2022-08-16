@@ -21,8 +21,7 @@
 import gettext
 import locale
 
-import gtransmemory.requires
-
+import gtransmemory.requires                                       # noqa: F401
 from gtransmemory.constants import DOMAIN_NAME, DIR_LOCALE
 from gtransmemory.localize import store_message, text, _
 

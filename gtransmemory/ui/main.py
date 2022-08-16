@@ -175,7 +175,7 @@ class UIMain(object):
             new_button.set_use_action_appearance(False)
             new_button.set_related_action(action)
             # Set a name to the new button
-            name = 'button_%s' % action.get_name()
+            name = f'button_{action.get_name()}'
             new_button.set_name(name)
             setattr(self.ui, name, new_button)
             # Use icon from the action

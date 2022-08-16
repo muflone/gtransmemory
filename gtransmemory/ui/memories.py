@@ -95,7 +95,7 @@ class UIMemories(object):
                        default_description='',
                        title=_('Add new memory'),
                        treeiter=None) == Gtk.ResponseType.OK:
-            database_name = '%s.sqlite3' % dialog.name
+            database_name = f'{dialog.name}.sqlite3'
             db = MemoryDB(database_name)
             db.set_description(dialog.description)
             db.close()
@@ -117,7 +117,7 @@ class UIMemories(object):
                 message_type=Gtk.MessageType.WARNING,
                 title=None,
                 msg1=_('Remove the memory'),
-                msg2=_('Remove the memory %s?') % memory_description,
+                msg2=_(f'Remove the memory {memory_description}?'),
                 is_response_id=Gtk.ResponseType.YES):
             memory_path = os.path.join(DIR_MEMORIES, memory_name)
             os.remove(memory_path)

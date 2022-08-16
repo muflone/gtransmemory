@@ -67,7 +67,7 @@ class Application(Gtk.Application):
 
     def on_app_settings_folder_activate(self, action, data):
         """Open the settings folder from the app menu"""
-        Gtk.show_uri(None, 'file://%s' % DIR_SETTINGS, Gdk.CURRENT_TIME)
+        Gtk.show_uri(None, f'file://{DIR_SETTINGS}', Gdk.CURRENT_TIME)
 
     def on_app_about_activate(self, action, data):
         """Show the about dialog from the app menu"""

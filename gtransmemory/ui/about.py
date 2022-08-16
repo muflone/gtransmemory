@@ -47,12 +47,12 @@ class UIAbout(object):
         self.ui = GtkBuilderLoader(get_ui_file('about.ui'))
         # Set various properties
         self.ui.dialog_about.set_program_name(APP_NAME)
-        self.ui.dialog_about.set_version(_('Version %s') % APP_VERSION)
+        self.ui.dialog_about.set_version(_(f'Version {APP_VERSION}'))
         self.ui.dialog_about.set_comments(_(APP_DESCRIPTION))
         self.ui.dialog_about.set_website(APP_URL)
         self.ui.dialog_about.set_copyright(APP_COPYRIGHT)
         # Prepare lists for authors and contributors
-        authors = ['%s <%s>' % (APP_AUTHOR, APP_AUTHOR_EMAIL)]
+        authors = [f'{APP_AUTHOR} <{APP_AUTHOR_EMAIL}>']
         contributors = []
         for line in readlines(FILE_CONTRIBUTORS, False):
             contributors.append(line)
