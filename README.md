@@ -2,9 +2,9 @@ gTransMemory [![Build Status](https://travis-ci.org/muflone/gtransmemory.svg?bra
 =====
 **Description:** Memory of terms for translators
 
-**Copyright:** 2016 Fabio Castelli (Muflone) <muflone(at)vbsimple.net>
+**Copyright:** 2016-2022 Fabio Castelli (Muflone) <muflone(at)muflone.com>
 
-**License:** GPL-2+
+**License:** GPL-3+
 
 **Source code:** https://github.com/muflone/gtransmemory
 
