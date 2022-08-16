@@ -287,7 +287,7 @@ class UIMain(object):
         self.loading_cancel = False
         # Start messages loading in idle
         task = do_reload(self.database.get_messages())
-        self.loading_id = GObject.idle_add(task.next)
+        self.loading_id = GObject.idle_add(task.__next__)
 
     def add_message(self, message, update_settings):
         """Add a new message to the data and to the model"""
