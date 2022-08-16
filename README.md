@@ -13,8 +13,9 @@
 
 **Documentation:** http://www.muflone.com/gtransmemory/
 
-System Requirements
--------------------
+**Translations:** https://explore.transifex.com/muflone/gtransmemory/
+
+# System Requirements
 
 * Python >= 3.6 (developed and tested for Python 3.9 and 3.10)
 * XDG library for Python 3 ( https://pypi.org/project/pyxdg/ )
@@ -22,8 +23,7 @@ System Requirements
 * GObject libraries for Python 3 ( https://pypi.org/project/PyGObject/ )
 * POlib for Python 3 ( https://pypi.python.org/pypi/polib )
 
-Installation
-------------
+# Installation
 
 A distutils installation script is available to install from the sources.
 
@@ -37,8 +37,7 @@ To install the files in another path instead of the standard /usr prefix use:
     cd /path/to/folder
     python2 setup.py install --root NEW_PATH
 
-Usage
------
+# Usage
 
 If the application is not installed please use:
 
