@@ -1,0 +1,36 @@
+version: 2.1
+
+orbs:
+  # The python orb contains a set of prepackaged CircleCI configuration you can
+  # use repeatedly in your configuration files
+  # Orb commands and jobs help you with common scripting around a language/tool,
+  # so you don't have to copy and paste it everywhere.
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
+  python: circleci/python@1.2
+
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.9.5
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: |
+            sudo apt update
+            sudo apt install gettext gir1.2-gtk-3.0 gobject-introspection libcairo2-dev libgirepository1.0-dev python3-gi python3-polib
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements_ci.txt
+      - run:
+          name: check code
+          command: |
+            . venv/bin/activate
+            python -m compileall gtransmemory gtransmemory.py setup.py
+            python -m pycodestyle gtransmemory gtransmemory.py setup.py
+            python -m flake8 gtransmemory gtransmemory.py setup.py
+            python setup.py install --optimize=1 --root=build
+            ls -laR .
