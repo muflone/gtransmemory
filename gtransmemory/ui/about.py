@@ -18,23 +18,34 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-from gi.repository import Gtk
+import logging
+
 from gi.repository.GdkPixbuf import Pixbuf
 
-import gtransmemory.preferences as preferences
-from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
-from gtransmemory.constants import (
-    APP_NAME, APP_VERSION, APP_DESCRIPTION, APP_URL, APP_COPYRIGHT,
-    APP_AUTHOR, APP_AUTHOR_EMAIL,
-    FILE_CONTRIBUTORS, FILE_LICENSE, FILE_TRANSLATORS, FILE_RESOURCES,
-    FILE_ICON)
-from gtransmemory.functions import readlines, get_ui_file
+from gtransmemory.constants import (APP_AUTHOR,
+                                    APP_AUTHOR_EMAIL,
+                                    APP_COPYRIGHT,
+                                    APP_NAME,
+                                    APP_URL,
+                                    APP_VERSION,
+                                    FILE_CONTRIBUTORS,
+                                    FILE_ICON,
+                                    FILE_LICENSE,
+                                    FILE_RESOURCES,
+                                    FILE_TRANSLATORS)
+from gtransmemory.functions import readlines
 from gtransmemory.localize import _
+from gtransmemory.ui.base import UIBase
 
 
-class UIAbout(object):
-    def __init__(self, parent):
-        """Prepare the about dialog"""
+class UIAbout(UIBase):
+    def __init__(self, parent, settings, options):
+        """Prepare the dialog"""
+        logging.debug(f'{self.__class__.__name__} init')
+        super().__init__(filename='about.ui')
+        # Initialize members
+        self.settings = settings
+        self.options = options
         # Retrieve the translators list
         translators = []
         for line in readlines(FILE_TRANSLATORS, False):
@@ -43,14 +54,14 @@ class UIAbout(object):
             line = line.replace('(at)', '@').strip()
             if line not in translators:
                 translators.append(line)
-        # Load the user interface
-        self.ui = GtkBuilderLoader(get_ui_file('about.ui'))
         # Set various properties
-        self.ui.dialog_about.set_program_name(APP_NAME)
-        self.ui.dialog_about.set_version(_(f'Version {APP_VERSION}'))
-        self.ui.dialog_about.set_comments(_(APP_DESCRIPTION))
-        self.ui.dialog_about.set_website(APP_URL)
-        self.ui.dialog_about.set_copyright(APP_COPYRIGHT)
+        self.ui.dialog.set_program_name(APP_NAME)
+        self.ui.dialog.set_version(_('Version {VERSION}').format(
+            VERSION=APP_VERSION))
+        self.ui.dialog.set_comments(
+            _('Memory of terms for translators'))
+        self.ui.dialog.set_website(APP_URL)
+        self.ui.dialog.set_copyright(APP_COPYRIGHT)
         # Prepare lists for authors and contributors
         authors = [f'{APP_AUTHOR} <{APP_AUTHOR_EMAIL}>']
         contributors = []
@@ -59,28 +70,27 @@ class UIAbout(object):
         if len(contributors) > 0:
             contributors.insert(0, _('Contributors:'))
             authors.extend(contributors)
-        self.ui.dialog_about.set_authors(authors)
-        self.ui.dialog_about.set_license(
-            '\n'.join(readlines(FILE_LICENSE, True)))
-        self.ui.dialog_about.set_translator_credits('\n'.join(translators))
+        self.ui.dialog.set_authors(authors)
+        self.ui.dialog.set_license('\n'.join(readlines(FILE_LICENSE, True)))
+        self.ui.dialog.set_translator_credits('\n'.join(translators))
         # Retrieve the external resources links
-        # only for GTK+ 3.6.0 and higher
-        if not Gtk.check_version(3, 6, 0):
-            for line in readlines(FILE_RESOURCES, False):
-                resource_type, resource_url = line.split(':', 1)
-                self.ui.dialog_about.add_credit_section(
-                    _(resource_type), (resource_url,))
-        icon_logo = Pixbuf.new_from_file(FILE_ICON)
-        self.ui.dialog_about.set_logo(icon_logo)
-        if not preferences.get(preferences.DETACHED_WINDOWS):
-            self.ui.dialog_about.set_transient_for(parent)
+        for line in readlines(FILE_RESOURCES, False):
+            resource_type, resource_url = line.split(':', 1)
+            self.ui.dialog.add_credit_section(resource_type, (resource_url,))
+        icon_logo = Pixbuf.new_from_file(str(FILE_ICON))
+        self.ui.dialog.set_logo(icon_logo)
+        self.ui.dialog.set_transient_for(parent)
+        # Connect signals from the UI file to the functions with the same name
+        self.ui.connect_signals(self)
 
     def show(self):
-        """Show the About dialog"""
-        self.ui.dialog_about.run()
-        self.ui.dialog_about.hide()
+        """Show the dialog"""
+        logging.debug(f'{self.__class__.__name__} show')
+        self.ui.dialog.run()
+        self.ui.dialog.hide()
 
     def destroy(self):
-        """Destroy the About dialog"""
-        self.ui.dialog_about.destroy()
-        self.ui.dialog_about = None
+        """Destroy the dialog"""
+        logging.debug(f'{self.__class__.__name__} destroy')
+        self.ui.dialog.destroy()
+        self.ui.dialog = None

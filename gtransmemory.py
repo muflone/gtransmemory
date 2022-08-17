@@ -19,9 +19,8 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-from gtransmemory.app import Application
+from gtransmemory.main import main
+
 
 if __name__ == '__main__':
-    # Start the application
-    app = Application()
-    app.run(None)
+    main()

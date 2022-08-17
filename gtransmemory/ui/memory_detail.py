@@ -18,105 +18,124 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
+
 from gi.repository import Gtk
 
-import gtransmemory.preferences as preferences
-from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
 from gtransmemory.functions import (check_invalid_input,
-                                    get_ui_file,
                                     set_error_message_on_infobar)
-from gtransmemory.localize import _, text
+from gtransmemory.localize import _
+from gtransmemory.ui.base import UIBase
+
+SECTION_WINDOW_NAME = 'detail'
 
 
-class UIMemoryDetail(object):
-    def __init__(self, parent, groups):
-        """Prepare the group detail dialog"""
-        # Load the user interface
-        self.ui = GtkBuilderLoader(get_ui_file('memory_detail.ui'))
-        if not preferences.get(preferences.DETACHED_WINDOWS):
-            self.ui.dialog_edit_memory.set_transient_for(parent)
-        # Initialize actions
-        for widget in self.ui.get_objects_by_type(Gtk.Action):
-            # Connect the actions accelerators
-            widget.connect_accelerator()
-            # Set labels
-            widget.set_label(text(widget.get_label()))
-        # Initialize labels
-        for widget in self.ui.get_objects_by_type(Gtk.Label):
-            widget.set_label(text(widget.get_label()))
-            widget.set_tooltip_text(widget.get_label().replace('_', ''))
-        # Initialize tooltips
-        for widget in self.ui.get_objects_by_type(Gtk.Button):
-            action = widget.get_related_action()
-            if action:
-                widget.set_tooltip_text(action.get_label().replace('_', ''))
-        self.model = groups
+class UIMemoryDetail(UIBase):
+    def __init__(self, parent, settings, options, model):
+        """Prepare the dialog"""
+        logging.debug(f'{self.__class__.__name__} init')
+        super().__init__(filename='memory_detail.ui')
+        # Initialize members
+        self.parent = parent
+        self.settings = settings
+        self.options = options
+        self.model = model
         self.name = ''
         self.description = ''
-        # Connect signals from the glade file to the module functions
+        # Load UI
+        self.load_ui()
+        # Complete initialization
+        self.startup()
+
+    def load_ui(self):
+        """Load the interface UI"""
+        logging.debug(f'{self.__class__.__name__} load UI')
+        # Initialize titles and tooltips
+        self.set_titles()
+        # Set various properties
+        self.ui.dialog.set_transient_for(self.parent)
+        # Connect signals from the UI file to the functions with the same name
         self.ui.connect_signals(self)
 
-    def show(self, default_name, default_description, title, treeiter):
-        """Show the Group detail dialog"""
-        self.ui.txt_name.set_text(default_name)
-        self.ui.txt_name.grab_focus()
-        self.ui.txt_description.set_text(default_description)
-        self.ui.dialog_edit_memory.set_title(title)
-        response = self.ui.dialog_edit_memory.run()
-        self.ui.dialog_edit_memory.hide()
-        self.name = self.ui.txt_name.get_text().strip()
-        self.description = self.ui.txt_description.get_text().strip()
+    def startup(self):
+        """Complete initialization"""
+        logging.debug(f'{self.__class__.__name__} startup')
+        # Restore the saved size and position
+        self.settings.restore_window_position(window=self.ui.dialog,
+                                              section=SECTION_WINDOW_NAME)
+
+    def show(self, default_name, default_description, title):
+        """Show the dialog"""
+        logging.debug(f'{self.__class__.__name__} show')
+        self.ui.entry_name.set_text(default_name)
+        self.ui.entry_name.grab_focus()
+        self.ui.entry_description.set_text(default_description)
+        self.ui.dialog.set_title(title)
+        response = self.ui.dialog.run()
+        self.ui.dialog.hide()
+        self.name = self.ui.entry_name.get_text().strip()
+        self.description = self.ui.entry_description.get_text().strip()
         return response
 
     def destroy(self):
-        """Destroy the Group detail dialog"""
-        self.ui.dialog_edit_memory.destroy()
-        self.ui.dialog_edit_memory = None
+        """Destroy the dialog"""
+        logging.debug(f'{self.__class__.__name__} destroy')
+        self.settings.save_window_position(window=self.ui.dialog,
+                                           section=SECTION_WINDOW_NAME)
+        self.ui.dialog.destroy()
+        self.ui.dialog = None
 
-    def on_action_confirm_activate(self, action):
+    def do_show_error_message_on_infobar(self, widget, error_msg):
+        """Show the error message on the GtkInfoBar"""
+        set_error_message_on_infobar(
+            widget=widget,
+            widgets=(self.ui.entry_name, self.ui.entry_description),
+            label=self.ui.label_error_message,
+            infobar=self.ui.infobar_error_message,
+            error_msg=error_msg)
+
+    def on_action_confirm_activate(self, widget):
         """Check che group configuration before confirm"""
-        def show_error_message_on_infobar(widget, error_msg):
-            """Show the error message on the GtkInfoBar"""
-            set_error_message_on_infobar(
-                widget=widget,
-                widgets=(self.ui.txt_name, self.ui.txt_description),
-                label=self.ui.lbl_error_message,
-                infobar=self.ui.infobar_error_message,
-                error_msg=error_msg)
-        name = self.ui.txt_name.get_text().strip()
-        description = self.ui.txt_description.get_text().strip()
+        name = self.ui.entry_name.get_text().strip()
+        description = self.ui.entry_description.get_text().strip()
         if len(name) == 0:
             # Show error for missing memory name
-            show_error_message_on_infobar(
-                self.ui.txt_name,
-                _('The memory name is missing'))
+            self.do_show_error_message_on_infobar(
+                widget=self.ui.entry_name,
+                error_msg=_('The memory name is missing'))
         elif '\'' in name or '\\' in name or '/' in name or ',' in name:
             # Show error for invalid memory name
-            show_error_message_on_infobar(
-                self.ui.txt_name,
-                _('The memory name is invalid'))
+            self.do_show_error_message_on_infobar(
+                widget=self.ui.entry_name,
+                error_msg=_('The memory name is invalid'))
         elif self.model.get_iter(name):
             # Show error for existing memory name
-            show_error_message_on_infobar(
-                self.ui.txt_name,
-                _('A memory with that name already exists'))
+            self.do_show_error_message_on_infobar(
+                widget=self.ui.entry_name,
+                error_msg=_('A memory with that name already exists'))
         elif len(description) == 0:
             # Show error for missing description name
-            show_error_message_on_infobar(
-                self.ui.txt_description,
-                _('The memory description is missing'))
+            self.do_show_error_message_on_infobar(
+                widget=self.ui.entry_description,
+                error_msg=_('The memory description is missing'))
         else:
-            self.ui.dialog_edit_memory.response(Gtk.ResponseType.OK)
+            self.ui.dialog.response(Gtk.ResponseType.OK)
+
+    def on_entry_description_changed(self, widget):
+        """Check the memory description field"""
+        check_invalid_input(widget=widget,
+                            empty=False,
+                            separators=True,
+                            invalid_chars=True)
+
+    def on_entry_name_changed(self, widget):
+        """Check the memory name field"""
+        check_invalid_input(widget=widget,
+                            empty=False,
+                            separators=False,
+                            invalid_chars=False)
 
     def on_infobar_error_message_response(self, widget, response_id):
         """Close the infobar"""
         if response_id == Gtk.ResponseType.CLOSE:
             self.ui.infobar_error_message.set_visible(False)
-
-    def on_txt_name_changed(self, widget):
-        """Check the memory name field"""
-        check_invalid_input(widget, False, False, False)
-
-    def on_txt_description_changed(self, widget):
-        """Check the memory description field"""
-        check_invalid_input(widget, False, True, True)

@@ -18,83 +18,90 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-import os
-import os.path
+import logging
 
 from gi.repository import Gtk
 
-from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
 from gtransmemory.constants import DIR_MEMORIES
-from gtransmemory.functions import (get_ui_file,
-                                    get_treeview_selected_row)
+from gtransmemory.functions import get_treeview_selected_row
 from gtransmemory.localize import _, text
-import gtransmemory.preferences as preferences
-import gtransmemory.settings as settings
-
 from gtransmemory.models.memory_db import MemoryDB
 from gtransmemory.models.memories import ModelMemories
 from gtransmemory.models.memory_info import MemoryInfo
-
+from gtransmemory.ui.base import UIBase
 from gtransmemory.ui.memory_detail import UIMemoryDetail
-from gtransmemory.ui.message_dialog import (
-    show_message_dialog, UIMessageDialogNoYes)
+from gtransmemory.ui.message_dialog import (show_message_dialog,
+                                            UIMessageDialogNoYes)
 
 SECTION_WINDOW_NAME = 'memories'
 
 
-class UIMemories(object):
-    def __init__(self, parent):
-        """Prepare the memories dialog"""
-        # Load the user interface
-        self.ui = GtkBuilderLoader(get_ui_file('memories.ui'))
-        if not preferences.get(preferences.DETACHED_WINDOWS):
-            self.ui.dialog_memories.set_transient_for(parent)
-        # Restore the saved size and position
-        settings.positions.restore_window_position(
-            self.ui.dialog_memories, SECTION_WINDOW_NAME)
-        # Initialize actions
-        for widget in self.ui.get_objects_by_type(Gtk.Action):
-            # Connect the actions accelerators
-            widget.connect_accelerator()
-            # Set labels
-            widget.set_label(text(widget.get_label()))
-        # Initialize tooltips
-        for widget in self.ui.get_objects_by_type(Gtk.Button):
-            action = widget.get_related_action()
-            if action:
-                widget.set_tooltip_text(action.get_label().replace('_', ''))
+class UIMemories(UIBase):
+    def __init__(self, parent, settings, options):
+        """Prepare the dialog"""
+        logging.debug(f'{self.__class__.__name__} init')
+        super().__init__(filename='memories.ui')
+        # Initialize members
+        self.parent = parent
+        self.settings = settings
+        self.options = options
+        self.selected_iter = None
+        # Load UI
+        self.load_ui()
+        # Prepare the models
+        self.model = ModelMemories(self.ui.model_memories)
+        # Complete initialization
+        self.startup()
+
+    def load_ui(self):
+        """Load the interface UI"""
+        logging.debug(f'{self.__class__.__name__} load UI')
+        # Initialize titles and tooltips
+        self.set_titles()
+        # Set various properties
+        self.ui.dialog.set_transient_for(self.parent)
+        self.set_buttons_icons(buttons=[self.ui.button_add,
+                                        self.ui.button_remove])
         # Initialize column headers
         for widget in self.ui.get_objects_by_type(Gtk.TreeViewColumn):
             widget.set_title(text(widget.get_title()))
-        # Load the memories
-        self.model = ModelMemories(self.ui.store_memories)
-        self.selected_iter = None
+        # Connect signals from the UI file to the functions with the same name
+        self.ui.connect_signals(self)
+
+    def startup(self):
+        """Complete initialization"""
+        logging.debug(f'{self.__class__.__name__} startup')
         # Sort the data in the models
         self.model.model.set_sort_column_id(
             self.ui.column_description.get_sort_column_id(),
             Gtk.SortType.ASCENDING)
-        # Connect signals from the glade file to the module functions
-        self.ui.connect_signals(self)
+        # Restore the saved size and position
+        self.settings.restore_window_position(window=self.ui.dialog,
+                                              section=SECTION_WINDOW_NAME)
 
     def show(self):
         """Show the dialog"""
-        self.ui.dialog_memories.run()
-        self.ui.dialog_memories.hide()
+        logging.debug(f'{self.__class__.__name__} show')
+        self.ui.dialog.run()
+        self.ui.dialog.hide()
 
     def destroy(self):
         """Destroy the dialog"""
-        settings.positions.save_window_position(
-            self.ui.dialog_memories, SECTION_WINDOW_NAME)
-        self.ui.dialog_memories.destroy()
-        self.ui.dialog_memories = None
+        logging.debug(f'{self.__class__.__name__} destroy')
+        self.settings.save_window_position(window=self.ui.dialog,
+                                           section=SECTION_WINDOW_NAME)
+        self.ui.dialog.destroy()
+        self.ui.dialog = None
 
-    def on_action_add_activate(self, action):
+    def on_action_add_activate(self, widget):
         """Add a new memory"""
-        dialog = UIMemoryDetail(self.ui.dialog_memories, self.model)
+        dialog = UIMemoryDetail(parent=self.ui.dialog,
+                                settings=self.settings,
+                                options=self.options,
+                                model=self.model)
         if dialog.show(default_name='',
                        default_description='',
-                       title=_('Add new memory'),
-                       treeiter=None) == Gtk.ResponseType.OK:
+                       title=_('Add new memory')) == Gtk.ResponseType.OK:
             database_name = f'{dialog.name}.sqlite3'
             db = MemoryDB(database_name)
             db.set_description(dialog.description)
@@ -104,7 +111,7 @@ class UIMemories(object):
                                            description=dialog.description))
         dialog.destroy()
 
-    def on_action_remove_activate(self, action):
+    def on_action_remove_activate(self, widget):
         """Remove the selected memory"""
         selected_row = get_treeview_selected_row(self.ui.tvw_memories)
         memory_name = (self.model.get_filename(selected_row)
@@ -113,12 +120,12 @@ class UIMemories(object):
                               if selected_row else '')
         if selected_row and memory_name and show_message_dialog(
                 class_=UIMessageDialogNoYes,
-                parent=self.ui.dialog_memories,
+                parent=self.ui.dialog,
                 message_type=Gtk.MessageType.WARNING,
                 title=None,
                 msg1=_('Remove the memory'),
                 msg2=_(f'Remove the memory {memory_description}?'),
                 is_response_id=Gtk.ResponseType.YES):
-            memory_path = os.path.join(DIR_MEMORIES, memory_name)
-            os.remove(memory_path)
+            memory_path = DIR_MEMORIES / memory_name
+            memory_path.unlink()
             self.model.remove(selected_row)

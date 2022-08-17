@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
+  <requires lib="gtk+" version="3.10"/>
   <object class="GtkAccelGroup" id="accelerators"/>
   <object class="GtkActionGroup" id="actions_memories">
-    <property name="accel_group">accelerators</property>
+    <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkAction" id="action_add">
         <property name="label" comments="Use domain gtk30">_Add</property>
-        <property name="icon_name">list-add</property>
+        <property name="icon-name">list-add</property>
         <signal name="activate" handler="on_action_add_activate" swapped="no"/>
       </object>
       <accelerator key="Insert"/>
@@ -16,7 +16,7 @@
     <child>
       <object class="GtkAction" id="action_remove">
         <property name="label" comments="Use domain gtk30">_Remove</property>
-        <property name="icon_name">list-remove</property>
+        <property name="icon-name">list-remove</property>
         <signal name="activate" handler="on_action_remove_activate" swapped="no"/>
       </object>
       <accelerator key="Delete" modifiers="GDK_CONTROL_MASK"/>
@@ -27,7 +27,7 @@
       </object>
     </child>
   </object>
-  <object class="GtkListStore" id="store_memories">
+  <object class="GtkListStore" id="model_memories">
     <columns>
       <!-- column-name Name -->
       <column type="gchararray"/>
@@ -37,35 +37,35 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkDialog" id="dialog_memories">
-    <property name="can_focus">False</property>
-    <property name="border_width">3</property>
+  <object class="GtkDialog" id="dialog">
+    <property name="can-focus">False</property>
+    <property name="border-width">3</property>
     <property name="title" translatable="yes">Configure memories</property>
     <property name="modal">True</property>
-    <property name="default_width">400</property>
-    <property name="default_height">250</property>
-    <property name="type_hint">dialog</property>
+    <property name="default-width">400</property>
+    <property name="default-height">250</property>
+    <property name="type-hint">dialog</property>
     <accel-groups>
       <group name="accelerators"/>
     </accel-groups>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">4</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area1">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="layout_style">start</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">start</property>
             <child>
               <object class="GtkButton" id="btn_groups_close">
-                <property name="use_action_appearance">True</property>
-                <property name="related_action">action_close</property>
+                <property name="use-action-appearance">True</property>
+                <property name="related-action">action_close</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-underline">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -84,19 +84,19 @@
         <child>
           <object class="GtkBox" id="box_memories">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkScrolledWindow" id="scroll_memories">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
+                <property name="can-focus">True</property>
+                <property name="shadow-type">in</property>
                 <child>
                   <object class="GtkTreeView" id="tvw_memories">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="model">store_memories</property>
-                    <property name="search_column">2</property>
+                    <property name="can-focus">True</property>
+                    <property name="model">model_memories</property>
+                    <property name="search-column">2</property>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection" id="treeview_selection_memories"/>
                     </child>
@@ -106,8 +106,8 @@
                         <property name="title" comments="Use domain gtk30">Name</property>
                         <property name="clickable">True</property>
                         <property name="reorderable">True</property>
-                        <property name="sort_indicator">True</property>
-                        <property name="sort_column_id">0</property>
+                        <property name="sort-indicator">True</property>
+                        <property name="sort-column-id">0</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_name"/>
                           <attributes>
@@ -122,8 +122,8 @@
                         <property name="title" translatable="yes">Description</property>
                         <property name="clickable">True</property>
                         <property name="reorderable">True</property>
-                        <property name="sort_indicator">True</property>
-                        <property name="sort_column_id">2</property>
+                        <property name="sort-indicator">True</property>
+                        <property name="sort-column-id">2</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_description"/>
                           <attributes>
@@ -144,52 +144,39 @@
             <child>
               <object class="GtkButtonBox" id="buttonbox_actions">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
-                <property name="layout_style">start</property>
+                <property name="layout-style">start</property>
                 <child>
-                  <object class="GtkButton" id="btn_add">
-                    <property name="use_action_appearance">False</property>
-                    <property name="related_action">action_add</property>
+                  <object class="GtkButton" id="button_add">
+                    <property name="label" context="gtk30">Add</property>
+                    <property name="related-action">action_add</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <child>
-                      <object class="GtkImage" id="image_groups_add">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">list-add</property>
-                      </object>
-                    </child>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="always-show-image">True</property>
                   </object>
                   <packing>
                     <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
-                    <property name="non_homogeneous">True</property>
+                    <property name="non-homogeneous">True</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="btn_remove">
-                    <property name="use_action_appearance">False</property>
-                    <property name="related_action">action_remove</property>
+                  <object class="GtkButton" id="button_remove">
+                    <property name="label" context="gtk30">Remove</property>
+                    <property name="related-action">action_remove</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <child>
-                      <object class="GtkImage" id="image_groups_remove">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">list-remove</property>
-                      </object>
-                    </child>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
                   </object>
                   <packing>
                     <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">1</property>
-                    <property name="non_homogeneous">True</property>
+                    <property name="non-homogeneous">True</property>
                   </packing>
                 </child>
               </object>

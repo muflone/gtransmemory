@@ -18,35 +18,25 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-import optparse
-import time
 import configparser
-
-from gtransmemory.constants import (
-    VERBOSE_LEVEL_QUIET, VERBOSE_LEVEL_NORMAL, VERBOSE_LEVEL_MAX)
+import logging
 
 POSITION_LEFT = 'left'
 POSITION_TOP = 'top'
 SIZE_WIDTH = 'width'
 SIZE_HEIGHT = 'height'
 
-settings = None
-positions = None
-services = None
+DEFAULT_VALUES = {}
+
+SECTION_PREFERENCES = 'preferences'
+
+PREFERENCES_ICON_SIZE = 'icon size'
+DEFAULT_VALUES[PREFERENCES_ICON_SIZE] = (SECTION_PREFERENCES, 36)
 
 
 class Settings(object):
     def __init__(self, filename, case_sensitive):
-        """Initialize settings and command line options"""
-        parser = optparse.OptionParser(usage='usage: %prog [options]')
-        parser.set_defaults(verbose_level=VERBOSE_LEVEL_NORMAL)
-        parser.add_option('-v', '--verbose', dest='verbose_level',
-                          action='store_const', const=VERBOSE_LEVEL_MAX,
-                          help='show error and information messages')
-        parser.add_option('-q', '--quiet', dest='verbose_level',
-                          action='store_const', const=VERBOSE_LEVEL_QUIET,
-                          help='hide error and information messages')
-        (self.options, self.arguments) = parser.parse_args()
+        self.model = None
         # Parse settings from the configuration file
         self.config = configparser.RawConfigParser()
         # Set case sensitiveness if requested
@@ -54,14 +44,13 @@ class Settings(object):
             self.config.optionxform = str
         # Determine which filename to use for settings
         self.filename = filename
-        self.logText(f'Loading settings from {self.filename}',
-                     VERBOSE_LEVEL_MAX)
+        logging.debug(f'Loading settings from {self.filename}')
         self.config.read(self.filename)
 
     def get(self, section, option, default=None):
         """Get an option from a specific section"""
-        if self.config.has_section(section) and \
-                self.config.has_option(section, option):
+        if (self.config.has_section(section) and
+                self.config.has_option(section, option)):
             return self.config.get(section, option)
         else:
             return default
@@ -84,43 +73,51 @@ class Settings(object):
         """Get an integer option from a specific section"""
         return int(self.get(section, option, default))
 
+    def set_int(self, section, option, value):
+        """Set an integer option from a specific section"""
+        self.set(section, option, int(value))
+
     def get_list(self, section, option, separator=','):
         """Get an option list from a specific section"""
         value = self.get(section, option, '')
         if len(value):
             return [v.strip() for v in value.split(separator)]
 
-    def set_int(self, section, option, value):
-        """Set an integer option from a specific section"""
-        self.set(section, option, int(value))
+    def load_preferences(self):
+        """Load preferences"""
+        for option in DEFAULT_VALUES:
+            self.set_preference(option, self.get_preference(option))
 
-    def get_setting(self, setting, default=None):
-        """Get the specified setting with a fallback value"""
-        section, option, option_type = setting
-        if option_type is int:
-            return self.get_int(section, option,
-                                default and default or 0)
-        elif option_type is bool:
-            return self.get_boolean(section, option,
-                                    default if True else False)
+    def get_preference(self, option):
+        """Get a preference value by option name"""
+        section, default = DEFAULT_VALUES[option]
+        if isinstance(default, bool):
+            method_get = self.get_boolean
+        elif isinstance(default, int):
+            method_get = self.get_int
         else:
-            return self.get(section, option, default)
+            method_get = self.get
+        return method_get(section=section,
+                          option=option,
+                          default=default)
 
-    def set_setting(self, setting, value):
-        """Set the specified setting"""
-        section, option, option_type = setting
-        if option_type is int:
-            return self.set_int(section, option, value)
-        elif option_type is bool:
-            return self.set_boolean(section, option, value)
+    def set_preference(self, option, value):
+        """Set a preference value by option name"""
+        section, default = DEFAULT_VALUES[option]
+        if isinstance(default, bool):
+            method_set = self.set_boolean
+        elif isinstance(default, int):
+            method_set = self.set_int
         else:
-            return self.set(section, option, value)
+            method_set = self.set
+        return method_set(section=section,
+                          option=option,
+                          value=value)
 
     def save(self):
         """Save the whole configuration"""
         file_settings = open(self.filename, mode='w')
-        self.logText(f'Saving settings to {self.filename}',
-                     VERBOSE_LEVEL_MAX)
+        logging.debug(f'Saving settings to {self.filename}')
         self.config.write(file_settings)
         file_settings.close()
 
@@ -141,22 +138,15 @@ class Settings(object):
         for section in self.get_sections():
             self.config.remove_section(section)
 
-    def logText(self, text, verbose_level=VERBOSE_LEVEL_NORMAL):
-        """Print a text with current date and time based on the
-        verbose level"""
-        if verbose_level <= self.options.verbose_level:
-            timestamp = time.strftime('%Y/%m/%d %H:%M:%S')
-            print(f'[{timestamp}] {text}')
-
     def restore_window_position(self, window, section):
         """Restore the saved window size and position"""
-        if self.get_int(section, SIZE_WIDTH) and \
-                self.get_int(section, SIZE_HEIGHT):
+        if (self.get_int(section, SIZE_WIDTH) and
+                self.get_int(section, SIZE_HEIGHT)):
             window.set_default_size(
                 self.get_int(section, SIZE_WIDTH, -1),
                 self.get_int(section, SIZE_HEIGHT, -1))
-        if self.get_int(section, POSITION_LEFT) and \
-                self.get_int(section, POSITION_TOP):
+        if (self.get_int(section, POSITION_LEFT) and
+                self.get_int(section, POSITION_TOP)):
             window.move(
                 self.get_int(section, POSITION_LEFT),
                 self.get_int(section, POSITION_TOP))

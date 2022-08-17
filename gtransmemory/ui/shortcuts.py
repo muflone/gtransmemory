@@ -18,18 +18,23 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
+
 from gi.repository import Gtk
 
-from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
-from gtransmemory.functions import get_ui_file
 from gtransmemory.localize import text
+from gtransmemory.ui.base import UIBase
 
 
-class UIShortcuts(object):
-    def __init__(self, parent):
-        """Prepare the shortcuts dialog"""
+class UIShortcuts(UIBase):
+    def __init__(self, parent, settings, options):
+        """Prepare the dialog"""
+        logging.debug(f'{self.__class__.__name__} init')
+        super().__init__(filename='shortcuts.ui')
+        # Initialize members
+        self.settings = settings
+        self.options = options
         # Load the user interface
-        self.ui = GtkBuilderLoader(get_ui_file('shortcuts.ui'))
         self.ui.shortcuts.set_transient_for(parent)
         # Initialize groups
         for widget in self.ui.get_objects_by_type(Gtk.ShortcutsGroup):
@@ -39,10 +44,12 @@ class UIShortcuts(object):
             widget.props.title = text(widget.props.title)
 
     def show(self):
-        """Show the shortcuts dialog"""
+        """Show the dialog"""
+        logging.debug(f'{self.__class__.__name__} show')
         self.ui.shortcuts.show()
 
     def destroy(self):
-        """Destroy the shortcuts dialog"""
+        """Destroy the dialog"""
+        logging.debug(f'{self.__class__.__name__} destroy')
         self.ui.shortcuts.destroy()
         self.ui.shortcuts = None

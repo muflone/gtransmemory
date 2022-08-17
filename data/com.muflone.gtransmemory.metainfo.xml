@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.muflone.gtransmemory</id>
+
+  <name>gTransMemory</name>
+  <summary>Memory of terms for translators</summary>
+  <description>
+    <p>
+      A free GTK+ application to memorize translations in multiple languages
+      for translators.
+    </p>
+  </description>
+
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <content_rating type="oars-1.0" />
+  <categories>
+    <category>Office</category>
+  </categories>
+  <url type="homepage">https://github.com/muflone/gtransmemory/</url>
+  <url type="help">https://www.muflone.com/gtransmemory/</url>
+  <url type="translate">https://explore.transifex.com/muflone/gtransmemory/</url>
+  <url type="bugtracker">https://github.com/muflone/gtransmemory/issues/</url>
+  <url type="contact">https://www.muflone.com/contacts/</url>
+
+  <launchable type="desktop-id">gtransmemory.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://www.muflone.com/resources/gtransmemory/archive/latest/english/main.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://www.muflone.com/resources/gtransmemory/archive/latest/english/memories.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://www.muflone.com/resources/gtransmemory/archive/latest/english/detail.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://www.muflone.com/resources/gtransmemory/archive/latest/english/about.png</image>
+    </screenshot>
+  </screenshots>
+</component>

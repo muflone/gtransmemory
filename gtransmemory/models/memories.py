@@ -26,7 +26,7 @@ class ModelMemories(ModelAbstract):
     COL_DESCRIPTION = 2
 
     def add_data(self, item):
-        """Add a new row to the model if it doesn't exists"""
+        """Add a new row to the model if it doesn't exist"""
         super(self.__class__, self).add_data(item)
         if item.key not in self.rows:
             new_row = self.model.append((

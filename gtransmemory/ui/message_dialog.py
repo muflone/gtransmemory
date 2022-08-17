@@ -21,7 +21,7 @@
 from gi.repository import Gtk
 
 
-class UIMessageDialog(Gtk.Window):
+class UIMessageDialog(object):
     def __init__(self, parent, message_type, title, msg1, msg2,
                  buttons, default_response_id):
         """Prepare the message dialog"""

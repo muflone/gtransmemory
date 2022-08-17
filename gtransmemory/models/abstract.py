@@ -23,11 +23,19 @@ class ModelAbstract(object):
 
     def __init__(self, model):
         self.model = model
-        # Fill the rows dictionary with the model items
+        # Fill the rows' dictionary with the model items
         self.rows = {}
         for row in self.model:
             name = row[self.COL_KEY]
             self.rows[name] = self.model.get_iter(row.path)
+
+    def __len__(self):
+        """Return the number of items in the model"""
+        return len(self.model)
+
+    def __iter__(self):
+        """Iterate the rows keys"""
+        return self.rows.__iter__()
 
     def clear(self):
         """Clear the model"""
@@ -35,30 +43,24 @@ class ModelAbstract(object):
         return self.model.clear()
 
     def add_data(self, item):
-        """Add a new row to the model if it doesn't exists"""
+        """Add a new row to the model if it doesn't exist"""
         pass
 
-    def set_data(self, treeiter, item):
+    def get_data(self, treeiter, column):
+        """Get informaion from a TreeIter column"""
+        return self.get_model_row(treeiter)[column]
+
+    def set_data(self, treeiter, column, value):
         """Update an existing TreeIter"""
-        old_key = self.get_key(treeiter)
-        # If the new name differs from the old name then update the
-        # TreeIters map in self.rows
-        if old_key != item.key:
-            try:
-                self.rows.pop(old_key)
-            except Exception as e:
-                # Don't fail when the previous key is not found
-                # like strings with wrong encoding
-                pass
-            self.rows[item.key] = treeiter
+        self.get_model_row(treeiter)[column] = value
 
     def get_key(self, treeiter):
         """Get the name from a TreeIter"""
-        return self.model[treeiter][self.COL_KEY]
+        return self.get_model_row(treeiter)[self.COL_KEY]
 
-    def get_iter(self, name):
-        """Get a TreeIter from a name"""
-        return self.rows.get(name)
+    def get_iter(self, key):
+        """Get a TreeIter from its key"""
+        return self.rows.get(key)
 
     def get_model_row(self, treeiter):
         """Get a TreeModelRow from a TreeIter"""
@@ -68,7 +70,7 @@ class ModelAbstract(object):
         """Get the path from a TreeIter"""
         return self.get_model_row(treeiter).path
 
-    def get_path_by_key(self, name):
+    def get_path_by_name(self, name):
         """Get the path from a name"""
         return self.get_model_row(self.get_iter(name)).path
 
@@ -85,7 +87,3 @@ class ModelAbstract(object):
         """Load the model data from a dict object"""
         for key in sorted(items.iterkeys()):
             self.add_data(items[key])
-
-    def count(self):
-        """Return the number of items in the model"""
-        return len(self.model)

@@ -18,105 +18,113 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
+import logging
+
 from gi.repository import Gtk
 
-from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
 from gtransmemory.functions import (check_invalid_input,
-                                    get_ui_file,
                                     set_error_message_on_infobar)
 from gtransmemory.localize import _, text
-import gtransmemory.preferences as preferences
-import gtransmemory.settings as settings
+from gtransmemory.ui.base import UIBase
 
 SECTION_WINDOW_NAME = 'message'
 
 
-class UIMessage(object):
-    def __init__(self, parent, messages):
-        """Prepare the message dialog"""
+class UIMessage(UIBase):
+    def __init__(self, parent, settings, options, messages):
+        """Prepare the dialog"""
+        logging.debug(f'{self.__class__.__name__} init')
+        super().__init__(filename='message.ui')
+        # Initialize members
+        self.parent = parent
+        self.settings = settings
+        self.options = options
         self.messages = messages
-        # Load the user interface
-        self.ui = GtkBuilderLoader(get_ui_file('message.ui'))
-        if not preferences.get(preferences.DETACHED_WINDOWS):
-            self.ui.dialog_message.set_transient_for(parent)
-        # Restore the saved size and position
-        settings.positions.restore_window_position(
-            self.ui.dialog_message, SECTION_WINDOW_NAME)
-        # Initialize actions
-        for widget in self.ui.get_objects_by_type(Gtk.Action):
-            # Connect the actions accelerators
-            widget.connect_accelerator()
-            # Set labels
-            widget.set_label(text(widget.get_label()))
-        # Initialize labels
-        for widget in self.ui.get_objects_by_type(Gtk.Label):
-            widget.set_label(text(widget.get_label()))
-            widget.set_tooltip_text(widget.get_label().replace('_', ''))
-        # Initialize tooltips
-        for widget in self.ui.get_objects_by_type(Gtk.Button):
-            action = widget.get_related_action()
-            if action:
-                widget.set_tooltip_text(action.get_label().replace('_', ''))
+        self.selected_iter = None
+        self.message = None
+        self.translation = None
+        self.source = None
+        # Load UI
+        self.load_ui()
+        # Complete initialization
+        self.startup()
+
+    def load_ui(self):
+        """Load the interface UI"""
+        logging.debug(f'{self.__class__.__name__} load UI')
+        # Initialize titles and tooltips
+        self.set_titles()
+        # Set various properties
+        self.ui.dialog.set_transient_for(self.parent)
         # Initialize column headers
         for widget in self.ui.get_objects_by_type(Gtk.TreeViewColumn):
             widget.set_title(text(widget.get_title()))
-        self.selected_iter = None
-        # Connect signals from the glade file to the module functions
+        # Connect signals from the UI file to the functions with the same name
         self.ui.connect_signals(self)
+
+    def startup(self):
+        """Complete initialization"""
+        logging.debug(f'{self.__class__.__name__} startup')
+        # Restore the saved size and position
+        self.settings.restore_window_position(window=self.ui.dialog,
+                                              section=SECTION_WINDOW_NAME)
 
     def show(self, default_message, default_translation, default_source,
              title, treeiter):
         """Show the dialog"""
-        self.ui.txt_message.set_text(default_message)
-        self.ui.txt_translation.set_text(default_translation)
-        self.ui.txt_source.set_text(default_source)
-        self.ui.txt_message.grab_focus()
-        self.ui.dialog_message.set_title(title)
+        logging.debug(f'{self.__class__.__name__} show')
+        self.ui.entry_message.set_text(default_message)
+        self.ui.entry_translation.set_text(default_translation)
+        self.ui.entry_source.set_text(default_source)
+        self.ui.entry_message.grab_focus()
+        self.ui.dialog.set_title(title)
         self.selected_iter = treeiter
         # Show the dialog
-        response = self.ui.dialog_message.run()
-        self.ui.dialog_message.hide()
-        self.message = self.ui.txt_message.get_text().strip()
-        self.translation = self.ui.txt_translation.get_text().strip()
-        self.source = self.ui.txt_source.get_text().strip()
+        response = self.ui.dialog.run()
+        self.ui.dialog.hide()
+        self.message = self.ui.entry_message.get_text().strip()
+        self.translation = self.ui.entry_translation.get_text().strip()
+        self.source = self.ui.entry_source.get_text().strip()
         return response
 
     def destroy(self):
         """Destroy the dialog"""
-        settings.positions.save_window_position(
-            self.ui.dialog_message, SECTION_WINDOW_NAME)
-        self.ui.dialog_message.destroy()
-        self.ui.dialog_message = None
+        logging.debug(f'{self.__class__.__name__} destroy')
+        self.settings.save_window_position(window=self.ui.dialog,
+                                           section=SECTION_WINDOW_NAME)
+        self.ui.dialog.destroy()
+        self.ui.dialog = None
 
-    def on_action_confirm_activate(self, action):
+    def do_show_error_message_on_infobar(self, widget, error_msg):
+        """Show the error message on the GtkInfoBar"""
+        set_error_message_on_infobar(
+            widget=widget,
+            widgets=(self.ui.entry_message, self.ui.entry_translation),
+            label=self.ui.label_error_message,
+            infobar=self.ui.infobar_error_message,
+            error_msg=error_msg)
+
+    def on_action_confirm_activate(self, widget):
         """Check che message configuration before confirm"""
-        def show_error_message_on_infobar(widget, error_msg):
-            """Show the error message on the GtkInfoBar"""
-            set_error_message_on_infobar(
-                widget=widget,
-                widgets=(self.ui.txt_message, self.ui.txt_translation),
-                label=self.ui.lbl_error_message,
-                infobar=self.ui.infobar_error_message,
-                error_msg=error_msg)
-        message = self.ui.txt_message.get_text().strip()
+        message = self.ui.entry_message.get_text().strip()
         if len(message) == 0:
             # Show error for missing message
-            show_error_message_on_infobar(
-                self.ui.txt_message,
-                _('The message is missing'))
+            self.do_show_error_message_on_infobar(
+                widget=self.ui.entry_message,
+                error_msg=_('The message is missing'))
         elif self.messages.get_iter(message) not in (None, self.selected_iter):
             # Show error for existing message
-            show_error_message_on_infobar(
-                self.ui.txt_message,
-                _('The specified message already exists'))
+            self.do_show_error_message_on_infobar(
+                widget=self.ui.entry_message,
+                error_msg=_('The specified message already exists'))
         else:
-            self.ui.dialog_message.response(Gtk.ResponseType.OK)
+            self.ui.dialog.response(Gtk.ResponseType.OK)
 
     def on_infobar_error_message_response(self, widget, response_id):
         """Close the infobar"""
         if response_id == Gtk.ResponseType.CLOSE:
             self.ui.infobar_error_message.set_visible(False)
 
-    def on_txt_message_changed(self, widget):
+    def on_entry_message_changed(self, widget):
         """Check the message field"""
         check_invalid_input(widget, False, True, True)

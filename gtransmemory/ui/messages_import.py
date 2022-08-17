@@ -18,75 +18,77 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-import pathlib
+import logging
 
 from gi.repository import Gtk
 
-from gtransmemory.gtkbuilder_loader import GtkBuilderLoader
-from gtransmemory.functions import get_ui_file
-from gtransmemory.localize import text
-import gtransmemory.preferences as preferences
-import gtransmemory.settings as settings
+from gtransmemory.ui.base import UIBase
 
 SECTION_WINDOW_NAME = 'messages import'
 
 
-class UIMessagesImport(object):
-    def __init__(self, parent, latest_imported_file):
-        """Prepare the message dialog"""
-        # Load the user interface
-        self.ui = GtkBuilderLoader(get_ui_file('messages_import.ui'))
-        if not preferences.get(preferences.DETACHED_WINDOWS):
-            self.ui.dialog_import.set_transient_for(parent)
-        # Restore the saved size and position
-        settings.positions.restore_window_position(
-            self.ui.dialog_import, SECTION_WINDOW_NAME)
-        # Initialize actions
-        for widget in self.ui.get_objects_by_type(Gtk.Action):
-            # Connect the actions accelerators
-            widget.connect_accelerator()
-            # Set labels
-            widget.set_label(text(widget.get_label()))
-        # Initialize labels
-        for widget in self.ui.get_objects_by_type(Gtk.Label):
-            widget.set_label(text(widget.get_label()))
-            widget.set_tooltip_text(widget.get_label().replace('_', ''))
-        # Initialize tooltips
-        for widget in self.ui.get_objects_by_type(Gtk.Button):
-            action = widget.get_related_action()
-            if action:
-                widget.set_tooltip_text(action.get_label().replace('_', ''))
+class UIMessagesImport(UIBase):
+    def __init__(self, parent, settings, options, initial_dir):
+        """Prepare the dialog"""
+        logging.debug(f'{self.__class__.__name__} init')
+        super().__init__(filename='messages_import.ui')
+        # Initialize members
+        self.parent = parent
+        self.settings = settings
+        self.options = options
+        self.initial_dir = str(initial_dir)
         self.filename = ''
         self.source = ''
-        if latest_imported_file:
-            self.ui.file_chooser_import.set_current_folder(
-                str(pathlib.Path(latest_imported_file).parent))
-        # Connect signals from the glade file to the module functions
+        # Load UI
+        self.load_ui()
+        # Complete initialization
+        self.startup()
+
+    def load_ui(self):
+        """Load the interface UI"""
+        logging.debug(f'{self.__class__.__name__} load UI')
+        # Initialize titles and tooltips
+        self.set_titles()
+        # Set various properties
+        self.ui.dialog.set_transient_for(self.parent)
+        # Connect signals from the UI file to the functions with the same name
         self.ui.connect_signals(self)
+
+    def startup(self):
+        """Complete initialization"""
+        logging.debug(f'{self.__class__.__name__} startup')
+        # Set the initial directory
+        if self.initial_dir:
+            self.ui.file_chooser_import.set_current_folder(self.initial_dir)
+        # Restore the saved size and position
+        self.settings.restore_window_position(window=self.ui.dialog,
+                                              section=SECTION_WINDOW_NAME)
 
     def show(self, title):
         """Show the dialog"""
-        self.ui.dialog_import.set_title(title)
+        logging.debug(f'{self.__class__.__name__} show')
+        self.ui.dialog.set_title(title)
         # Show the dialog
-        response = self.ui.dialog_import.run()
-        self.ui.dialog_import.hide()
+        response = self.ui.dialog.run()
+        self.ui.dialog.hide()
         self.filename = self.ui.file_chooser_import.get_filename()
-        self.source = self.ui.txt_source.get_text().strip()
+        self.source = self.ui.entry_source.get_text().strip()
         return response
 
     def destroy(self):
         """Destroy the dialog"""
-        settings.positions.save_window_position(
-            self.ui.dialog_import, SECTION_WINDOW_NAME)
-        self.ui.dialog_import.destroy()
-        self.ui.dialog_import = None
+        logging.debug(f'{self.__class__.__name__} destroy')
+        self.settings.save_window_position(window=self.ui.dialog,
+                                           section=SECTION_WINDOW_NAME)
+        self.ui.dialog.destroy()
+        self.ui.dialog = None
 
-    def on_action_confirm_activate(self, action):
+    def on_action_confirm_activate(self, widget):
         """Check che message configuration before confirm"""
-        self.ui.dialog_import.response(Gtk.ResponseType.OK)
+        self.ui.dialog.response(Gtk.ResponseType.OK)
 
-    def on_check_for_input_values(self, widget):
+    def on_entry_source_changed(self, widget):
         """Check the filename and source arguments"""
         self.ui.action_confirm.set_sensitive(
             bool(self.ui.file_chooser_import.get_filename() and
-                 bool(self.ui.txt_source.get_text().strip())))
+                 bool(self.ui.entry_source.get_text().strip())))

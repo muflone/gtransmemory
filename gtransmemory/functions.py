@@ -23,7 +23,6 @@ import os.path
 import fnmatch
 
 from gi.repository import Gtk
-from gi.repository import Gdk
 
 from gtransmemory.constants import DIR_UI
 
@@ -105,13 +104,3 @@ def set_error_message_on_infobar(widget, widgets, label, infobar, error_msg):
         infobar.set_visible(False)
         for w in widgets:
             w.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, None)
-
-
-def show_popup_menu(menu, button=Gdk.BUTTON_SECONDARY):
-    """Show a GtkMenu popup"""
-    return menu.popup(parent_menu_shell=None,
-                      parent_menu_item=None,
-                      func=None,
-                      data=None,
-                      button=button,
-                      activate_time=Gtk.get_current_event_time())

@@ -45,7 +45,7 @@ class ModelMessages(ModelAbstract):
         self.db.close()
 
     def add_data(self, item):
-        """Add a new row to the model if it doesn't exists"""
+        """Add a new row to the model if it doesn't exist"""
         super(self.__class__, self).add_data(item)
         if item.key not in self.rows:
             new_row = self.model.append(None, (item.key,
@@ -56,9 +56,8 @@ class ModelMessages(ModelAbstract):
             self.rows[item.key] = new_row
             return new_row
 
-    def set_data(self, treeiter, item):
+    def set_item(self, treeiter, item):
         """Update an existing TreeIter"""
-        super(self.__class__, self).set_data(treeiter, item)
         self.model.set_value(treeiter, self.COL_MESSAGE, item.msgid)
         self.model.set_value(treeiter, self.COL_TRANSLATION, item.translation)
         self.model.set_value(treeiter, self.COL_SOURCE, item.source)

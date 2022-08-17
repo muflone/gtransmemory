@@ -60,7 +60,7 @@ class MemoryDB(object):
             fields = None
             data = None
         cursor.close()
-        return (fields, data)
+        return fields, data
 
     def get_description(self):
         """Return the memory description"""
