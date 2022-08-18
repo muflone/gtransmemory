@@ -49,7 +49,7 @@ msgstr "Informazioni sull'autore"
 
 #: gtransmemory/ui/about.py:87
 msgid "Issues and bugs tracking"
-msgstr "Rilevamento di problemi e bug"
+msgstr "Tracciamento di problemi e bug"
 
 #: gtransmemory/ui/about.py:88
 msgid "Translations"
