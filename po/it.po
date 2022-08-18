@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
-"POT-Creation-Date: 2022-08-19 00:12+0200\n"
+"POT-Creation-Date: 2022-08-19 01:03+0200\n"
 "PO-Revision-Date: 2016-06-18 20:35+0000\n"
 "Last-Translator: Giovanni Scafora <scafora.giovanni(at)gmail.com>\n"
 "Language-Team: Italian\n"
@@ -121,15 +121,15 @@ msgstr "Il messaggio specificato esiste già"
 msgid "Keyboard shortcuts"
 msgstr "Scorciatoie da tastiera"
 
-#: ui/main.ui:36 ui/shortcuts.ui:64
+#: ui/main.ui:36 ui/main.ui:319 ui/shortcuts.ui:64 ui/shortcuts.ui:136
 msgid "Previous memory"
 msgstr "Memoria precedente"
 
-#: ui/main.ui:43 ui/shortcuts.ui:71
+#: ui/main.ui:43 ui/main.ui:310 ui/shortcuts.ui:71 ui/shortcuts.ui:129
 msgid "Next memory"
 msgstr "Memoria successiva"
 
-#: ui/main.ui:50 ui/main.ui:339 ui/shortcuts.ui:52
+#: ui/main.ui:50 ui/main.ui:290 ui/main.ui:389 ui/shortcuts.ui:52
 msgid "Memories"
 msgstr "Memorie"
 
@@ -145,15 +145,15 @@ msgstr "Apri il menu opzioni"
 msgid "Deselect all"
 msgstr "Deseleziona tutto"
 
-#: ui/main.ui:240
+#: ui/main.ui:249 ui/shortcuts.ui:117
 msgid "Selection"
 msgstr "Selezione"
 
-#: ui/main.ui:489
+#: ui/main.ui:539
 msgid "Clear"
 msgstr "Pulisci"
 
-#: ui/main.ui:548
+#: ui/main.ui:598
 msgid "Memory"
 msgstr "Memoria"
 
@@ -206,9 +206,9 @@ msgid "Messages"
 msgstr "Messaggi"
 
 #: ui/shortcuts.ui:107
-msgid "Toggle selection mode"
-msgstr "Attiva/disattiva la modalità di selezione"
-
-#: ui/shortcuts.ui:114
 msgid "Show the search bar"
 msgstr "Mostra la barra di ricerca"
+
+#: ui/shortcuts.ui:122
+msgid "Toggle selection mode"
+msgstr "Attiva/disattiva la modalità di selezione"

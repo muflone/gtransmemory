@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
-"POT-Creation-Date: 2022-08-19 00:12+0200\n"
+"POT-Creation-Date: 2022-08-19 01:03+0200\n"
 "PO-Revision-Date: 2016-06-12 01:29+0200\n"
 "Last-Translator: Fabio Castelli (Muflone) (muflone(at)muflone.com)\n"
 "Language-Team: English\n"
@@ -120,15 +120,15 @@ msgstr "The specified message already exists"
 msgid "Keyboard shortcuts"
 msgstr "Keyboard shortcuts"
 
-#: ui/main.ui:36 ui/shortcuts.ui:64
+#: ui/main.ui:36 ui/main.ui:319 ui/shortcuts.ui:64 ui/shortcuts.ui:136
 msgid "Previous memory"
 msgstr "Previous memory"
 
-#: ui/main.ui:43 ui/shortcuts.ui:71
+#: ui/main.ui:43 ui/main.ui:310 ui/shortcuts.ui:71 ui/shortcuts.ui:129
 msgid "Next memory"
 msgstr "Next memory"
 
-#: ui/main.ui:50 ui/main.ui:339 ui/shortcuts.ui:52
+#: ui/main.ui:50 ui/main.ui:290 ui/main.ui:389 ui/shortcuts.ui:52
 msgid "Memories"
 msgstr "Memories"
 
@@ -144,15 +144,15 @@ msgstr "Open the options menu"
 msgid "Deselect all"
 msgstr "Deselect all"
 
-#: ui/main.ui:240
+#: ui/main.ui:249 ui/shortcuts.ui:117
 msgid "Selection"
 msgstr "Selection"
 
-#: ui/main.ui:489
+#: ui/main.ui:539
 msgid "Clear"
 msgstr "Clear"
 
-#: ui/main.ui:548
+#: ui/main.ui:598
 msgid "Memory"
 msgstr "Memory"
 
@@ -205,9 +205,9 @@ msgid "Messages"
 msgstr "Messages"
 
 #: ui/shortcuts.ui:107
-msgid "Toggle selection mode"
-msgstr "Toggle selection mode"
-
-#: ui/shortcuts.ui:114
 msgid "Show the search bar"
 msgstr "Show the search bar"
+
+#: ui/shortcuts.ui:122
+msgid "Toggle selection mode"
+msgstr "Toggle selection mode"

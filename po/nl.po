@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
-"POT-Creation-Date: 2022-08-19 00:12+0200\n"
+"POT-Creation-Date: 2022-08-19 01:03+0200\n"
 "PO-Revision-Date: 2016-06-18 20:35+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss(at)fastmail.com>\n"
 "Language-Team: Dutch\n"
@@ -120,15 +120,15 @@ msgstr "Er is al een gelijkaardige tekenreeks"
 msgid "Keyboard shortcuts"
 msgstr "Sneltoetsen"
 
-#: ui/main.ui:36 ui/shortcuts.ui:64
+#: ui/main.ui:36 ui/main.ui:319 ui/shortcuts.ui:64 ui/shortcuts.ui:136
 msgid "Previous memory"
 msgstr "Vorig geheugen"
 
-#: ui/main.ui:43 ui/shortcuts.ui:71
+#: ui/main.ui:43 ui/main.ui:310 ui/shortcuts.ui:71 ui/shortcuts.ui:129
 msgid "Next memory"
 msgstr "Volgend geheugen"
 
-#: ui/main.ui:50 ui/main.ui:339 ui/shortcuts.ui:52
+#: ui/main.ui:50 ui/main.ui:290 ui/main.ui:389 ui/shortcuts.ui:52
 msgid "Memories"
 msgstr "Geheugens"
 
@@ -144,15 +144,15 @@ msgstr "Open het optiesmenu"
 msgid "Deselect all"
 msgstr "Niets selecteren"
 
-#: ui/main.ui:240
+#: ui/main.ui:249 ui/shortcuts.ui:117
 msgid "Selection"
 msgstr ""
 
-#: ui/main.ui:489
+#: ui/main.ui:539
 msgid "Clear"
 msgstr ""
 
-#: ui/main.ui:548
+#: ui/main.ui:598
 msgid "Memory"
 msgstr "Geheugen"
 
@@ -205,9 +205,9 @@ msgid "Messages"
 msgstr "Tekenreeksen"
 
 #: ui/shortcuts.ui:107
-msgid "Toggle selection mode"
-msgstr "Selectiemodus aan/uit"
-
-#: ui/shortcuts.ui:114
 msgid "Show the search bar"
 msgstr "Zoekbalk tonen"
+
+#: ui/shortcuts.ui:122
+msgid "Toggle selection mode"
+msgstr "Selectiemodus aan/uit"

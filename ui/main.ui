@@ -234,6 +234,15 @@
       </object>
     </child>
     <child>
+      <object class="GtkCheckMenuItem" id="menuitem_options_search">
+        <property name="related-action">action_search</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label">Search</property>
+        <property name="use-underline">True</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkMenuItem">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
@@ -267,6 +276,47 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="label">Deselect All</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_options_memories">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">Memories</property>
+        <property name="use-underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu" id="menu_options_memories">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkMenuItem" id="menuitem_options_memories_memories">
+                <property name="related-action">action_memories</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label">Memories</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem_options_memories_next">
+                <property name="related-action">action_memories_next</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Next memory</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem_options_memories_previous">
+                <property name="related-action">action_memories_previous</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Previous memory</property>
                 <property name="use-underline">True</property>
               </object>
             </child>
