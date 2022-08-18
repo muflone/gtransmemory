@@ -436,13 +436,14 @@ class UIMain(UIBase):
         """Select or deselect all messages"""
         self.ui.action_selection.set_active(True)
         self.selected_count = 0
+        # Determine to select or deselect all
         status = widget == self.ui.action_select_all
         # Iterate over all the Gtk.TreeIter
         for row in self.model_messages.rows.values():
             self.model_messages.set_selection(row, status)
             if status:
                 self.selected_count += 1
-        self.ui.actions_selection_action.set_sensitive(self.selected_count)
+        self.ui.actions_messages_remove.set_sensitive(self.selected_count)
 
     def on_action_find_toggled(self, widget):
         """Show and hide the search bar"""
