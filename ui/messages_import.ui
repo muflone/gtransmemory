@@ -129,7 +129,7 @@
                 <property name="can-focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="title" translatable="yes">Select the file to import</property>
-                <signal name="file-set" handler="on_check_for_input_values" swapped="no"/>
+                <signal name="file-set" handler="on_file_chooser_import_file_set" swapped="no"/>
               </object>
               <packing>
                 <property name="left-attach">1</property>

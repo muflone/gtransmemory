@@ -83,12 +83,20 @@ class UIMessagesImport(UIBase):
         self.ui.dialog.destroy()
         self.ui.dialog = None
 
+    def do_check_file_source(self):
+        """Check the filename and source arguments"""
+        self.ui.action_confirm.set_sensitive(
+            bool(self.ui.file_chooser_import.get_filename() and
+                 bool(self.ui.entry_source.get_text().strip())))
+
     def on_action_confirm_activate(self, widget):
         """Check che message configuration before confirm"""
         self.ui.dialog.response(Gtk.ResponseType.OK)
 
     def on_entry_source_changed(self, widget):
         """Check the filename and source arguments"""
-        self.ui.action_confirm.set_sensitive(
-            bool(self.ui.file_chooser_import.get_filename() and
-                 bool(self.ui.entry_source.get_text().strip())))
+        self.do_check_file_source()
+
+    def on_file_chooser_import_file_set(self, widget):
+        """Check the filename and source arguments"""
+        self.do_check_file_source()
