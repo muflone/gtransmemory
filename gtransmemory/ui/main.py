@@ -243,7 +243,10 @@ class UIMain(UIBase):
             treeiter=self.model_messages.get_iter(message.key))
         # Update database if requested
         if update_data:
-            self.database.remove_message(message)
+            self.database.remove_message(
+                message=MessageInfo(msgid=message.msgid.replace('\\n', '\n'),
+                                    translation=message.translation,
+                                    source=message.source))
 
     def on_action_about_activate(self, widget):
         """Show the information dialog"""
