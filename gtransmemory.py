@@ -19,8 +19,8 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-from gtransmemory.main import main
+import gtransmemory.main
 
 
 if __name__ == '__main__':
-    main()
+    gtransmemory.main.main()
