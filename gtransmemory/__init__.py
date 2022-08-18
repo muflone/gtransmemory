@@ -17,36 +17,3 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
-
-import gettext
-import locale
-
-import gtransmemory.requires                                       # noqa: F401
-from gtransmemory.constants import DOMAIN_NAME, DIR_LOCALE
-from gtransmemory.localize import store_message, text, _
-
-
-# Load domain for translation
-for module in (gettext, locale):
-    module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
-    module.textdomain(DOMAIN_NAME)
-
-# Set default empty translation for empty string
-store_message('', '')
-# Import some translated messages from GTK+ domain
-store_message('_Icon:', '_%s:' % text(message='Icon', gtk30=True))
-for message in ('_OK', '_Cancel', '_Close', 'Se_lection', 'Search'):
-    text(message=message, gtk30=True)
-# With domain context
-for message in ('_Add', '_Remove', '_Edit', '_New', '_About', '_Clear',
-                'Select _All'):
-    text(message=message, gtk30=True, context='Stock label')
-# Remove the underscore
-for message in ('_Add', '_Clear'):
-    store_message(message.replace('_', ''), _(message).replace('_', ''))
-# Import fixed texts
-store_message('Project home page', _('Project home page'))
-store_message('Source code', _('Source code'))
-store_message('Author information', _('Author information'))
-store_message('Issues and bugs tracking', _('Issues and bugs tracking'))
-store_message('Translations', _('Translations'))

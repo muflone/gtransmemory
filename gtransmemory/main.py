@@ -20,6 +20,7 @@
 
 import logging
 
+import gtransmemory.requires                                       # noqa: F401
 from gtransmemory.app import Application
 from gtransmemory.command_line_options import CommandLineOptions
 from gtransmemory.constants import (DIR_DATA,
@@ -28,6 +29,7 @@ from gtransmemory.constants import (DIR_DATA,
                                     DIR_PREFIX,
                                     DIR_SETTINGS,
                                     DIR_UI)
+import gtransmemory.translations                                   # noqa: F401
 
 
 def main():
