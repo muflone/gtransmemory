@@ -1,204 +1,186 @@
-# English translations for gTransMemory package.
-# Copyright (C) 2016 Fabio Castelli
-# This file is distributed under the same license as the gTransMemory package.
-# Automatically generated, 2016.
+# gTransMemory
+# Memory of terms for translators
+# Copyright (C) 2016-2022 Fabio Castelli (Muflone) <muflone@muflone.com>
+# Website: https://www.muflone.com/gtransmemory/
+# This file is distributed under the same license of gTransMemory.
+# English translation for gTransMemory
 #
 # Translators:
-# Muflone <webreg(at)vbsimple.net>, 2016
+# Fabio Castelli (Muflone) <muflone(at)muflone.com>, 2016-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
-"Report-Msgid-Bugs-To: muflone@vbsimple.net\n"
-"POT-Creation-Date: 2016-07-07 23:35+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
+"POT-Creation-Date: 2022-08-19 00:12+0200\n"
 "PO-Revision-Date: 2016-06-12 01:29+0200\n"
-"Last-Translator: Muflone (muflone(at)vbsimple.net)\n"
-"Language-Team: none\n"
+"Last-Translator: Fabio Castelli (Muflone) (muflone(at)muflone.com)\n"
+"Language-Team: English\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gtransmemory/__init__.py:48
-msgid "Project home page"
-msgstr "Project home page"
+#: gtransmemory/ui/about.py:65
+#, python-brace-format
+msgid "Version {VERSION}"
+msgstr "Version {VERSION}"
 
-#: gtransmemory/__init__.py:49
-msgid "Source code"
-msgstr "Source code"
-
-#: gtransmemory/__init__.py:50
-msgid "Author information"
-msgstr "Author information"
-
-#: gtransmemory/__init__.py:51
-msgid "Issues and bugs tracking"
-msgstr "Issues and bugs tracking"
-
-#: gtransmemory/__init__.py:52
-msgid "Translations"
-msgstr "Translations"
-
-#: gtransmemory/constants.py:30
+#: gtransmemory/ui/about.py:68
 msgid "Memory of terms for translators"
 msgstr "Memory of terms for translators"
 
-#: gtransmemory/ui/about.py:49
-#, python-format
-msgid "Version %s"
-msgstr "Version %s"
-
-#: gtransmemory/ui/about.py:59
+#: gtransmemory/ui/about.py:77
 msgid "Contributors:"
 msgstr "Contributors:"
 
-#: gtransmemory/ui/main.py:265
+#: gtransmemory/ui/about.py:84
+msgid "Project home page"
+msgstr "Project home page"
+
+#: gtransmemory/ui/about.py:85
+msgid "Source code"
+msgstr "Source code"
+
+#: gtransmemory/ui/about.py:86
+msgid "Author information"
+msgstr "Author information"
+
+#: gtransmemory/ui/about.py:87
+msgid "Issues and bugs tracking"
+msgstr "Issues and bugs tracking"
+
+#: gtransmemory/ui/about.py:88
+msgid "Translations"
+msgstr "Translations"
+
+#: gtransmemory/ui/main.py:204
 #, python-brace-format
 msgid "Loading message {step} of {count}"
 msgstr "Loading message {step} of {count}"
 
-#: gtransmemory/ui/main.py:333 ui/shortcuts.ui:79
+#: gtransmemory/ui/main.py:283 ui/shortcuts.ui:86
 msgid "Add a new message"
 msgstr "Add a new message"
 
-#: gtransmemory/ui/main.py:365 ui/shortcuts.ui:86
+#: gtransmemory/ui/main.py:316 ui/shortcuts.ui:93
 msgid "Edit message"
 msgstr "Edit message"
 
-#: gtransmemory/ui/main.py:398
+#: gtransmemory/ui/main.py:358
 msgid "GNU gettext translation files"
 msgstr "GNU gettext translation files"
 
-#: gtransmemory/ui/main.py:402
+#: gtransmemory/ui/main.py:362
 msgid "All files"
 msgstr "All files"
 
-#: gtransmemory/ui/main.py:405 ui/shortcuts.ui:93
+#: gtransmemory/ui/main.py:365 ui/shortcuts.ui:100
 msgid "Import messages from file"
 msgstr "Import messages from file"
 
-#: gtransmemory/ui/memories.py:96
+#: gtransmemory/ui/memories.py:104
 msgid "Add new memory"
 msgstr "Add new memory"
 
-#: gtransmemory/ui/memories.py:119
+#: gtransmemory/ui/memories.py:126
 msgid "Remove the memory"
 msgstr "Remove the memory"
 
-#: gtransmemory/ui/memories.py:120
-#, python-format
-msgid "Remove the memory %s?"
-msgstr "Remove the memory %s?"
+#: gtransmemory/ui/memories.py:127
+#, python-brace-format
+msgid "Remove the memory {memory_description}?"
+msgstr "Remove the memory {memory_description}?"
 
-#: gtransmemory/ui/memory_detail.py:90
+#: gtransmemory/ui/memory_detail.py:105
 msgid "The memory name is missing"
 msgstr "The memory name is missing"
 
-#: gtransmemory/ui/memory_detail.py:95
+#: gtransmemory/ui/memory_detail.py:110
 msgid "The memory name is invalid"
 msgstr "The memory name is invalid"
 
-#: gtransmemory/ui/memory_detail.py:100
+#: gtransmemory/ui/memory_detail.py:115
 msgid "A memory with that name already exists"
 msgstr "A memory with that name already exists"
 
-#: gtransmemory/ui/memory_detail.py:105
+#: gtransmemory/ui/memory_detail.py:120
 msgid "The memory description is missing"
 msgstr "The memory description is missing"
 
-#: gtransmemory/ui/message.py:110
+#: gtransmemory/ui/message.py:114
 msgid "The message is missing"
 msgstr "The message is missing"
 
-#: gtransmemory/ui/message.py:115
+#: gtransmemory/ui/message.py:119
 msgid "The specified message already exists"
 msgstr "The specified message already exists"
 
-#: ui/appmenu.ui:6
-msgid "_About gTransMemory"
-msgstr "_About gTransMemory"
+#: ui/main.ui:25 ui/shortcuts.ui:35
+msgid "Keyboard shortcuts"
+msgstr "Keyboard shortcuts"
 
-#: ui/appmenu.ui:11
-msgid "Open _Settings folder"
-msgstr "Open _Settings folder"
-
-#: ui/appmenu.ui:15
-msgid "Show keyboard _shortcuts"
-msgstr "Show keyboard _shortcuts"
-
-#: ui/appmenu.ui:22
-msgid "_Quit"
-msgstr "_Quit"
-
-#: ui/main.ui:28 ui/shortcuts.ui:57
+#: ui/main.ui:36 ui/shortcuts.ui:64
 msgid "Previous memory"
 msgstr "Previous memory"
 
-#: ui/main.ui:35 ui/shortcuts.ui:64
+#: ui/main.ui:43 ui/shortcuts.ui:71
 msgid "Next memory"
 msgstr "Next memory"
 
-#: ui/main.ui:42
-msgid "_Memories"
-msgstr "_Memories"
+#: ui/main.ui:50 ui/main.ui:339 ui/shortcuts.ui:52
+msgid "Memories"
+msgstr "Memories"
 
-#: ui/main.ui:88
-msgid "_Import"
-msgstr "_Import"
+#: ui/main.ui:70
+msgid "Import"
+msgstr "Import"
 
-#: ui/main.ui:134
-msgid "_Deselect all"
-msgstr "_Deselect all"
+#: ui/main.ui:101 ui/main.ui:107 ui/shortcuts.ui:28
+msgid "Open the options menu"
+msgstr "Open the options menu"
 
-#: ui/main.ui:479
+#: ui/main.ui:153
+msgid "Deselect all"
+msgstr "Deselect all"
+
+#: ui/main.ui:240
+msgid "Selection"
+msgstr "Selection"
+
+#: ui/main.ui:489
+msgid "Clear"
+msgstr "Clear"
+
+#: ui/main.ui:548
 msgid "Memory"
 msgstr "Memory"
-
-#: ui/main.ui:537
-msgid "Message"
-msgstr "Message"
-
-#: ui/main.ui:554
-msgid "Translation"
-msgstr "Translation"
-
-#: ui/main.ui:569
-msgid "Source"
-msgstr "Source"
 
 #: ui/memories.ui:43
 msgid "Configure memories"
 msgstr "Configure memories"
 
-#: ui/memories.ui:122
-msgid "Description"
-msgstr "Description"
-
-#: ui/memory_detail.ui:164
-msgid "_Description:"
-msgstr "_Description:"
-
 #: ui/message.ui:23
 msgid "Configure message"
 msgstr "Configure message"
 
-#: ui/message.ui:145
+#: ui/message.ui:146
 msgid "_Message:"
 msgstr "_Message:"
 
-#: ui/message.ui:172
+#: ui/message.ui:173
 msgid "_Translation:"
 msgstr "_Translation:"
 
-#: ui/message.ui:198 ui/messages_import.ui:88
+#: ui/message.ui:199 ui/messages_import.ui:89
 msgid "_Source:"
 msgstr "_Source:"
 
-#: ui/messages_import.ui:115
+#: ui/messages_import.ui:116
 msgid "_File to import:"
 msgstr "_File to import:"
 
-#: ui/messages_import.ui:130
+#: ui/messages_import.ui:131
 msgid "Select the file to import"
 msgstr "Select the file to import"
 
@@ -210,30 +192,22 @@ msgstr "General"
 msgid "Show the about dialog"
 msgstr "Show the about dialog"
 
-#: ui/shortcuts.ui:28
-msgid "Show the shortcuts window"
-msgstr "Show the shortcuts window"
-
-#: ui/shortcuts.ui:35
+#: ui/shortcuts.ui:42
 msgid "Quit"
 msgstr "Quit"
 
-#: ui/shortcuts.ui:45
-msgid "Memories"
-msgstr "Memories"
-
-#: ui/shortcuts.ui:50
+#: ui/shortcuts.ui:57
 msgid "Show the memories dialog"
 msgstr "Show the memories dialog"
 
-#: ui/shortcuts.ui:74
+#: ui/shortcuts.ui:81
 msgid "Messages"
 msgstr "Messages"
 
-#: ui/shortcuts.ui:100
+#: ui/shortcuts.ui:107
 msgid "Toggle selection mode"
 msgstr "Toggle selection mode"
 
-#: ui/shortcuts.ui:107
+#: ui/shortcuts.ui:114
 msgid "Show the search bar"
 msgstr "Show the search bar"

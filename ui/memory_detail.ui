@@ -162,7 +162,7 @@
               <object class="GtkLabel" id="label_description">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">_Description:</property>
+                <property name="label">_Description:</property>
                 <property name="use-underline">True</property>
                 <property name="mnemonic-widget">entry_description</property>
                 <property name="ellipsize">middle</property>

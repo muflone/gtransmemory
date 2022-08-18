@@ -1,14 +1,16 @@
 # gTransMemory
-# Copyright 2016 Fabio Castelli
-# This file is distributed under the same license as the gTransMemory package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Memory of terms for translators
+# Copyright (C) 2016-2022 Fabio Castelli (Muflone) <muflone@muflone.com>
+# Website: https://www.muflone.com/gtransmemory/
+# This file is distributed under the same license of gTransMemory.
+# X translation for gTransMemory
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
-"Report-Msgid-Bugs-To: muflone@vbsimple.net\n"
-"POT-Creation-Date: 2016-07-07 23:35+0200\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
+"POT-Creation-Date: 2022-08-19 00:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,186 +19,166 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gtransmemory/__init__.py:48
-msgid "Project home page"
+#: gtransmemory/ui/about.py:65
+#, python-brace-format
+msgid "Version {VERSION}"
 msgstr ""
 
-#: gtransmemory/__init__.py:49
-msgid "Source code"
-msgstr ""
-
-#: gtransmemory/__init__.py:50
-msgid "Author information"
-msgstr ""
-
-#: gtransmemory/__init__.py:51
-msgid "Issues and bugs tracking"
-msgstr ""
-
-#: gtransmemory/__init__.py:52
-msgid "Translations"
-msgstr ""
-
-#: gtransmemory/constants.py:30
+#: gtransmemory/ui/about.py:68
 msgid "Memory of terms for translators"
 msgstr ""
 
-#: gtransmemory/ui/about.py:49
-#, python-format
-msgid "Version %s"
-msgstr ""
-
-#: gtransmemory/ui/about.py:59
+#: gtransmemory/ui/about.py:77
 msgid "Contributors:"
 msgstr ""
 
-#: gtransmemory/ui/main.py:265
+#: gtransmemory/ui/about.py:84
+msgid "Project home page"
+msgstr ""
+
+#: gtransmemory/ui/about.py:85
+msgid "Source code"
+msgstr ""
+
+#: gtransmemory/ui/about.py:86
+msgid "Author information"
+msgstr ""
+
+#: gtransmemory/ui/about.py:87
+msgid "Issues and bugs tracking"
+msgstr ""
+
+#: gtransmemory/ui/about.py:88
+msgid "Translations"
+msgstr ""
+
+#: gtransmemory/ui/main.py:204
 #, python-brace-format
 msgid "Loading message {step} of {count}"
 msgstr ""
 
-#: gtransmemory/ui/main.py:333 ui/shortcuts.ui:79
+#: gtransmemory/ui/main.py:283 ui/shortcuts.ui:86
 msgid "Add a new message"
 msgstr ""
 
-#: gtransmemory/ui/main.py:365 ui/shortcuts.ui:86
+#: gtransmemory/ui/main.py:316 ui/shortcuts.ui:93
 msgid "Edit message"
 msgstr ""
 
-#: gtransmemory/ui/main.py:398
+#: gtransmemory/ui/main.py:358
 msgid "GNU gettext translation files"
 msgstr ""
 
-#: gtransmemory/ui/main.py:402
+#: gtransmemory/ui/main.py:362
 msgid "All files"
 msgstr ""
 
-#: gtransmemory/ui/main.py:405 ui/shortcuts.ui:93
+#: gtransmemory/ui/main.py:365 ui/shortcuts.ui:100
 msgid "Import messages from file"
 msgstr ""
 
-#: gtransmemory/ui/memories.py:96
+#: gtransmemory/ui/memories.py:104
 msgid "Add new memory"
 msgstr ""
 
-#: gtransmemory/ui/memories.py:119
+#: gtransmemory/ui/memories.py:126
 msgid "Remove the memory"
 msgstr ""
 
-#: gtransmemory/ui/memories.py:120
-#, python-format
-msgid "Remove the memory %s?"
-msgstr ""
-
-#: gtransmemory/ui/memory_detail.py:90
-msgid "The memory name is missing"
-msgstr ""
-
-#: gtransmemory/ui/memory_detail.py:95
-msgid "The memory name is invalid"
-msgstr ""
-
-#: gtransmemory/ui/memory_detail.py:100
-msgid "A memory with that name already exists"
+#: gtransmemory/ui/memories.py:127
+#, python-brace-format
+msgid "Remove the memory {memory_description}?"
 msgstr ""
 
 #: gtransmemory/ui/memory_detail.py:105
+msgid "The memory name is missing"
+msgstr ""
+
+#: gtransmemory/ui/memory_detail.py:110
+msgid "The memory name is invalid"
+msgstr ""
+
+#: gtransmemory/ui/memory_detail.py:115
+msgid "A memory with that name already exists"
+msgstr ""
+
+#: gtransmemory/ui/memory_detail.py:120
 msgid "The memory description is missing"
 msgstr ""
 
-#: gtransmemory/ui/message.py:110
+#: gtransmemory/ui/message.py:114
 msgid "The message is missing"
 msgstr ""
 
-#: gtransmemory/ui/message.py:115
+#: gtransmemory/ui/message.py:119
 msgid "The specified message already exists"
 msgstr ""
 
-#: ui/appmenu.ui:6
-msgid "_About gTransMemory"
+#: ui/main.ui:25 ui/shortcuts.ui:35
+msgid "Keyboard shortcuts"
 msgstr ""
 
-#: ui/appmenu.ui:11
-msgid "Open _Settings folder"
-msgstr ""
-
-#: ui/appmenu.ui:15
-msgid "Show keyboard _shortcuts"
-msgstr ""
-
-#: ui/appmenu.ui:22
-msgid "_Quit"
-msgstr ""
-
-#: ui/main.ui:28 ui/shortcuts.ui:57
+#: ui/main.ui:36 ui/shortcuts.ui:64
 msgid "Previous memory"
 msgstr ""
 
-#: ui/main.ui:35 ui/shortcuts.ui:64
+#: ui/main.ui:43 ui/shortcuts.ui:71
 msgid "Next memory"
 msgstr ""
 
-#: ui/main.ui:42
-msgid "_Memories"
+#: ui/main.ui:50 ui/main.ui:339 ui/shortcuts.ui:52
+msgid "Memories"
 msgstr ""
 
-#: ui/main.ui:88
-msgid "_Import"
+#: ui/main.ui:70
+msgid "Import"
 msgstr ""
 
-#: ui/main.ui:134
-msgid "_Deselect all"
+#: ui/main.ui:101 ui/main.ui:107 ui/shortcuts.ui:28
+msgid "Open the options menu"
 msgstr ""
 
-#: ui/main.ui:479
+#: ui/main.ui:153
+msgid "Deselect all"
+msgstr ""
+
+#: ui/main.ui:240
+msgid "Selection"
+msgstr ""
+
+#: ui/main.ui:489
+msgid "Clear"
+msgstr ""
+
+#: ui/main.ui:548
 msgid "Memory"
-msgstr ""
-
-#: ui/main.ui:537
-msgid "Message"
-msgstr ""
-
-#: ui/main.ui:554
-msgid "Translation"
-msgstr ""
-
-#: ui/main.ui:569
-msgid "Source"
 msgstr ""
 
 #: ui/memories.ui:43
 msgid "Configure memories"
 msgstr ""
 
-#: ui/memories.ui:122
-msgid "Description"
-msgstr ""
-
-#: ui/memory_detail.ui:164
-msgid "_Description:"
-msgstr ""
-
 #: ui/message.ui:23
 msgid "Configure message"
 msgstr ""
 
-#: ui/message.ui:145
+#: ui/message.ui:146
 msgid "_Message:"
 msgstr ""
 
-#: ui/message.ui:172
+#: ui/message.ui:173
 msgid "_Translation:"
 msgstr ""
 
-#: ui/message.ui:198 ui/messages_import.ui:88
+#: ui/message.ui:199 ui/messages_import.ui:89
 msgid "_Source:"
 msgstr ""
 
-#: ui/messages_import.ui:115
+#: ui/messages_import.ui:116
 msgid "_File to import:"
 msgstr ""
 
-#: ui/messages_import.ui:130
+#: ui/messages_import.ui:131
 msgid "Select the file to import"
 msgstr ""
 
@@ -208,30 +190,22 @@ msgstr ""
 msgid "Show the about dialog"
 msgstr ""
 
-#: ui/shortcuts.ui:28
-msgid "Show the shortcuts window"
-msgstr ""
-
-#: ui/shortcuts.ui:35
+#: ui/shortcuts.ui:42
 msgid "Quit"
 msgstr ""
 
-#: ui/shortcuts.ui:45
-msgid "Memories"
-msgstr ""
-
-#: ui/shortcuts.ui:50
+#: ui/shortcuts.ui:57
 msgid "Show the memories dialog"
 msgstr ""
 
-#: ui/shortcuts.ui:74
+#: ui/shortcuts.ui:81
 msgid "Messages"
 msgstr ""
 
-#: ui/shortcuts.ui:100
+#: ui/shortcuts.ui:107
 msgid "Toggle selection mode"
 msgstr ""
 
-#: ui/shortcuts.ui:107
+#: ui/shortcuts.ui:114
 msgid "Show the search bar"
 msgstr ""

@@ -22,7 +22,11 @@ import gettext
 import locale
 
 from gtransmemory.constants import APP_DOMAIN, DIR_LOCALE
-from gtransmemory.localize import _, store_message, text
+from gtransmemory.localize import (_,
+                                   store_message,
+                                   strip_colon,
+                                   strip_underline,
+                                   text)
 
 
 # Load domain for translation
@@ -33,13 +37,11 @@ for module in (gettext, locale):
 # Set default empty translation for empty string
 store_message('', '')
 # Import some translated messages from GTK+ domain
-store_message('_Icon:', '_%s:' % text(message='Icon', gtk30=True))
-for message in ('_OK', '_Cancel', '_Close', 'Se_lection', 'Search'):
-    text(message=message, gtk30=True)
-# With domain context
-for message in ('_Add', '_Remove', '_Edit', '_New', '_About', '_Clear',
-                'Select _All'):
+for message in ('_Add', '_Remove', '_Edit',
+                'Select _All', '_Close', '_Cancel', 'Search'):
     text(message=message, gtk30=True, context='Stock label')
-# Remove the underscore
-for message in ('_Add', '_Clear'):
-    store_message(message.replace('_', ''), _(message).replace('_', ''))
+# Import some variations
+for message in ('_Message:', '_Translation:', '_Source:'):
+    store_message(strip_colon(strip_underline(message)),
+                  strip_colon(strip_underline(text(message=message,
+                                                   gtk30=False))))

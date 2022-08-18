@@ -88,12 +88,10 @@ class UIMain(UIBase):
         # Initialize titles and tooltips
         self.set_titles()
         self.ui.button_search_close.set_tooltip_text(
-            self.ui.action_find_close.get_label().replace('_', ''))
-        self.ui.entry_find.set_tooltip_text(text('Search'))
-        self.ui.entry_find.set_icon_tooltip_text(
+            self.ui.action_search_close.get_label().replace('_', ''))
+        self.ui.entry_search.set_tooltip_text(text('Search'))
+        self.ui.entry_search.set_icon_tooltip_text(
             Gtk.EntryIconPosition.PRIMARY, text('Search'))
-        self.ui.entry_find.set_icon_tooltip_text(
-            Gtk.EntryIconPosition.SECONDARY, text('Clear'))
         # Initialize Gtk.HeaderBar
         self.ui.header_bar.props.title = self.ui.window.get_title()
         self.ui.window.set_titlebar(self.ui.header_bar)
@@ -101,16 +99,17 @@ class UIMain(UIBase):
                                         self.ui.button_messages_import,
                                         self.ui.button_messages_edit,
                                         self.ui.button_messages_remove,
-                                        self.ui.button_messages_find,
+                                        self.ui.button_messages_search,
                                         self.ui.button_messages_selection,
                                         self.ui.button_memories,
                                         self.ui.button_about,
-                                        self.ui.button_options])
+                                        self.ui.button_options,
+                                        self.ui.button_search_close])
         # Initialize column headers
         for widget in self.ui.get_objects_by_type(Gtk.TreeViewColumn):
             widget.set_title(text(widget.get_title()))
         # Set custom search entry for messages
-        self.ui.tvw_messages.set_search_entry(self.ui.entry_find)
+        self.ui.tvw_messages.set_search_entry(self.ui.entry_search)
         # Set various properties
         self.ui.window.set_title(APP_NAME)
         self.ui.window.set_icon_from_file(str(FILE_ICON))
@@ -208,7 +207,7 @@ class UIMain(UIBase):
                 yield True
             self.ui.progress_loading.set_visible(False)
             if not self.loading_cancel:
-                self.ui.actions_find.set_sensitive(True)
+                self.ui.actions_search.set_sensitive(True)
                 self.ui.actions_messages.set_sensitive(True)
                 self.ui.actions_selection.set_sensitive(True)
             # Operation completed, stop the thread
@@ -228,7 +227,7 @@ class UIMain(UIBase):
         self.ui.progress_loading.set_fraction(0.0)
         self.ui.progress_loading.set_visible(True)
         # Disable buttons while loading the memory database
-        self.ui.actions_find.set_sensitive(False)
+        self.ui.actions_search.set_sensitive(False)
         self.ui.actions_messages.set_sensitive(False)
         self.ui.actions_selection.set_sensitive(False)
         # Load the memory database
@@ -446,17 +445,17 @@ class UIMain(UIBase):
                 self.selected_count += 1
         self.ui.actions_messages_remove.set_sensitive(self.selected_count)
 
-    def on_action_find_toggled(self, widget):
+    def on_action_search_toggled(self, widget):
         """Show and hide the search bar"""
         # There's a Gtk.Revealer, show and hide the child
-        self.ui.revealer_find.set_reveal_child(
-            not self.ui.revealer_find.get_reveal_child())
-        if self.ui.revealer_find.get_reveal_child():
-            self.ui.entry_find.grab_focus()
+        self.ui.revealer_search.set_reveal_child(
+            not self.ui.revealer_search.get_reveal_child())
+        if self.ui.revealer_search.get_reveal_child():
+            self.ui.entry_search.grab_focus()
 
-    def on_action_find_close_activate(self, widget):
+    def on_action_search_close_activate(self, widget):
         """Hide the search bar"""
-        self.ui.action_find.set_active(False)
+        self.ui.action_search.set_active(False)
 
     def on_action_options_menu_activate(self, widget):
         """Open the options menu"""
@@ -472,10 +471,10 @@ class UIMain(UIBase):
         self.selected_count += 1 if status else -1
         self.ui.actions_messages_remove.set_sensitive(self.selected_count)
 
-    def on_entry_find_icon_release(self, widget, icon_position, event):
+    def on_entry_search_icon_release(self, widget, icon_position, event):
         """Clear the search text by clicking the icon next to the Gtk.Entry"""
         if icon_position == Gtk.EntryIconPosition.SECONDARY:
-            self.ui.entry_find.set_text('')
+            self.ui.entry_search.set_text('')
 
     def on_tvw_messages_row_activated(self, widget, treepath, column):
         """Edit the selected row on activation"""
@@ -505,7 +504,7 @@ class UIMain(UIBase):
             # Cancel any previous loading
             if self.loading_id:
                 self.loading_cancel = True
-            self.ui.actions_find.set_sensitive(False)
+            self.ui.actions_search.set_sensitive(False)
             self.ui.actions_messages.set_sensitive(False)
             self.ui.actions_selection.set_sensitive(False)
             # Clear previously loaded messages when no memory is selected

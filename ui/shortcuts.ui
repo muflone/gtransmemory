@@ -24,8 +24,15 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;ctrl&gt;F1</property>
-                <property name="title" translatable="yes">Show the shortcuts window</property>
+                <property name="accelerator">F10</property>
+                <property name="title" translatable="yes">Open the options menu</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">1</property>
+                <property name="accelerator">&lt;ctrl&gt;question</property>
+                <property name="title" translatable="yes">Keyboard shortcuts</property>
               </object>
             </child>
             <child>
@@ -89,7 +96,7 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;ctrl&gt;Insert</property>
+                <property name="accelerator">&lt;ctrl&gt;O</property>
                 <property name="title" translatable="yes">Import messages from file</property>
               </object>
             </child>

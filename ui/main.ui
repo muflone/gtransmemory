@@ -3,12 +3,11 @@
 <interface>
   <requires lib="gtk+" version="3.10"/>
   <object class="GtkAccelGroup" id="accelerators"/>
-  <object class="GtkActionGroup" id="actions_application">
+  <object class="GtkActionGroup" id="actions_app">
     <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkAction" id="action_quit">
-        <property name="label" context="gtk30">_Quit</property>
-        <property name="short-label" translatable="yes">_Quit</property>
+        <property name="label" context="gtk30">Quit</property>
         <signal name="activate" handler="on_action_quit_activate" swapped="no"/>
       </object>
       <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
@@ -16,7 +15,6 @@
     <child>
       <object class="GtkAction" id="action_about">
         <property name="label" context="gtk30">About</property>
-        <property name="short-label" translatable="yes">About</property>
         <property name="icon-name">help-about</property>
         <signal name="activate" handler="on_action_about_activate" swapped="no"/>
       </object>
@@ -25,29 +23,10 @@
     <child>
       <object class="GtkAction" id="action_shortcuts">
         <property name="label" translatable="yes">Keyboard shortcuts</property>
-        <property name="short-label" translatable="yes">Keyboard shortcuts</property>
         <property name="icon-name">help-browser</property>
         <signal name="activate" handler="on_action_shortcuts_activate" swapped="no"/>
       </object>
       <accelerator key="question" modifiers="GDK_CONTROL_MASK"/>
-    </child>
-  </object>
-  <object class="GtkActionGroup" id="actions_find">
-    <property name="sensitive">False</property>
-    <property name="accel-group">accelerators</property>
-    <child>
-      <object class="GtkAction" id="action_find_close">
-        <property name="label" comments="Use domain gtk30">_Close</property>
-        <signal name="activate" handler="on_action_find_close_activate" swapped="no"/>
-      </object>
-    </child>
-    <child>
-      <object class="GtkToggleAction" id="action_find">
-        <property name="label" context="gtk30">Find</property>
-        <property name="icon-name">edit-find</property>
-        <signal name="toggled" handler="on_action_find_toggled" swapped="no"/>
-      </object>
-      <accelerator key="f" modifiers="GDK_CONTROL_MASK"/>
     </child>
   </object>
   <object class="GtkActionGroup" id="actions_memories">
@@ -68,7 +47,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_memories">
-        <property name="label" translatable="yes">_Memories</property>
+        <property name="label" translatable="yes">Memories</property>
         <property name="icon-name">folder-symbolic</property>
         <signal name="activate" handler="on_action_memories_activate" swapped="no"/>
       </object>
@@ -131,12 +110,31 @@
       <accelerator key="F10"/>
     </child>
   </object>
+  <object class="GtkActionGroup" id="actions_search">
+    <property name="sensitive">False</property>
+    <property name="accel-group">accelerators</property>
+    <child>
+      <object class="GtkAction" id="action_search_close">
+        <property name="label" comments="Use domain gtk30">_Close</property>
+        <property name="icon-name">window-close</property>
+        <signal name="activate" handler="on_action_search_close_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkToggleAction" id="action_search">
+        <property name="label" context="gtk30">Search</property>
+        <property name="icon-name">edit-find</property>
+        <signal name="toggled" handler="on_action_search_toggled" swapped="no"/>
+      </object>
+      <accelerator key="f" modifiers="GDK_CONTROL_MASK"/>
+    </child>
+  </object>
   <object class="GtkActionGroup" id="actions_selection">
     <property name="sensitive">False</property>
     <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkToggleAction" id="action_selection">
-        <property name="label" comments="Use domain gtk30">Se_lection</property>
+        <property name="label" comments="Use domain gtk30">Selection</property>
         <property name="icon-name">object-select-symbolic</property>
         <signal name="toggled" handler="on_action_selection_toggled" swapped="no"/>
       </object>
@@ -152,7 +150,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_deselect_all">
-        <property name="label" translatable="yes">_Deselect all</property>
+        <property name="label" translatable="yes">Deselect all</property>
         <property name="icon-name">edit-select-all</property>
         <signal name="activate" handler="on_action_select_all_activate" swapped="no"/>
       </object>
@@ -239,7 +237,7 @@
       <object class="GtkMenuItem">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="label" translatable="yes">Selezione</property>
+        <property name="label" translatable="yes">Selection</property>
         <property name="use-underline">True</property>
         <child type="submenu">
           <object class="GtkMenu" id="menu_options_selection">
@@ -287,7 +285,7 @@
         <property name="related-action">action_shortcuts</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="label" translatable="yes">Keyboard shortcuts</property>
+        <property name="label">Keyboard shortcuts</property>
         <property name="use-underline">True</property>
       </object>
     </child>
@@ -296,7 +294,7 @@
         <property name="related-action">action_about</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="label" translatable="yes">About</property>
+        <property name="label">About</property>
         <property name="use-underline">True</property>
       </object>
     </child>
@@ -365,9 +363,9 @@
       </packing>
     </child>
     <child>
-      <object class="GtkToggleButton" id="button_messages_find">
-        <property name="label">Find</property>
-        <property name="related-action">action_find</property>
+      <object class="GtkToggleButton" id="button_messages_search">
+        <property name="label">Search</property>
+        <property name="related-action">action_search</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
         <property name="receives-default">True</property>
@@ -470,7 +468,7 @@
         <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkRevealer" id="revealer_find">
+          <object class="GtkRevealer" id="revealer_search">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <child>
@@ -480,15 +478,16 @@
                 <property name="border-width">4</property>
                 <property name="spacing">4</property>
                 <child>
-                  <object class="GtkEntry" id="entry_find">
+                  <object class="GtkEntry" id="entry_search">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="tooltip-text" context="gtk30">SEARCH</property>
+                    <property name="tooltip-text" context="gtk30">Search</property>
                     <property name="primary-icon-name">edit-find-symbolic</property>
                     <property name="secondary-icon-name">edit-clear-symbolic</property>
                     <property name="primary-icon-activatable">False</property>
-                    <property name="secondary-icon-tooltip-text" comments="Use domain gtk30">CLEAR</property>
-                    <signal name="icon-release" handler="on_entry_find_icon_release" swapped="no"/>
+                    <property name="primary-icon-tooltip-text">Search</property>
+                    <property name="secondary-icon-tooltip-text" translatable="yes">Clear</property>
+                    <signal name="icon-release" handler="on_entry_search_icon_release" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -498,19 +497,13 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="button_search_close">
+                    <property name="label">Close</property>
                     <property name="use-action-appearance">False</property>
-                    <property name="related-action">action_find_close</property>
+                    <property name="related-action">action_search_close</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <property name="relief">none</property>
-                    <child>
-                      <object class="GtkImage" id="images_search_close">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="icon-name">window-close</property>
-                      </object>
-                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -610,7 +603,7 @@
                       <object class="GtkTreeViewColumn" id="column_message">
                         <property name="resizable">True</property>
                         <property name="fixed-width">250</property>
-                        <property name="title" translatable="yes">Message</property>
+                        <property name="title">Message</property>
                         <property name="sort-indicator">True</property>
                         <property name="sort-column-id">1</property>
                         <child>
@@ -627,7 +620,7 @@
                       <object class="GtkTreeViewColumn" id="column_translation">
                         <property name="resizable">True</property>
                         <property name="fixed-width">250</property>
-                        <property name="title" translatable="yes">Translation</property>
+                        <property name="title">Translation</property>
                         <property name="sort-column-id">2</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_translation">
@@ -642,7 +635,7 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="column_source">
                         <property name="fixed-width">100</property>
-                        <property name="title" translatable="yes">Source</property>
+                        <property name="title">Source</property>
                         <property name="sort-column-id">3</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_source"/>
