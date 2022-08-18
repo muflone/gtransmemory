@@ -1,0 +1,213 @@
+# gTransMemory
+# Memory of terms for translators
+# Copyright (C) 2016-2022 Fabio Castelli (Muflone) <muflone@muflone.com>
+# Website: https://www.muflone.com/gtransmemory/
+# This file is distributed under the same license of gTransMemory.
+# Dutch translation for gTransMemory
+#
+# Translators:
+# Heimen Stoffels <vistausss(at)fastmail.com>, 2022
+msgid ""
+msgstr ""
+"Project-Id-Version: gTransMemory\n"
+"Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
+"POT-Creation-Date: 2022-08-19 00:12+0200\n"
+"PO-Revision-Date: 2016-06-18 20:35+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss(at)fastmail.com>\n"
+"Language-Team: Dutch\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gtransmemory/ui/about.py:65
+#, python-brace-format
+msgid "Version {VERSION}"
+msgstr "Versie {VERSION}"
+
+#: gtransmemory/ui/about.py:68
+msgid "Memory of terms for translators"
+msgstr ""
+
+#: gtransmemory/ui/about.py:77
+msgid "Contributors:"
+msgstr "Bijdragers:"
+
+#: gtransmemory/ui/about.py:84
+msgid "Project home page"
+msgstr "Website"
+
+#: gtransmemory/ui/about.py:85
+msgid "Source code"
+msgstr "Broncode"
+
+#: gtransmemory/ui/about.py:86
+msgid "Author information"
+msgstr "Informatie over de maker"
+
+#: gtransmemory/ui/about.py:87
+msgid "Issues and bugs tracking"
+msgstr "Problemen en bugs"
+
+#: gtransmemory/ui/about.py:88
+msgid "Translations"
+msgstr "Vertalingen"
+
+#: gtransmemory/ui/main.py:204
+#, python-brace-format
+msgid "Loading message {step} of {count}"
+msgstr "Bezig met laden van {step} van {count}…"
+
+#: gtransmemory/ui/main.py:283 ui/shortcuts.ui:86
+msgid "Add a new message"
+msgstr "Tekenreeks toevoegen"
+
+#: gtransmemory/ui/main.py:316 ui/shortcuts.ui:93
+msgid "Edit message"
+msgstr "Tekenreeks bewerken"
+
+#: gtransmemory/ui/main.py:358
+msgid "GNU gettext translation files"
+msgstr "GNU Gettext-vertaalbestanden"
+
+#: gtransmemory/ui/main.py:362
+msgid "All files"
+msgstr "Alle bestanden"
+
+#: gtransmemory/ui/main.py:365 ui/shortcuts.ui:100
+msgid "Import messages from file"
+msgstr "Tekenreeksen importeren uit bestand"
+
+#: gtransmemory/ui/memories.py:104
+msgid "Add new memory"
+msgstr "Geheugen toevoegen"
+
+#: gtransmemory/ui/memories.py:126
+msgid "Remove the memory"
+msgstr "Geheugen verwijderen"
+
+#: gtransmemory/ui/memories.py:127
+#, python-brace-format
+msgid "Remove the memory {memory_description}?"
+msgstr "Weet u zeker dat u {memory_description} wilt verwijderen?"
+
+#: gtransmemory/ui/memory_detail.py:105
+msgid "The memory name is missing"
+msgstr "Voer een geheugennaam in"
+
+#: gtransmemory/ui/memory_detail.py:110
+msgid "The memory name is invalid"
+msgstr "Voer een geldige geheugennaam in"
+
+#: gtransmemory/ui/memory_detail.py:115
+msgid "A memory with that name already exists"
+msgstr "Er is al een geheugen met die naam"
+
+#: gtransmemory/ui/memory_detail.py:120
+msgid "The memory description is missing"
+msgstr "Voer een geheugenomschrijving in"
+
+#: gtransmemory/ui/message.py:114
+msgid "The message is missing"
+msgstr "Voer een tekenreeks in"
+
+#: gtransmemory/ui/message.py:119
+msgid "The specified message already exists"
+msgstr "Er is al een gelijkaardige tekenreeks"
+
+#: ui/main.ui:25 ui/shortcuts.ui:35
+msgid "Keyboard shortcuts"
+msgstr "Sneltoetsen"
+
+#: ui/main.ui:36 ui/shortcuts.ui:64
+msgid "Previous memory"
+msgstr "Vorig geheugen"
+
+#: ui/main.ui:43 ui/shortcuts.ui:71
+msgid "Next memory"
+msgstr "Volgend geheugen"
+
+#: ui/main.ui:50 ui/main.ui:339 ui/shortcuts.ui:52
+msgid "Memories"
+msgstr "Geheugens"
+
+#: ui/main.ui:70
+msgid "Import"
+msgstr "Importeren"
+
+#: ui/main.ui:101 ui/main.ui:107 ui/shortcuts.ui:28
+msgid "Open the options menu"
+msgstr "Open het optiesmenu"
+
+#: ui/main.ui:153
+msgid "Deselect all"
+msgstr "Niets selecteren"
+
+#: ui/main.ui:240
+msgid "Selection"
+msgstr ""
+
+#: ui/main.ui:489
+msgid "Clear"
+msgstr ""
+
+#: ui/main.ui:548
+msgid "Memory"
+msgstr "Geheugen"
+
+#: ui/memories.ui:43
+msgid "Configure memories"
+msgstr "Geheugens instellen"
+
+#: ui/message.ui:23
+msgid "Configure message"
+msgstr "Tekenreeks instellen"
+
+#: ui/message.ui:146
+msgid "_Message:"
+msgstr "Tekenree_ks:"
+
+#: ui/message.ui:173
+msgid "_Translation:"
+msgstr "Ver_taling:"
+
+#: ui/message.ui:199 ui/messages_import.ui:89
+msgid "_Source:"
+msgstr "_Bron:"
+
+#: ui/messages_import.ui:116
+msgid "_File to import:"
+msgstr "Te im_porteren bestand:"
+
+#: ui/messages_import.ui:131
+msgid "Select the file to import"
+msgstr "Kies een te importeren bestand"
+
+#: ui/shortcuts.ui:16
+msgid "General"
+msgstr "Algemeen"
+
+#: ui/shortcuts.ui:21
+msgid "Show the about dialog"
+msgstr "Toon het venster ‘Over’"
+
+#: ui/shortcuts.ui:42
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: ui/shortcuts.ui:57
+msgid "Show the memories dialog"
+msgstr "Toon het geheugenvenster"
+
+#: ui/shortcuts.ui:81
+msgid "Messages"
+msgstr "Tekenreeksen"
+
+#: ui/shortcuts.ui:107
+msgid "Toggle selection mode"
+msgstr "Selectiemodus aan/uit"
+
+#: ui/shortcuts.ui:114
+msgid "Show the search bar"
+msgstr "Zoekbalk tonen"
