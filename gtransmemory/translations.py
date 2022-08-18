@@ -21,14 +21,14 @@
 import gettext
 import locale
 
-from gtransmemory.constants import DOMAIN_NAME, DIR_LOCALE
-from gtransmemory.localize import store_message, text, _
+from gtransmemory.constants import APP_DOMAIN, DIR_LOCALE
+from gtransmemory.localize import _, store_message, text
 
 
 # Load domain for translation
 for module in (gettext, locale):
-    module.bindtextdomain(DOMAIN_NAME, DIR_LOCALE)
-    module.textdomain(DOMAIN_NAME)
+    module.bindtextdomain(APP_DOMAIN, DIR_LOCALE)
+    module.textdomain(APP_DOMAIN)
 
 # Set default empty translation for empty string
 store_message('', '')
@@ -43,9 +43,3 @@ for message in ('_Add', '_Remove', '_Edit', '_New', '_About', '_Clear',
 # Remove the underscore
 for message in ('_Add', '_Clear'):
     store_message(message.replace('_', ''), _(message).replace('_', ''))
-# Import fixed texts
-store_message('Project home page', _('Project home page'))
-store_message('Source code', _('Source code'))
-store_message('Author information', _('Author information'))
-store_message('Issues and bugs tracking', _('Issues and bugs tracking'))
-store_message('Translations', _('Translations'))
