@@ -22,8 +22,7 @@ import gettext
 import locale
 
 from gtransmemory.constants import APP_DOMAIN, DIR_LOCALE
-from gtransmemory.localize import (_,
-                                   store_message,
+from gtransmemory.localize import (store_message,
                                    strip_colon,
                                    strip_underline,
                                    text)

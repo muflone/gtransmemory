@@ -9,7 +9,7 @@
 
 **License:** GPL-3+
 
-**Source code:** https://github.com/muflone/gtransmemory
+**Source code:** https://github.com/muflone/gtransmemory/
 
 **Documentation:** https://www.muflone.com/gtransmemory/
 
