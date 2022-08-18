@@ -489,7 +489,7 @@ class UIMain(UIBase):
         if event.button == Gdk.BUTTON_SECONDARY:
             if self.ui.action_selection.get_active():
                 # Show selection menu
-                self.ui.menu_selection.popup_at_pointer(event)
+                self.ui.menu_options_selection.popup_at_pointer(event)
             else:
                 # Show messages menu
                 self.ui.menu_messages.popup_at_pointer(event)

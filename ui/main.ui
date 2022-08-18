@@ -88,7 +88,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_messages_import">
-        <property name="label" context="gtk30">_Import</property>
+        <property name="label" translatable="yes">Import</property>
         <property name="icon-name">document-open</property>
         <signal name="activate" handler="on_action_messages_import_activate" swapped="no"/>
       </object>
@@ -104,40 +104,14 @@
       <accelerator key="Return" modifiers="GDK_MOD1_MASK"/>
     </child>
   </object>
-  <object class="GtkMenu" id="menu_options">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
+  <object class="GtkActionGroup" id="actions_messages_remove">
+    <property name="sensitive">False</property>
+    <property name="accel-group">accelerators</property>
     <child>
-      <object class="GtkMenuItem" id="menuitem_browse">
-        <property name="related-action">action_messages_add</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="label">Add</property>
-        <property name="use-underline">True</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkSeparatorMenuItem">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkMenuItem" id="menuitem_shortcuts">
-        <property name="related-action">action_shortcuts</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="label" translatable="yes">Keyboard shortcuts</property>
-        <property name="use-underline">True</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkMenuItem" id="menuitem_about">
-        <property name="related-action">action_about</property>
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="label" translatable="yes">About</property>
-        <property name="use-underline">True</property>
+      <object class="GtkAction" id="action_messages_remove">
+        <property name="label" context="gtk30">_Remove</property>
+        <property name="icon-name">list-remove</property>
+        <signal name="activate" handler="on_action_messages_remove_activate" swapped="no"/>
       </object>
     </child>
   </object>
@@ -152,6 +126,7 @@
     <child>
       <object class="GtkAction" id="action_options_menu">
         <property name="label" translatable="yes">Open the options menu</property>
+        <signal name="activate" handler="on_action_options_menu_activate" swapped="no"/>
       </object>
       <accelerator key="F10"/>
     </child>
@@ -221,43 +196,108 @@
       </object>
     </child>
   </object>
-  <object class="GtkMenu" id="menu_selection">
+  <object class="GtkMenu" id="menu_options">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="accel-group">accelerators</property>
     <child>
-      <object class="GtkCheckMenuItem" id="menuitem_selection2">
-        <property name="related-action">action_selection</property>
+      <object class="GtkMenuItem" id="menuitem_options_add">
+        <property name="related-action">action_messages_add</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="label">Add</property>
         <property name="use-underline">True</property>
       </object>
     </child>
     <child>
-      <object class="GtkMenuItem" id="menuitem_messages_select_all">
-        <property name="related-action">action_select_all</property>
+      <object class="GtkMenuItem" id="menuitem_options_import">
+        <property name="related-action">action_messages_import</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="label">Import</property>
         <property name="use-underline">True</property>
       </object>
     </child>
     <child>
-      <object class="GtkMenuItem" id="menuitem_messages_deselect_all">
-        <property name="related-action">action_deselect_all</property>
+      <object class="GtkMenuItem" id="menuitem_options_edit">
+        <property name="related-action">action_messages_edit</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="label">Edit</property>
         <property name="use-underline">True</property>
       </object>
     </child>
-  </object>
-  <object class="GtkActionGroup" id="actions_messages_remove">
-    <property name="sensitive">False</property>
-    <property name="accel-group">accelerators</property>
     <child>
-      <object class="GtkAction" id="action_messages_remove">
-        <property name="label" context="gtk30">_Remove</property>
-        <property name="icon-name">list-remove</property>
-        <signal name="activate" handler="on_action_messages_remove_activate" swapped="no"/>
+      <object class="GtkMenuItem" id="menuitem_options_remove">
+        <property name="related-action">action_messages_remove</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label">Remove</property>
+        <property name="use-underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">Selezione</property>
+        <property name="use-underline">True</property>
+        <child type="submenu">
+          <object class="GtkMenu" id="menu_options_selection">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkCheckMenuItem" id="menuitem_options_selection">
+                <property name="related-action">action_selection</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label">Selection</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem_options_select_all">
+                <property name="related-action">action_select_all</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label">Select All</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="menuitem_options_deselect_all">
+                <property name="related-action">action_deselect_all</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label">Deselect All</property>
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_options_shortcuts">
+        <property name="related-action">action_shortcuts</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">Keyboard shortcuts</property>
+        <property name="use-underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="menuitem_options_about">
+        <property name="related-action">action_about</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">About</property>
+        <property name="use-underline">True</property>
       </object>
     </child>
   </object>
