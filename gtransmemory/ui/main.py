@@ -426,6 +426,7 @@ class UIMain(UIBase):
         self.ui.column_selection.set_visible(selection_active)
         # Enable/disable messages actions (add, import, edit) and memories list
         self.ui.actions_messages.set_sensitive(not selection_active)
+        self.ui.actions_memories.set_sensitive(not selection_active)
         self.ui.tvw_memories.set_sensitive(not selection_active)
         # Disable the messages remove action (it will be enabled when the user
         # will select the rows using the selection boxes)
