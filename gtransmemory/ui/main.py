@@ -393,20 +393,22 @@ class UIMain(UIBase):
     def on_action_memories_previous_activate(self, widget):
         """Move to the previous memory"""
         selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        treeiter = self.model_memories.model.iter_previous(selected_row)
-        if treeiter:
-            # Select the newly selected row in the memories list
-            new_path = self.model_memories.get_path(treeiter=treeiter)
-            self.ui.tvw_memories.set_cursor(new_path)
+        if selected_row:
+            treeiter = self.model_memories.model.iter_previous(selected_row)
+            if treeiter:
+                # Select the newly selected row in the memories list
+                new_path = self.model_memories.get_path(treeiter=treeiter)
+                self.ui.tvw_memories.set_cursor(new_path)
 
     def on_action_memories_next_activate(self, widget):
         """Move to the next memory"""
         selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        treeiter = self.model_memories.model.iter_next(selected_row)
-        if treeiter:
-            # Select the newly selected row in the memories list
-            new_path = self.model_memories.get_path(treeiter=treeiter)
-            self.ui.tvw_memories.set_cursor(new_path)
+        if selected_row:
+            treeiter = self.model_memories.model.iter_next(selected_row)
+            if treeiter:
+                # Select the newly selected row in the memories list
+                new_path = self.model_memories.get_path(treeiter=treeiter)
+                self.ui.tvw_memories.set_cursor(new_path)
 
     def on_action_selection_toggled(self, action):
         """Enable or disable the selection mode and change style accordingly"""
