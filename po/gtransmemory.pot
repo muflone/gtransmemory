@@ -4,8 +4,6 @@
 # Website: https://www.muflone.com/gtransmemory/
 # This file is distributed under the same license of gTransMemory.
 # X translation for gTransMemory
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
