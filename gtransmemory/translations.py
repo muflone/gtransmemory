@@ -33,14 +33,28 @@ for module in (gettext, locale):
     module.bindtextdomain(APP_DOMAIN, DIR_LOCALE)
     module.textdomain(APP_DOMAIN)
 
-# Set default empty translation for empty string
-store_message('', '')
 # Import some translated messages from GTK+ domain
-for message in ('_Add', '_Remove', '_Edit',
-                'Select _All', '_Close', '_Cancel', 'Search'):
-    text(message=message, gtk30=True, context='Stock label')
+for message in ('About', '_Cancel', '_Close', 'General', 'Name', '_Remove',
+                'Search'):
+    store_message(strip_colon(strip_underline(message)),
+                  strip_colon(strip_underline(text(message=message,
+                                                   gtk30=True))))
+
+# Import some translated messages from GTK+ domain and context
+for message in ('_Add', '_Clear', '_Edit', '_Quit'):
+    store_message(strip_colon(strip_underline(message)),
+                  strip_colon(strip_underline(text(message=message,
+                                                   gtk30=True,
+                                                   context='Stock label'))))
+
 # Import some variations
 for message in ('_Message:', '_Translation:', '_Source:'):
     store_message(strip_colon(strip_underline(message)),
                   strip_colon(strip_underline(text(message=message,
                                                    gtk30=False))))
+store_message('Select all',
+              strip_underline(text(message='Select _All',
+                                   gtk30=True)))
+store_message('Selection',
+              strip_underline(text(message='Se_lection',
+                                   gtk30=True)))

@@ -35,7 +35,7 @@ from gtransmemory.constants import (APP_NAME,
 from gtransmemory.functions import (get_treeview_selected_row,
                                     create_filefilter,
                                     process_events)
-from gtransmemory.localize import _, text, text_gtk30
+from gtransmemory.localize import _, text
 from gtransmemory.settings import (Settings,
                                    PREFERENCES_ICON_SIZE)
 from gtransmemory.models.memory_db import MemoryDB
@@ -83,15 +83,13 @@ class UIMain(UIBase):
     def load_ui(self):
         """Load the interface UI"""
         logging.debug(f'{self.__class__.__name__} load UI')
-        # Initialize translations
-        self.ui.action_about.set_label(text_gtk30('About'))
         # Initialize titles and tooltips
         self.set_titles()
-        self.ui.button_search_close.set_tooltip_text(
-            self.ui.action_search_close.get_label().replace('_', ''))
         self.ui.entry_search.set_tooltip_text(text('Search'))
         self.ui.entry_search.set_icon_tooltip_text(
             Gtk.EntryIconPosition.PRIMARY, text('Search'))
+        self.ui.entry_search.set_icon_tooltip_text(
+            Gtk.EntryIconPosition.SECONDARY, text('Clear'))
         # Initialize Gtk.HeaderBar
         self.ui.header_bar.props.title = self.ui.window.get_title()
         self.ui.window.set_titlebar(self.ui.header_bar)
@@ -105,9 +103,6 @@ class UIMain(UIBase):
                                         self.ui.button_about,
                                         self.ui.button_options,
                                         self.ui.button_search_close])
-        # Initialize column headers
-        for widget in self.ui.get_objects_by_type(Gtk.TreeViewColumn):
-            widget.set_title(text(widget.get_title()))
         # Set custom search entry for messages
         self.ui.tvw_messages.set_search_entry(self.ui.entry_search)
         # Set various properties

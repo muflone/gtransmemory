@@ -59,7 +59,7 @@
     <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkAction" id="action_messages_add">
-        <property name="label" context="gtk30">_Add</property>
+        <property name="label" context="gtk30">Add</property>
         <property name="icon-name">list-add</property>
         <signal name="activate" handler="on_action_messages_add_activate" swapped="no"/>
       </object>
@@ -75,7 +75,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_messages_edit">
-        <property name="label" context="gtk30">_Edit</property>
+        <property name="label" context="gtk30">Edit</property>
         <property name="icon-name">document-properties</property>
         <property name="sensitive">False</property>
         <signal name="activate" handler="on_action_messages_edit_activate" swapped="no"/>
@@ -166,6 +166,7 @@
         <property name="related-action">action_selection</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="label">Selection</property>
         <property name="use-underline">True</property>
       </object>
     </child>
@@ -174,6 +175,7 @@
         <property name="related-action">action_messages_import</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="label">Import</property>
         <property name="use-underline">True</property>
       </object>
     </child>
@@ -182,6 +184,7 @@
         <property name="related-action">action_messages_add</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="label">Add</property>
         <property name="use-underline">True</property>
       </object>
     </child>
@@ -190,6 +193,7 @@
         <property name="related-action">action_messages_edit</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="label">Edit</property>
         <property name="use-underline">True</property>
       </object>
     </child>
@@ -246,7 +250,7 @@
       <object class="GtkMenuItem">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="label" translatable="yes">Selection</property>
+        <property name="label" context="gtk30">Selection</property>
         <property name="use-underline">True</property>
         <child type="submenu">
           <object class="GtkMenu" id="menu_options_selection">
@@ -257,7 +261,7 @@
                 <property name="related-action">action_selection</property>
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label">Selection</property>
+                <property name="label" context="gtk30">Selection</property>
                 <property name="use-underline">True</property>
               </object>
             </child>
@@ -281,6 +285,12 @@
             </child>
           </object>
         </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
       </object>
     </child>
     <child>
@@ -325,12 +335,6 @@
       </object>
     </child>
     <child>
-      <object class="GtkSeparatorMenuItem">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-      </object>
-    </child>
-    <child>
       <object class="GtkMenuItem" id="menuitem_options_shortcuts">
         <property name="related-action">action_shortcuts</property>
         <property name="visible">True</property>
@@ -372,7 +376,7 @@
     </child>
     <child>
       <object class="GtkButton" id="button_about">
-        <property name="use-action-appearance">True</property>
+        <property name="label">About</property>
         <property name="related-action">action_about</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
@@ -428,7 +432,7 @@
     </child>
     <child>
       <object class="GtkButton" id="button_messages_add">
-        <property name="label">_Add</property>
+        <property name="label">Add</property>
         <property name="related-action">action_messages_add</property>
         <property name="visible">True</property>
         <property name="can-focus">True</property>
@@ -536,7 +540,7 @@
                     <property name="secondary-icon-name">edit-clear-symbolic</property>
                     <property name="primary-icon-activatable">False</property>
                     <property name="primary-icon-tooltip-text">Search</property>
-                    <property name="secondary-icon-tooltip-text" translatable="yes">Clear</property>
+                    <property name="secondary-icon-tooltip-text">Clear</property>
                     <signal name="icon-release" handler="on_entry_search_icon_release" swapped="no"/>
                   </object>
                   <packing>

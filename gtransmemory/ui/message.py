@@ -24,7 +24,7 @@ from gi.repository import Gtk
 
 from gtransmemory.functions import (check_invalid_input,
                                     set_error_message_on_infobar)
-from gtransmemory.localize import _, text
+from gtransmemory.localize import _
 from gtransmemory.ui.base import UIBase
 
 SECTION_WINDOW_NAME = 'message'
@@ -56,9 +56,6 @@ class UIMessage(UIBase):
         self.set_titles()
         # Set various properties
         self.ui.dialog.set_transient_for(self.parent)
-        # Initialize column headers
-        for widget in self.ui.get_objects_by_type(Gtk.TreeViewColumn):
-            widget.set_title(text(widget.get_title()))
         # Connect signals from the UI file to the functions with the same name
         self.ui.connect_signals(self)
 

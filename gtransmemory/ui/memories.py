@@ -24,7 +24,7 @@ from gi.repository import Gtk
 
 from gtransmemory.constants import DIR_MEMORIES
 from gtransmemory.functions import get_treeview_selected_row
-from gtransmemory.localize import _, text
+from gtransmemory.localize import _
 from gtransmemory.models.memory_db import MemoryDB
 from gtransmemory.models.memories import ModelMemories
 from gtransmemory.models.memory_info import MemoryInfo
@@ -62,9 +62,6 @@ class UIMemories(UIBase):
         self.ui.dialog.set_transient_for(self.parent)
         self.set_buttons_icons(buttons=[self.ui.button_add,
                                         self.ui.button_remove])
-        # Initialize column headers
-        for widget in self.ui.get_objects_by_type(Gtk.TreeViewColumn):
-            widget.set_title(text(widget.get_title()))
         # Connect signals from the UI file to the functions with the same name
         self.ui.connect_signals(self)
 

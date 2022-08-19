@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
-"POT-Creation-Date: 2022-08-19 01:03+0200\n"
+"POT-Creation-Date: 2022-08-20 18:14+0200\n"
 "PO-Revision-Date: 2016-06-18 20:35+0000\n"
 "Last-Translator: Giovanni Scafora <scafora.giovanni(at)gmail.com>\n"
 "Language-Team: Italian\n"
@@ -55,40 +55,40 @@ msgstr "Tracciamento di problemi e bug"
 msgid "Translations"
 msgstr "Traduzioni"
 
-#: gtransmemory/ui/main.py:204
+#: gtransmemory/ui/main.py:199
 #, python-brace-format
 msgid "Loading message {step} of {count}"
 msgstr "Sto caricando il messaggio {step} di {count}"
 
-#: gtransmemory/ui/main.py:283 ui/shortcuts.ui:86
+#: gtransmemory/ui/main.py:281 ui/shortcuts.ui:86
 msgid "Add a new message"
 msgstr "Aggiungi un nuovo messaggio"
 
-#: gtransmemory/ui/main.py:316 ui/shortcuts.ui:93
+#: gtransmemory/ui/main.py:314 ui/shortcuts.ui:93
 msgid "Edit message"
 msgstr "Modifica messaggio"
 
-#: gtransmemory/ui/main.py:358
+#: gtransmemory/ui/main.py:356
 msgid "GNU gettext translation files"
 msgstr "File di traduzione di GNU gettext"
 
-#: gtransmemory/ui/main.py:362
+#: gtransmemory/ui/main.py:360
 msgid "All files"
 msgstr "Tutti i file"
 
-#: gtransmemory/ui/main.py:365 ui/shortcuts.ui:100
+#: gtransmemory/ui/main.py:363 ui/shortcuts.ui:100
 msgid "Import messages from file"
 msgstr "Importa messaggi da file"
 
-#: gtransmemory/ui/memories.py:104
+#: gtransmemory/ui/memories.py:101
 msgid "Add new memory"
 msgstr "Aggiungi una nuova memoria"
 
-#: gtransmemory/ui/memories.py:126
+#: gtransmemory/ui/memories.py:123
 msgid "Remove the memory"
 msgstr "Rimuovere la memoria?"
 
-#: gtransmemory/ui/memories.py:127
+#: gtransmemory/ui/memories.py:124
 #, python-brace-format
 msgid "Remove the memory {memory_description}?"
 msgstr "Rimuovere la memoria {memory_description}?"
@@ -109,11 +109,11 @@ msgstr "Una memoria con quel nome esiste già"
 msgid "The memory description is missing"
 msgstr "La descrizione della memoria è mancante"
 
-#: gtransmemory/ui/message.py:114
+#: gtransmemory/ui/message.py:111
 msgid "The message is missing"
 msgstr "Il messaggio è mancante"
 
-#: gtransmemory/ui/message.py:119
+#: gtransmemory/ui/message.py:116
 msgid "The specified message already exists"
 msgstr "Il messaggio specificato esiste già"
 
@@ -121,15 +121,15 @@ msgstr "Il messaggio specificato esiste già"
 msgid "Keyboard shortcuts"
 msgstr "Scorciatoie da tastiera"
 
-#: ui/main.ui:36 ui/main.ui:319 ui/shortcuts.ui:64 ui/shortcuts.ui:136
+#: ui/main.ui:36 ui/main.ui:329 ui/shortcuts.ui:64
 msgid "Previous memory"
 msgstr "Memoria precedente"
 
-#: ui/main.ui:43 ui/main.ui:310 ui/shortcuts.ui:71 ui/shortcuts.ui:129
+#: ui/main.ui:43 ui/main.ui:320 ui/shortcuts.ui:71
 msgid "Next memory"
 msgstr "Memoria successiva"
 
-#: ui/main.ui:50 ui/main.ui:290 ui/main.ui:389 ui/shortcuts.ui:52
+#: ui/main.ui:50 ui/main.ui:300 ui/main.ui:393 ui/shortcuts.ui:52
 msgid "Memories"
 msgstr "Memorie"
 
@@ -141,19 +141,11 @@ msgstr "Importa"
 msgid "Open the options menu"
 msgstr "Apri il menu opzioni"
 
-#: ui/main.ui:153
+#: ui/main.ui:153 ui/shortcuts.ui:136
 msgid "Deselect all"
 msgstr "Deseleziona tutto"
 
-#: ui/main.ui:249 ui/shortcuts.ui:117
-msgid "Selection"
-msgstr "Selezione"
-
-#: ui/main.ui:539
-msgid "Clear"
-msgstr "Pulisci"
-
-#: ui/main.ui:598
+#: ui/main.ui:602
 msgid "Memory"
 msgstr "Memoria"
 
@@ -161,9 +153,9 @@ msgstr "Memoria"
 msgid "Configure memories"
 msgstr "Configura memorie"
 
-#: ui/message.ui:23
-msgid "Configure message"
-msgstr "Configura messaggio"
+#: ui/memories.ui:122
+msgid "Description"
+msgstr "Descrizione"
 
 #: ui/message.ui:146
 msgid "_Message:"
@@ -185,17 +177,9 @@ msgstr "_File da importare:"
 msgid "Select the file to import"
 msgstr "Seleziona il file da importare"
 
-#: ui/shortcuts.ui:16
-msgid "General"
-msgstr "Generale"
-
 #: ui/shortcuts.ui:21
 msgid "Show the about dialog"
 msgstr "Mostra la finestra delle informazioni"
-
-#: ui/shortcuts.ui:42
-msgid "Quit"
-msgstr "Esci"
 
 #: ui/shortcuts.ui:57
 msgid "Show the memories dialog"

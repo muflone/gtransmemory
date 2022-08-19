@@ -13,7 +13,7 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="visible">1</property>
-            <property name="title" translatable="yes">General</property>
+            <property name="title">General</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
@@ -39,7 +39,7 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
                 <property name="accelerator">&lt;ctrl&gt;Q</property>
-                <property name="title" translatable="yes">Quit</property>
+                <property name="title">Quit</property>
               </object>
             </child>
           </object>
@@ -114,7 +114,7 @@
           <object class="GtkShortcutsGroup">
             <property name="visible">1</property>
             <property name="view">selection</property>
-            <property name="title" translatable="yes">Selection</property>
+            <property name="title">Selection</property>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
@@ -125,15 +125,15 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;ctrl&gt;Page_Down</property>
-                <property name="title" translatable="yes">Next memory</property>
+                <property name="accelerator">&lt;ctrl&gt;A</property>
+                <property name="title">Select all</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;ctrl&gt;Page_Up</property>
-                <property name="title" translatable="yes">Previous memory</property>
+                <property name="accelerator">&lt;ctrl&gt;&lt;Shift&gt;A</property>
+                <property name="title" translatable="yes">Deselect all</property>
               </object>
             </child>
           </object>

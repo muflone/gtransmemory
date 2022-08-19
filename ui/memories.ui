@@ -103,7 +103,7 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="column_name">
                         <property name="resizable">True</property>
-                        <property name="title" comments="Use domain gtk30">Name</property>
+                        <property name="title" context="gtk30">Name</property>
                         <property name="clickable">True</property>
                         <property name="reorderable">True</property>
                         <property name="sort-indicator">True</property>
@@ -119,7 +119,7 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="column_description">
                         <property name="resizable">True</property>
-                        <property name="title">Description</property>
+                        <property name="title" translatable="yes">Description</property>
                         <property name="clickable">True</property>
                         <property name="reorderable">True</property>
                         <property name="sort-indicator">True</property>
