@@ -28,7 +28,7 @@ msgstr "Versie {VERSION}"
 
 #: gtransmemory/ui/about.py:68
 msgid "Memory of terms for translators"
-msgstr ""
+msgstr "Vertalergeheugen"
 
 #: gtransmemory/ui/about.py:77
 msgid "Contributors:"
@@ -146,11 +146,11 @@ msgstr "Niets selecteren"
 
 #: ui/main.ui:249 ui/shortcuts.ui:117
 msgid "Selection"
-msgstr ""
+msgstr "Selectie"
 
 #: ui/main.ui:539
 msgid "Clear"
-msgstr ""
+msgstr "Wissen"
 
 #: ui/main.ui:598
 msgid "Memory"
