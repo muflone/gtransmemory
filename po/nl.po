@@ -154,7 +154,7 @@ msgstr "Geheugens instellen"
 
 #: ui/memories.ui:122
 msgid "Description"
-msgstr ""
+msgstr "Omschrijving"
 
 #: ui/message.ui:146
 msgid "_Message:"
