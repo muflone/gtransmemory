@@ -2,7 +2,7 @@
 host = https://www.transifex.com
 
 [gtransmemory.gtransmemorypot]
+file_filter = po/<lang>.po
 source_file = po/gtransmemory.pot
 source_lang = en
-file_filter = po/<lang>.po
 type = PO
