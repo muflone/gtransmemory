@@ -377,6 +377,9 @@ class UIMain(UIBase):
 
     def on_action_memories_activate(self, widget):
         """Edit memories"""
+        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
+        if selected_row:
+            selected_name = self.model_memories.get_key(selected_row)
         self.ui.tvw_selection_memories.unselect_all()
         dialog = UIMemories(parent=self.ui.window,
                             settings=self.settings,
@@ -386,6 +389,10 @@ class UIMain(UIBase):
         dialog.ui.tvw_memories.set_model(self.model_memories.model)
         dialog.show()
         dialog.destroy()
+        # Restore the previous memory if it's still available
+        if selected_row and selected_name in self.model_memories.rows:
+            self.ui.tvw_memories.get_selection().select_iter(
+                self.model_memories.rows[selected_name])
 
     def on_action_memories_previous_activate(self, widget):
         """Move to the previous memory"""
