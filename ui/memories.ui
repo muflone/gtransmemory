@@ -7,7 +7,7 @@
     <property name="accel-group">accelerators</property>
     <child>
       <object class="GtkAction" id="action_add">
-        <property name="label" comments="Use domain gtk30">_Add</property>
+        <property name="label" context="gtk30">_Add</property>
         <property name="icon-name">list-add</property>
         <signal name="activate" handler="on_action_add_activate" swapped="no"/>
       </object>
@@ -23,7 +23,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_close">
-        <property name="label" comments="Use domain gtk30">_Close</property>
+        <property name="label" context="gtk30">_Close</property>
       </object>
     </child>
   </object>
@@ -155,10 +155,9 @@
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
-                    <property name="always-show-image">True</property>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
                     <property name="non-homogeneous">True</property>
@@ -173,7 +172,7 @@
                     <property name="receives-default">True</property>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">1</property>
                     <property name="non-homogeneous">True</property>
@@ -182,7 +181,7 @@
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
+                <property name="fill">False</property>
                 <property name="position">1</property>
               </packing>
             </child>

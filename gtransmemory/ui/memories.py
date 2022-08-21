@@ -121,7 +121,8 @@ class UIMemories(UIBase):
                 message_type=Gtk.MessageType.WARNING,
                 title=None,
                 msg1=_('Remove the memory'),
-                msg2=_(f'Remove the memory {memory_description}?'),
+                msg2=_('Remove the memory {NAME}?').format(
+                    NAME=memory_description),
                 is_response_id=Gtk.ResponseType.YES):
             memory_path = DIR_MEMORIES / memory_name
             memory_path.unlink()

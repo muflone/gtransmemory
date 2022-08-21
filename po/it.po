@@ -57,8 +57,8 @@ msgstr "Traduzioni"
 
 #: gtransmemory/ui/main.py:199
 #, python-brace-format
-msgid "Loading message {step} of {count}"
-msgstr "Sto caricando il messaggio {step} di {count}"
+msgid "Loading message {STEP} of {COUNT}"
+msgstr "Sto caricando il messaggio {STEP} di {COUNT}"
 
 #: gtransmemory/ui/main.py:281 ui/shortcuts.ui:86
 msgid "Add a new message"
@@ -90,8 +90,8 @@ msgstr "Rimuovere la memoria?"
 
 #: gtransmemory/ui/memories.py:124
 #, python-brace-format
-msgid "Remove the memory {memory_description}?"
-msgstr "Rimuovere la memoria {memory_description}?"
+msgid "Remove the memory {NAME}?"
+msgstr "Rimuovere la memoria {NAME}?"
 
 #: gtransmemory/ui/memory_detail.py:105
 msgid "The memory name is missing"

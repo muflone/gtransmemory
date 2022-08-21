@@ -196,8 +196,8 @@ class UIMain(UIBase):
                 step += 1
                 self.ui.progress_loading.set_fraction(1.0 / count * step)
                 self.ui.progress_loading.set_text(
-                    _('Loading message {step} of {count}').format(step=step,
-                                                                  count=count))
+                    _('Loading message {STEP} of {COUNT}').format(STEP=step,
+                                                                  COUNT=count))
                 # Allow the thread to repeat for the next iteration
                 yield True
             self.ui.progress_loading.set_visible(False)

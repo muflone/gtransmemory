@@ -52,7 +52,7 @@ msgstr ""
 
 #: gtransmemory/ui/main.py:199
 #, python-brace-format
-msgid "Loading message {step} of {count}"
+msgid "Loading message {STEP} of {COUNT}"
 msgstr ""
 
 #: gtransmemory/ui/main.py:281 ui/shortcuts.ui:86
@@ -85,7 +85,7 @@ msgstr ""
 
 #: gtransmemory/ui/memories.py:124
 #, python-brace-format
-msgid "Remove the memory {memory_description}?"
+msgid "Remove the memory {NAME}?"
 msgstr ""
 
 #: gtransmemory/ui/memory_detail.py:105
