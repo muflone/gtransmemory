@@ -64,17 +64,27 @@ class MemoryDB(object):
 
     def get_description(self):
         """Return the memory description"""
-        data = self.execute('SELECT value FROM settings WHERE name=?',
-                            ('description', ))[1]
-        if data:
-            return str(data[0][0])
+        return self.get_setting(setting='description')
 
     def set_description(self, description):
         """Set the memory description"""
+        self.set_setting(setting='description', value=description)
+
+    def get_setting(self, setting):
+        """Return a database setting"""
+        result = None
+        data = self.execute('SELECT value FROM settings WHERE name=?',
+                            (setting, ))[1]
+        if data:
+            result = str(data[0][0])
+        return result
+
+    def set_setting(self, setting, value):
+        """Set a database setting"""
         self.execute('DELETE FROM settings WHERE name=?',
-                     ('description', ))
+                     (setting, ))
         self.execute('INSERT INTO settings VALUES(?, ?)',
-                     ('description', description))
+                     (setting, value))
 
     def get_messages(self):
         """Return the memory messages"""
