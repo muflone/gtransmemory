@@ -42,6 +42,7 @@ class UIMemoryDetail(UIBase):
         self.model = model
         self.name = ''
         self.description = ''
+        self.languages = ''
         # Load UI
         self.load_ui()
         # Complete initialization
@@ -64,23 +65,25 @@ class UIMemoryDetail(UIBase):
         self.settings.restore_window_position(window=self.ui.dialog,
                                               section=SECTION_WINDOW_NAME)
 
-    def show(self, default_name, default_description, title):
+    def show(self, name, description, languages, title):
         """Show the dialog"""
         logging.debug(f'{self.__class__.__name__} show')
-        self.ui.entry_name.set_text(default_name)
-        if default_name:
+        self.ui.entry_name.set_text(name)
+        if name:
             # Disable name for memory editing
             self.ui.entry_name.set_sensitive(False)
             self.ui.entry_description.grab_focus()
         else:
             # Focus on name for new memory adding
             self.ui.entry_name.grab_focus()
-        self.ui.entry_description.set_text(default_description)
+        self.ui.entry_description.set_text(description)
+        self.ui.entry_languages.set_text(languages)
         self.ui.dialog.set_title(title)
         response = self.ui.dialog.run()
         self.ui.dialog.hide()
         self.name = self.ui.entry_name.get_text().strip()
         self.description = self.ui.entry_description.get_text().strip()
+        self.languages = self.ui.entry_languages.get_text().strip()
         return response
 
     def destroy(self):

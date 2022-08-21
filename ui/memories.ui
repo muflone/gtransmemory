@@ -45,6 +45,8 @@
       <column type="gchararray"/>
       <!-- column-name Description -->
       <column type="gchararray"/>
+      <!-- column-name Languages -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkDialog" id="dialog">
@@ -52,7 +54,7 @@
     <property name="border-width">3</property>
     <property name="title" translatable="yes">Configure memories</property>
     <property name="modal">True</property>
-    <property name="default-width">400</property>
+    <property name="default-width">500</property>
     <property name="default-height">250</property>
     <property name="type-hint">dialog</property>
     <accel-groups>
@@ -141,6 +143,22 @@
                           <object class="GtkCellRendererText" id="cell_description"/>
                           <attributes>
                             <attribute name="text">2</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="column_languages">
+                        <property name="resizable">True</property>
+                        <property name="title" translatable="yes">Languages</property>
+                        <property name="clickable">True</property>
+                        <property name="reorderable">True</property>
+                        <property name="sort-indicator">True</property>
+                        <property name="sort-column-id">3</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cell_languages"/>
+                          <attributes>
+                            <attribute name="text">3</attribute>
                           </attributes>
                         </child>
                       </object>

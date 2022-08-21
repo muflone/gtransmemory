@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.40.0 -->
 <interface>
-  <requires lib="gtk+" version="3.0"/>
+  <requires lib="gtk+" version="3.16"/>
   <object class="GtkAccelGroup" id="accelerators"/>
   <object class="GtkActionGroup" id="actions_edit_memory">
     <property name="accel-group">accelerators</property>
@@ -124,7 +124,7 @@
           </packing>
         </child>
         <child>
-          <!-- n-columns=3 n-rows=2 -->
+          <!-- n-columns=2 n-rows=3 -->
           <object class="GtkGrid" id="grid_edit_memory">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -187,10 +187,31 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkLabel" id="label_languages">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label">_Languages:</property>
+                <property name="use-underline">True</property>
+                <property name="mnemonic-widget">entry_languages</property>
+                <property name="ellipsize">middle</property>
+                <property name="xalign">1</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">2</property>
+              </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkEntry" id="entry_languages">
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="activates-default">True</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">2</property>
+              </packing>
             </child>
           </object>
           <packing>

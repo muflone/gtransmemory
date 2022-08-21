@@ -24,6 +24,7 @@ from gtransmemory.models.abstract import ModelAbstract
 class ModelMemories(ModelAbstract):
     COL_FILENAME = 1
     COL_DESCRIPTION = 2
+    COL_LANGUAGES = 3
 
     def add_data(self, item):
         """Add a new row to the model if it doesn't exist"""
@@ -32,7 +33,8 @@ class ModelMemories(ModelAbstract):
             new_row = self.model.append((
                 item.key,
                 item.filename,
-                item.description))
+                item.description,
+                item.languages))
             self.rows[item.key] = new_row
             return new_row
 
@@ -43,3 +45,7 @@ class ModelMemories(ModelAbstract):
     def get_description(self, treeiter):
         """Get the description from a TreeIter"""
         return self.model[treeiter][self.COL_DESCRIPTION]
+
+    def get_languages(self, treeiter):
+        """Get the languages from a TreeIter"""
+        return self.model[treeiter][self.COL_LANGUAGES]

@@ -97,16 +97,19 @@ class UIMemories(UIBase):
                                 settings=self.settings,
                                 options=self.options,
                                 model=self.model)
-        if dialog.show(default_name='',
-                       default_description='',
+        if dialog.show(name='',
+                       description='',
+                       languages='',
                        title=_('Add new memory')) == Gtk.ResponseType.OK:
             database_name = f'{dialog.name}.sqlite3'
             db = MemoryDB(database_name)
             db.set_description(dialog.description)
+            db.set_languages(dialog.languages)
             db.close()
             self.model.add_data(MemoryInfo(name=dialog.name,
                                            filename=database_name,
-                                           description=dialog.description))
+                                           description=dialog.description,
+                                           languages=dialog.languages))
         dialog.destroy()
 
     def on_action_edit_activate(self, widget):
@@ -118,16 +121,22 @@ class UIMemories(UIBase):
         selected_row = get_treeview_selected_row(self.ui.tvw_memories)
         memory_name = self.model.get_key(selected_row)
         memory_description = self.model.get_description(selected_row)
-        if dialog.show(default_name=memory_name,
-                       default_description=memory_description,
+        memory_languages = self.model.get_languages(selected_row) or ''
+        if dialog.show(name=memory_name,
+                       description=memory_description,
+                       languages=memory_languages,
                        title=_('Edit memory')) == Gtk.ResponseType.OK:
             database_name = f'{dialog.name}.sqlite3'
             db = MemoryDB(database_name)
             db.set_description(dialog.description)
+            db.set_languages(dialog.languages)
             db.close()
             self.model.set_data(treeiter=selected_row,
                                 column=self.model.COL_DESCRIPTION,
                                 value=dialog.description)
+            self.model.set_data(treeiter=selected_row,
+                                column=self.model.COL_LANGUAGES,
+                                value=dialog.languages)
         dialog.destroy()
 
     def on_action_remove_activate(self, widget):

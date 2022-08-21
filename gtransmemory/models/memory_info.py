@@ -19,7 +19,8 @@
 ##
 
 class MemoryInfo(object):
-    def __init__(self, name, filename, description):
+    def __init__(self, name, filename, description, languages):
         self.key = name
         self.filename = filename
         self.description = description
+        self.languages = languages

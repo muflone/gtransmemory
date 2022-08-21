@@ -70,6 +70,14 @@ class MemoryDB(object):
         """Set the memory description"""
         self.set_setting(setting='description', value=description)
 
+    def get_languages(self):
+        """Return the memory languages"""
+        return self.get_setting(setting='languages')
+
+    def set_languages(self, languages):
+        """Set the memory languages"""
+        self.set_setting(setting='languages', value=languages)
+
     def get_setting(self, setting):
         """Return a database setting"""
         result = None

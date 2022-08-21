@@ -491,6 +491,8 @@
       <column type="gchararray"/>
       <!-- column-name Description -->
       <column type="gchararray"/>
+      <!-- column-name Languages -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkTreeStore" id="model_messages">

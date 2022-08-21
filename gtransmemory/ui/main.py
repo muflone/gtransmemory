@@ -171,7 +171,8 @@ class UIMain(UIBase):
                 self.model_memories.add_data(
                     MemoryInfo(name=str(filename.with_suffix(suffix='').name),
                                filename=str(filename),
-                               description=description))
+                               description=description,
+                               languages=database.get_languages()))
                 database.close()
 
     def do_reload_messages(self, filename):
