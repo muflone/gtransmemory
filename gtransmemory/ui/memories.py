@@ -61,6 +61,7 @@ class UIMemories(UIBase):
         # Set various properties
         self.ui.dialog.set_transient_for(self.parent)
         self.set_buttons_icons(buttons=[self.ui.button_add,
+                                        self.ui.button_edit,
                                         self.ui.button_remove])
         # Connect signals from the UI file to the functions with the same name
         self.ui.connect_signals(self)
@@ -108,6 +109,27 @@ class UIMemories(UIBase):
                                            description=dialog.description))
         dialog.destroy()
 
+    def on_action_edit_activate(self, widget):
+        """Edit an existing memory"""
+        dialog = UIMemoryDetail(parent=self.ui.dialog,
+                                settings=self.settings,
+                                options=self.options,
+                                model=self.model)
+        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
+        memory_name = self.model.get_key(selected_row)
+        memory_description = self.model.get_description(selected_row)
+        if dialog.show(default_name=memory_name,
+                       default_description=memory_description,
+                       title=_('Edit memory')) == Gtk.ResponseType.OK:
+            database_name = f'{dialog.name}.sqlite3'
+            db = MemoryDB(database_name)
+            db.set_description(dialog.description)
+            db.close()
+            self.model.set_data(treeiter=selected_row,
+                                column=self.model.COL_DESCRIPTION,
+                                value=dialog.description)
+        dialog.destroy()
+
     def on_action_remove_activate(self, widget):
         """Remove the selected memory"""
         selected_row = get_treeview_selected_row(self.ui.tvw_memories)
@@ -127,3 +149,13 @@ class UIMemories(UIBase):
             memory_path = DIR_MEMORIES / memory_name
             memory_path.unlink()
             self.model.remove(selected_row)
+
+    def on_tvw_memories_row_activated(self, widget, treepath, column):
+        """Edit the selected row on activation"""
+        self.ui.action_edit.activate()
+
+    def on_tvw_selection_memories_changed(self, widget):
+        """Set action sensitiveness on selection change"""
+        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
+        self.ui.action_edit.set_sensitive(bool(selected_row))
+        self.ui.action_remove.set_sensitive(bool(selected_row))

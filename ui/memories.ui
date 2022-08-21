@@ -17,6 +17,7 @@
       <object class="GtkAction" id="action_remove">
         <property name="label" comments="Use domain gtk30">_Remove</property>
         <property name="icon-name">list-remove</property>
+        <property name="sensitive">False</property>
         <signal name="activate" handler="on_action_remove_activate" swapped="no"/>
       </object>
       <accelerator key="Delete" modifiers="GDK_CONTROL_MASK"/>
@@ -25,6 +26,15 @@
       <object class="GtkAction" id="action_close">
         <property name="label" context="gtk30">_Close</property>
       </object>
+    </child>
+    <child>
+      <object class="GtkAction" id="action_edit">
+        <property name="label" translatable="yes" context="gtk30">_Edit</property>
+        <property name="icon-name">document-properties</property>
+        <property name="sensitive">False</property>
+        <signal name="activate" handler="on_action_edit_activate" swapped="no"/>
+      </object>
+      <accelerator key="Return" modifiers="GDK_CONTROL_MASK"/>
     </child>
   </object>
   <object class="GtkListStore" id="model_memories">
@@ -97,8 +107,11 @@
                     <property name="can-focus">True</property>
                     <property name="model">model_memories</property>
                     <property name="search-column">2</property>
+                    <signal name="row-activated" handler="on_tvw_memories_row_activated" swapped="no"/>
                     <child internal-child="selection">
-                      <object class="GtkTreeSelection" id="treeview_selection_memories"/>
+                      <object class="GtkTreeSelection" id="tvw_selection_memories">
+                        <signal name="changed" handler="on_tvw_selection_memories_changed" swapped="no"/>
+                      </object>
                     </child>
                     <child>
                       <object class="GtkTreeViewColumn" id="column_name">
@@ -164,6 +177,21 @@
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkButton" id="button_edit">
+                    <property name="label">Edit</property>
+                    <property name="related-action">action_edit</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                    <property name="non-homogeneous">True</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkButton" id="button_remove">
                     <property name="label" context="gtk30">Remove</property>
                     <property name="related-action">action_remove</property>
@@ -174,7 +202,7 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                     <property name="non-homogeneous">True</property>
                   </packing>
                 </child>

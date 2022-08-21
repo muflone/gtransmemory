@@ -68,7 +68,13 @@ class UIMemoryDetail(UIBase):
         """Show the dialog"""
         logging.debug(f'{self.__class__.__name__} show')
         self.ui.entry_name.set_text(default_name)
-        self.ui.entry_name.grab_focus()
+        if default_name:
+            # Disable name for memory editing
+            self.ui.entry_name.set_sensitive(False)
+            self.ui.entry_description.grab_focus()
+        else:
+            # Focus on name for new memory adding
+            self.ui.entry_name.grab_focus()
         self.ui.entry_description.set_text(default_description)
         self.ui.dialog.set_title(title)
         response = self.ui.dialog.run()
@@ -108,7 +114,7 @@ class UIMemoryDetail(UIBase):
             self.do_show_error_message_on_infobar(
                 widget=self.ui.entry_name,
                 error_msg=_('The memory name is invalid'))
-        elif self.model.get_iter(name):
+        elif self.model.get_iter(name) and self.ui.entry_name.get_sensitive():
             # Show error for existing memory name
             self.do_show_error_message_on_infobar(
                 widget=self.ui.entry_name,
