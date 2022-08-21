@@ -364,14 +364,12 @@ class UIMain(UIBase):
         if response == Gtk.ResponseType.OK:
             # Load messages from a gettext PO/POT file
             for entry in polib.pofile(dialog.filename):
-                # Include only translated terms
-                if entry.msgstr:
-                    # Add the message to the messages model
-                    message = MessageInfo(msgid=entry.msgid,
-                                          translation=entry.msgstr,
-                                          source=dialog.source)
-                    self.do_add_message(message=message,
-                                        update_data=True)
+                # Add the message to the messages model
+                message = MessageInfo(msgid=entry.msgid,
+                                      translation=entry.msgstr,
+                                      source=dialog.source)
+                self.do_add_message(message=message,
+                                    update_data=True)
             # Save the directory path for the latest imported file
             self.latest_directory = pathlib.Path(dialog.filename).parent
         dialog.destroy()
