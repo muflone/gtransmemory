@@ -180,7 +180,7 @@ class UIMain(UIBase):
         """Load messages from the database memory"""
         def do_reload(messages):
             """Add each message to the messages model"""
-            step = 1
+            step = 0
             count = len(messages)
             # Load messages
             for msgid, translation, source in messages:
@@ -202,7 +202,6 @@ class UIMain(UIBase):
                                                                   COUNT=count))
                 # Allow the thread to repeat for the next iteration
                 yield True
-            self.ui.progress_loading.set_visible(False)
             if not self.loading_cancel:
                 self.ui.actions_search.set_sensitive(True)
                 self.ui.actions_messages.set_sensitive(True)
@@ -222,7 +221,6 @@ class UIMain(UIBase):
         self.model_messages.clear()
         self.messages.clear()
         self.ui.progress_loading.set_fraction(0.0)
-        self.ui.progress_loading.set_visible(True)
         # Disable buttons while loading the memory database
         self.ui.actions_search.set_sensitive(False)
         self.ui.actions_messages.set_sensitive(False)
