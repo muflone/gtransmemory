@@ -64,10 +64,9 @@ class UIMessagesImportFile(UIBase):
         self.settings.restore_window_position(window=self.ui.dialog,
                                               section=SECTION_WINDOW_NAME)
 
-    def show(self, title):
+    def show(self):
         """Show the dialog"""
         logging.debug(f'{self.__class__.__name__} show')
-        self.ui.dialog.set_title(title)
         # Show the dialog
         response = self.ui.dialog.run()
         self.ui.dialog.hide()

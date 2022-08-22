@@ -361,7 +361,7 @@ class UIMain(UIBase):
             create_filefilter(_('All files'),
                               None,
                               ('*', )))
-        response = dialog.show(_('Import messages from file'))
+        response = dialog.show()
         if response == Gtk.ResponseType.OK:
             # Load messages from a gettext PO/POT file
             for entry in polib.pofile(dialog.filename):
