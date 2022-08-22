@@ -29,7 +29,7 @@
     </child>
     <child>
       <object class="GtkAction" id="action_edit">
-        <property name="label" translatable="yes" context="gtk30">_Edit</property>
+        <property name="label" context="gtk30">_Edit</property>
         <property name="icon-name">document-properties</property>
         <property name="sensitive">False</property>
         <signal name="activate" handler="on_action_edit_activate" swapped="no"/>

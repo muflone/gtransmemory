@@ -78,7 +78,7 @@
         </child>
         <child>
           <!-- n-columns=2 n-rows=2 -->
-          <object class="GtkGrid" id="grid_edit_memory">
+          <object class="GtkGrid" id="grid_options">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="row-spacing">6</property>
