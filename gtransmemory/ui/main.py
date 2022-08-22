@@ -206,6 +206,8 @@ class UIMain(UIBase):
                 self.ui.actions_search.set_sensitive(True)
                 self.ui.actions_messages.set_sensitive(True)
                 self.ui.actions_selection.set_sensitive(True)
+                self.ui.progress_loading.set_text(
+                    _('Loaded {COUNT} messages').format(COUNT=count))
             # Operation completed, stop the thread
             self.loading_id = None
             self.loading_cancel = False

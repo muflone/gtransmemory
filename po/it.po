@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
-"POT-Creation-Date: 2022-08-22 16:26+0200\n"
+"POT-Creation-Date: 2022-08-22 21:13+0200\n"
 "PO-Revision-Date: 2016-06-18 20:35+0000\n"
 "Last-Translator: Giovanni Scafora <scafora.giovanni(at)gmail.com>\n"
 "Language-Team: Italian\n"
@@ -59,6 +59,11 @@ msgstr "Traduzioni"
 #, python-brace-format
 msgid "Loading message {STEP} of {COUNT}"
 msgstr "Sto caricando il messaggio {STEP} di {COUNT}"
+
+#: gtransmemory/ui/main.py:210
+#, python-brace-format
+msgid "Loaded {COUNT} messages"
+msgstr "Caricati {COUNT} messaggi"
 
 #: gtransmemory/ui/main.py:283 ui/shortcuts.ui:86
 msgid "Add a new message"

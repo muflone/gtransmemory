@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
-"POT-Creation-Date: 2022-08-22 16:26+0200\n"
+"POT-Creation-Date: 2022-08-22 21:13+0200\n"
 "PO-Revision-Date: 2016-06-18 20:35+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss(at)fastmail.com>\n"
 "Language-Team: Dutch\n"
@@ -58,6 +58,11 @@ msgstr "Vertalingen"
 #, python-brace-format
 msgid "Loading message {STEP} of {COUNT}"
 msgstr "Bezig met laden van {STEP} van {COUNT}"
+
+#: gtransmemory/ui/main.py:210
+#, python-brace-format
+msgid "Loaded {COUNT} messages"
+msgstr ""
 
 #: gtransmemory/ui/main.py:283 ui/shortcuts.ui:86
 msgid "Add a new message"
