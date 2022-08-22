@@ -49,6 +49,7 @@ from gtransmemory.ui.shortcuts import UIShortcuts
 from gtransmemory.ui.memories import UIMemories
 from gtransmemory.ui.message import UIMessage
 from gtransmemory.ui.messages_import_file import UIMessagesImportFile
+from gtransmemory.ui.messages_import_folder import UIMessagesImportFolder
 
 SECTION_WINDOW_NAME = 'main'
 
@@ -345,6 +346,40 @@ class UIMain(UIBase):
         self.ui.action_selection.set_active(False)
         # Disable the remove selection actions
         self.ui.actions_messages_remove.set_sensitive(False)
+
+    def on_action_messages_import_folder_activate(self, widget):
+        """Import messages from a folder"""
+        # Show the import folder dialog
+        dialog = UIMessagesImportFolder(parent=self.ui.window,
+                                        settings=self.settings,
+                                        options=self.options)
+        response = dialog.show()
+        if response == Gtk.ResponseType.OK:
+            path_directory = pathlib.Path(dialog.directory)
+            if path_directory.exists() and path_directory.is_dir():
+                # Search all .po files contained in the selected folder
+                for filename in path_directory.glob('*.po'):
+                    # Find the databases with the same language
+                    languages = self.model_memories.find_language(
+                        language=filename.with_suffix('').name)
+                    if languages:
+                        # Use the database for the first language found
+                        language, treeiter = languages[0]
+                        database = MemoryDB(
+                            self.model_memories.get_filename(treeiter))
+                        logging.info(f'Importing file "{filename}" '
+                                     f'to memory {database.get_description()} '
+                                     f'({database.filename})')
+                        for entry in polib.pofile(filename):
+                            # Add the message to the database
+                            message = MessageInfo(msgid=entry.msgid,
+                                                  translation=entry.msgstr,
+                                                  source=dialog.source)
+                            database.add_message(message=message)
+                        database.close()
+                # Reload the current memory
+                self.ui.tvw_selection_memories.emit('changed')
+        dialog.destroy()
 
     def on_action_messages_import_file_activate(self, widget):
         """Import messages from a PO/POT file"""
