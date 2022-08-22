@@ -18,7 +18,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ##
 
-import os.path
+import pathlib
 import sqlite3
 
 from gtransmemory.constants import DIR_MEMORIES
@@ -26,7 +26,8 @@ from gtransmemory.constants import DIR_MEMORIES
 
 class MemoryDB(object):
     def __init__(self, file_path):
-        self.db = sqlite3.connect(os.path.join(DIR_MEMORIES, file_path))
+        self.filename = pathlib.Path(DIR_MEMORIES / file_path)
+        self.db = sqlite3.connect(self.filename)
         tables = []
         for row in self.execute('SELECT name FROM sqlite_master '
                                 'WHERE type="table" ORDER BY name')[1]:
