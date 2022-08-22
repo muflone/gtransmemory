@@ -48,7 +48,7 @@ from gtransmemory.ui.base import UIBase
 from gtransmemory.ui.shortcuts import UIShortcuts
 from gtransmemory.ui.memories import UIMemories
 from gtransmemory.ui.message import UIMessage
-from gtransmemory.ui.messages_import import UIMessagesImport
+from gtransmemory.ui.messages_import_file import UIMessagesImportFile
 
 SECTION_WINDOW_NAME = 'main'
 
@@ -346,13 +346,13 @@ class UIMain(UIBase):
         # Disable the remove selection actions
         self.ui.actions_messages_remove.set_sensitive(False)
 
-    def on_action_messages_import_activate(self, widget):
+    def on_action_messages_import_file_activate(self, widget):
         """Import messages from a PO/POT file"""
         # Show the import file dialog
-        dialog = UIMessagesImport(parent=self.ui.window,
-                                  settings=self.settings,
-                                  options=self.options,
-                                  initial_dir=self.latest_directory)
+        dialog = UIMessagesImportFile(parent=self.ui.window,
+                                      settings=self.settings,
+                                      options=self.options,
+                                      initial_dir=self.latest_directory)
         dialog.ui.file_chooser_import.add_filter(
             create_filefilter(_('GNU gettext translation files'),
                               None,

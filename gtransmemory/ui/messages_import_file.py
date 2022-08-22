@@ -27,11 +27,11 @@ from gtransmemory.ui.base import UIBase
 SECTION_WINDOW_NAME = 'messages import'
 
 
-class UIMessagesImport(UIBase):
+class UIMessagesImportFile(UIBase):
     def __init__(self, parent, settings, options, initial_dir):
         """Prepare the dialog"""
         logging.debug(f'{self.__class__.__name__} init')
-        super().__init__(filename='messages_import.ui')
+        super().__init__(filename='messages_import_file.ui')
         # Initialize members
         self.parent = parent
         self.settings = settings
