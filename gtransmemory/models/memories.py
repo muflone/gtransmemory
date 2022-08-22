@@ -49,3 +49,12 @@ class ModelMemories(ModelAbstract):
     def get_languages(self, treeiter):
         """Get the languages from a TreeIter"""
         return self.model[treeiter][self.COL_LANGUAGES]
+
+    def find_language(self, language):
+        """Find all the memories with the specified language set"""
+        result = []
+        for treeiter in self.rows.values():
+            for key in self.get_languages(treeiter).split(' '):
+                if key == language:
+                    result.append((key, treeiter))
+        return result
