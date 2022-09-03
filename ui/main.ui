@@ -547,7 +547,9 @@
     <columns>
       <!-- column-name Key -->
       <column type="gchararray"/>
-      <!-- column-name Message -->
+      <!-- column-name Message_Identifier -->
+      <column type="gchararray"/>
+      <!-- column-name Message_Cleaned -->
       <column type="gchararray"/>
       <!-- column-name Translation -->
       <column type="gchararray"/>
@@ -681,7 +683,7 @@
                     <property name="has-focus">True</property>
                     <property name="is-focus">True</property>
                     <property name="model">model_messages</property>
-                    <property name="search-column">1</property>
+                    <property name="search-column">2</property>
                     <signal name="button-release-event" handler="on_tvw_messages_button_release_event" swapped="no"/>
                     <signal name="row-activated" handler="on_tvw_messages_row_activated" swapped="no"/>
                     <child internal-child="selection">
@@ -698,7 +700,7 @@
                             <signal name="toggled" handler="on_cell_selection_toggled" swapped="no"/>
                           </object>
                           <attributes>
-                            <attribute name="active">4</attribute>
+                            <attribute name="active">5</attribute>
                           </attributes>
                         </child>
                       </object>
@@ -714,6 +716,21 @@
                           <object class="GtkCellRendererText" id="cell_message">
                             <property name="ellipsize">end</property>
                           </object>
+                          <attributes>
+                            <attribute name="text">2</attribute>
+                          </attributes>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkTreeViewColumn" id="column_identifier">
+                        <property name="resizable">True</property>
+                        <property name="fixed-width">250</property>
+                        <property name="title" translatable="yes">Identifier</property>
+                        <property name="sort-indicator">True</property>
+                        <property name="sort-column-id">0</property>
+                        <child>
+                          <object class="GtkCellRendererText" id="cell_identifier"/>
                           <attributes>
                             <attribute name="text">1</attribute>
                           </attributes>
@@ -731,7 +748,7 @@
                             <property name="ellipsize">end</property>
                           </object>
                           <attributes>
-                            <attribute name="text">2</attribute>
+                            <attribute name="text">3</attribute>
                           </attributes>
                         </child>
                       </object>
@@ -744,7 +761,7 @@
                         <child>
                           <object class="GtkCellRendererText" id="cell_source"/>
                           <attributes>
-                            <attribute name="text">3</attribute>
+                            <attribute name="text">4</attribute>
                           </attributes>
                         </child>
                       </object>
