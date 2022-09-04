@@ -49,12 +49,12 @@ class ModelMessages(ModelAbstract):
         """Add a new row to the model if it doesn't exist"""
         super(self.__class__, self).add_data(item)
         if item.key not in self.rows:
-            new_row = self.model.append(None, (item.key,
-                                               item.msgid,
-                                               item.msgid.replace('_', ''),
-                                               item.translation,
-                                               item.source,
-                                               False))
+            new_row = self.model.append((item.key,
+                                         item.msgid,
+                                         item.msgid.replace('_', ''),
+                                         item.translation,
+                                         item.source,
+                                         False))
             self.rows[item.key] = new_row
             return new_row
 

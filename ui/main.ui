@@ -543,7 +543,7 @@
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkTreeStore" id="model_messages">
+  <object class="GtkListStore" id="model_messages">
     <columns>
       <!-- column-name Key -->
       <column type="gchararray"/>
