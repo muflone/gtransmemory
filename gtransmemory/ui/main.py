@@ -136,10 +136,7 @@ class UIMain(UIBase):
             self.ui.column_message.get_sort_column_id(),
             Gtk.SortType.ASCENDING)
         # Prepare filter results by cleaned message (case insensitively)
-        self.ui.filter_messages.set_visible_func(
-            lambda model, iter, data:
-            self.ui.entry_search.get_text().casefold() in
-            self.model_messages.get_cleaned_message(iter).casefold())
+        self.ui.filter_messages.set_visible_func(self.do_filter_message)
         # Automatically select the first memory if any
         if len(self.model_memories) > 0:
             self.ui.tvw_memories.set_cursor(0)
@@ -165,6 +162,22 @@ class UIMain(UIBase):
         # Update database if requested
         if update_data:
             self.database.add_message(message)
+
+    def do_filter_message(self, model, treeiter, data):
+        """Compare the message text for filtering"""
+        result = True
+        # Filter results only when the search is active
+        if self.ui.action_search.get_active():
+            search_text = self.ui.entry_search.get_text()
+            if search_text.startswith('source:'):
+                # Filter by source
+                text = self.model_messages.get_source(treeiter)
+                search_text = search_text[7:]
+            else:
+                # Filter by cleaned message
+                text = self.model_messages.get_cleaned_message(treeiter)
+            result = search_text.casefold() in text.casefold()
+        return result
 
     def do_reload_memories(self):
         """Load memories from memories folder"""
