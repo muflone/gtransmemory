@@ -559,6 +559,9 @@
       <column type="gboolean"/>
     </columns>
   </object>
+  <object class="GtkTreeModelFilter" id="filter_messages">
+    <property name="child-model">model_messages</property>
+  </object>
   <object class="GtkApplicationWindow" id="window">
     <property name="can-focus">False</property>
     <property name="default-width">650</property>
@@ -593,6 +596,7 @@
                     <property name="primary-icon-activatable">False</property>
                     <property name="primary-icon-tooltip-text">Search</property>
                     <property name="secondary-icon-tooltip-text">Clear</property>
+                    <signal name="changed" handler="on_entry_search_changed" swapped="no"/>
                     <signal name="icon-release" handler="on_entry_search_icon_release" swapped="no"/>
                   </object>
                   <packing>

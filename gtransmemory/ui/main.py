@@ -104,8 +104,6 @@ class UIMain(UIBase):
                                         self.ui.button_about,
                                         self.ui.button_options,
                                         self.ui.button_search_close])
-        # Set custom search entry for messages
-        self.ui.tvw_messages.set_search_entry(self.ui.entry_search)
         # Set various properties
         self.ui.window.set_title(APP_NAME)
         self.ui.window.set_icon_from_file(str(FILE_ICON))
@@ -134,6 +132,11 @@ class UIMain(UIBase):
         self.model_messages.model.set_sort_column_id(
             self.ui.column_message.get_sort_column_id(),
             Gtk.SortType.ASCENDING)
+        # Prepare filter results by cleaned message (case insensitively)
+        self.ui.filter_messages.set_visible_func(
+            lambda model, iter, data:
+            self.ui.entry_search.get_text().casefold() in
+            self.model_messages.get_cleaned_message(iter).casefold())
         # Automatically select the first memory if any
         if len(self.model_memories) > 0:
             self.ui.tvw_memories.set_cursor(0)
@@ -300,6 +303,10 @@ class UIMain(UIBase):
         """Edit an existing message in the messages model"""
         treeiter = get_treeview_selected_row(self.ui.tvw_messages)
         if treeiter:
+            if self.ui.action_search.get_active():
+                # Find the currently filtered iter
+                treeiter = self.ui.filter_messages.convert_iter_to_child_iter(
+                    treeiter)
             key = self.model_messages.get_key(treeiter)
             message_id = self.model_messages.get_message(treeiter)
             translation = self.model_messages.get_translation(treeiter)
@@ -329,6 +336,10 @@ class UIMain(UIBase):
                 # Get the path of the message
                 path = self.model_messages.get_path_by_name(
                     f'{dialog.source}\\{dialog.message}')
+                if self.ui.action_search.get_active():
+                    # Find the currently filtered path
+                    path = self.ui.filter_messages.convert_child_path_to_path(
+                        path)
                 # Automatically select again the previously selected message
                 self.ui.tvw_messages.set_cursor(path=path,
                                                 column=None,
@@ -481,9 +492,18 @@ class UIMain(UIBase):
         status = widget == self.ui.action_select_all
         # Iterate over all the Gtk.TreeIter
         for row in self.model_messages.rows.values():
-            self.model_messages.set_selection(row, status)
-            if status:
-                self.selected_count += 1
+            # Check if the row is filtered
+            if self.ui.action_search.get_active():
+                visible = self.ui.filter_messages.convert_child_iter_to_iter(
+                    row)[0]
+            else:
+                # When no filter is used all rows are visible
+                visible = True
+            # Flag only visible rows
+            if visible:
+                self.model_messages.set_selection(row, status)
+                if status:
+                    self.selected_count += 1
         self.ui.actions_messages_remove.set_sensitive(self.selected_count)
 
     def on_action_search_toggled(self, widget):
@@ -493,6 +513,12 @@ class UIMain(UIBase):
             not self.ui.revealer_search.get_reveal_child())
         if self.ui.action_search.get_active():
             self.ui.entry_search.grab_focus()
+            # Apply filter to messages
+            self.ui.tvw_messages.set_model(self.ui.filter_messages)
+            self.ui.filter_messages.refilter()
+        else:
+            # Restore model with all the messages
+            self.ui.tvw_messages.set_model(self.ui.model_messages)
 
     def on_action_search_close_activate(self, widget):
         """Hide the search bar"""
@@ -504,6 +530,10 @@ class UIMain(UIBase):
 
     def on_cell_selection_toggled(self, widget, treepath):
         """Toggle the selection status"""
+        if self.ui.action_search.get_active():
+            # Find the currently filtered path
+            treepath = self.ui.filter_messages.convert_path_to_child_path(
+                Gtk.TreePath().new_from_string(treepath))
         key = self.model_messages.get_key(treepath)
         treeiter = self.model_messages.get_iter(key)
         status = not self.model_messages.get_selection(treeiter)
@@ -511,6 +541,10 @@ class UIMain(UIBase):
         # Set the selection action state
         self.selected_count += 1 if status else -1
         self.ui.actions_messages_remove.set_sensitive(self.selected_count)
+
+    def on_entry_search_changed(self, widget):
+        """Filter messages"""
+        self.ui.filter_messages.refilter()
 
     def on_entry_search_icon_release(self, widget, icon_position, event):
         """Clear the search text by clicking the icon next to the Gtk.Entry"""

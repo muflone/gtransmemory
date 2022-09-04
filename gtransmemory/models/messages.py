@@ -78,6 +78,10 @@ class ModelMessages(ModelAbstract):
         """Get the message from a TreeIter"""
         return self.model[treeiter][self.COL_MESSAGE_ID]
 
+    def get_cleaned_message(self, treeiter):
+        """Get the cleaned message from a TreeIter"""
+        return self.model[treeiter][self.COL_MESSAGE_CLEANED]
+
     def get_translation(self, treeiter):
         """Get the translation from a TreeIter"""
         return self.model[treeiter][self.COL_TRANSLATION]
