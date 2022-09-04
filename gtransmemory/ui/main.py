@@ -298,12 +298,12 @@ class UIMain(UIBase):
 
     def on_action_messages_edit_activate(self, widget):
         """Edit an existing message in the messages model"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_messages)
-        if selected_row:
-            key = self.model_messages.get_key(selected_row)
-            message_id = self.model_messages.get_message(selected_row)
-            translation = self.model_messages.get_translation(selected_row)
-            source = self.model_messages.get_source(selected_row)
+        treeiter = get_treeview_selected_row(self.ui.tvw_messages)
+        if treeiter:
+            key = self.model_messages.get_key(treeiter)
+            message_id = self.model_messages.get_message(treeiter)
+            translation = self.model_messages.get_translation(treeiter)
+            source = self.model_messages.get_source(treeiter)
             selected_iter = self.model_messages.get_iter(key)
             dialog = UIMessage(parent=self.ui.window,
                                settings=self.settings,
@@ -412,9 +412,9 @@ class UIMain(UIBase):
 
     def on_action_memories_activate(self, widget):
         """Edit memories"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        if selected_row:
-            selected_name = self.model_memories.get_key(selected_row)
+        treeiter = get_treeview_selected_row(self.ui.tvw_memories)
+        if treeiter:
+            selected_name = self.model_memories.get_key(treeiter)
         self.ui.tvw_selection_memories.unselect_all()
         dialog = UIMemories(parent=self.ui.window,
                             settings=self.settings,
@@ -425,15 +425,15 @@ class UIMain(UIBase):
         dialog.show()
         dialog.destroy()
         # Restore the previous memory if it's still available
-        if selected_row and selected_name in self.model_memories.rows:
+        if treeiter and selected_name in self.model_memories.rows:
             self.ui.tvw_memories.get_selection().select_iter(
                 self.model_memories.rows[selected_name])
 
     def on_action_memories_previous_activate(self, widget):
         """Move to the previous memory"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        if selected_row:
-            treeiter = self.model_memories.model.iter_previous(selected_row)
+        treeiter = get_treeview_selected_row(self.ui.tvw_memories)
+        if treeiter:
+            treeiter = self.model_memories.model.iter_previous(treeiter)
             if treeiter:
                 # Select the newly selected row in the memories list
                 new_path = self.model_memories.get_path(treeiter=treeiter)
@@ -441,9 +441,9 @@ class UIMain(UIBase):
 
     def on_action_memories_next_activate(self, widget):
         """Move to the next memory"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        if selected_row:
-            treeiter = self.model_memories.model.iter_next(selected_row)
+        treeiter = get_treeview_selected_row(self.ui.tvw_memories)
+        if treeiter:
+            treeiter = self.model_memories.model.iter_next(treeiter)
             if treeiter:
                 # Select the newly selected row in the memories list
                 new_path = self.model_memories.get_path(treeiter=treeiter)
@@ -488,10 +488,10 @@ class UIMain(UIBase):
 
     def on_action_search_toggled(self, widget):
         """Show and hide the search bar"""
-        # There's a Gtk.Revealer, show and hide the child
+        # Show and hide the child in the Gtk.Revealer
         self.ui.revealer_search.set_reveal_child(
             not self.ui.revealer_search.get_reveal_child())
-        if self.ui.revealer_search.get_reveal_child():
+        if self.ui.action_search.get_active():
             self.ui.entry_search.grab_focus()
 
     def on_action_search_close_activate(self, widget):
@@ -519,8 +519,8 @@ class UIMain(UIBase):
 
     def on_tvw_messages_row_activated(self, widget, treepath, column):
         """Edit the selected row on activation"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_messages)
-        if selected_row and not self.ui.action_selection.get_active():
+        treeiter = get_treeview_selected_row(self.ui.tvw_messages)
+        if treeiter and not self.ui.action_selection.get_active():
             # Start message edit
             self.ui.action_messages_edit.activate()
 
@@ -536,11 +536,11 @@ class UIMain(UIBase):
 
     def on_tvw_selection_memories_changed(self, widget):
         """Set action sensitiveness on selection change"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        if selected_row:
+        treeiter = get_treeview_selected_row(self.ui.tvw_memories)
+        if treeiter:
             # Load the messages from the memory database
             self.do_reload_messages(
-                filename=self.model_memories.get_filename(selected_row))
+                filename=self.model_memories.get_filename(treeiter))
         else:
             # Cancel any previous loading
             if self.loading_id:
@@ -557,9 +557,9 @@ class UIMain(UIBase):
 
     def on_tvw_selection_messages_changed(self, widget):
         """Set action sensitiveness on selection change"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_messages)
+        treeiter = get_treeview_selected_row(self.ui.tvw_messages)
         if not self.ui.action_selection.get_active():
-            self.ui.action_messages_edit.set_sensitive(bool(selected_row))
+            self.ui.action_messages_edit.set_sensitive(bool(treeiter))
 
     def on_window_delete_event(self, widget, event):
         """Close the application by closing the main window"""

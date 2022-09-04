@@ -118,10 +118,10 @@ class UIMemories(UIBase):
                                 settings=self.settings,
                                 options=self.options,
                                 model=self.model)
-        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        memory_name = self.model.get_key(selected_row)
-        memory_description = self.model.get_description(selected_row)
-        memory_languages = self.model.get_languages(selected_row) or ''
+        treeiter = get_treeview_selected_row(self.ui.tvw_memories)
+        memory_name = self.model.get_key(treeiter)
+        memory_description = self.model.get_description(treeiter)
+        memory_languages = self.model.get_languages(treeiter) or ''
         if dialog.show(name=memory_name,
                        description=memory_description,
                        languages=memory_languages,
@@ -131,22 +131,22 @@ class UIMemories(UIBase):
             db.set_description(dialog.description)
             db.set_languages(dialog.languages)
             db.close()
-            self.model.set_data(treeiter=selected_row,
+            self.model.set_data(treeiter=treeiter,
                                 column=self.model.COL_DESCRIPTION,
                                 value=dialog.description)
-            self.model.set_data(treeiter=selected_row,
+            self.model.set_data(treeiter=treeiter,
                                 column=self.model.COL_LANGUAGES,
                                 value=dialog.languages)
         dialog.destroy()
 
     def on_action_remove_activate(self, widget):
         """Remove the selected memory"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        memory_name = (self.model.get_filename(selected_row)
-                       if selected_row else '')
-        memory_description = (self.model.get_description(selected_row)
-                              if selected_row else '')
-        if selected_row and memory_name and show_message_dialog(
+        treeiter = get_treeview_selected_row(self.ui.tvw_memories)
+        memory_name = (self.model.get_filename(treeiter)
+                       if treeiter else '')
+        memory_description = (self.model.get_description(treeiter)
+                              if treeiter else '')
+        if treeiter and memory_name and show_message_dialog(
                 class_=UIMessageDialogNoYes,
                 parent=self.ui.dialog,
                 message_type=Gtk.MessageType.WARNING,
@@ -157,7 +157,7 @@ class UIMemories(UIBase):
                 is_response_id=Gtk.ResponseType.YES):
             memory_path = DIR_MEMORIES / memory_name
             memory_path.unlink()
-            self.model.remove(selected_row)
+            self.model.remove(treeiter)
 
     def on_tvw_memories_row_activated(self, widget, treepath, column):
         """Edit the selected row on activation"""
@@ -165,6 +165,6 @@ class UIMemories(UIBase):
 
     def on_tvw_selection_memories_changed(self, widget):
         """Set action sensitiveness on selection change"""
-        selected_row = get_treeview_selected_row(self.ui.tvw_memories)
-        self.ui.action_edit.set_sensitive(bool(selected_row))
-        self.ui.action_remove.set_sensitive(bool(selected_row))
+        treeiter = get_treeview_selected_row(self.ui.tvw_memories)
+        self.ui.action_edit.set_sensitive(bool(treeiter))
+        self.ui.action_remove.set_sensitive(bool(treeiter))
