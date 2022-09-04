@@ -698,7 +698,7 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="column_selection">
                         <property name="visible">False</property>
-                        <property name="sort-column-id">4</property>
+                        <property name="sort-column-id">5</property>
                         <child>
                           <object class="GtkCellRendererToggle" id="cell_selection">
                             <signal name="toggled" handler="on_cell_selection_toggled" swapped="no"/>
@@ -715,7 +715,7 @@
                         <property name="fixed-width">250</property>
                         <property name="title">Message</property>
                         <property name="sort-indicator">True</property>
-                        <property name="sort-column-id">1</property>
+                        <property name="sort-column-id">2</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_message">
                             <property name="ellipsize">end</property>
@@ -732,7 +732,7 @@
                         <property name="fixed-width">250</property>
                         <property name="title" translatable="yes">Identifier</property>
                         <property name="sort-indicator">True</property>
-                        <property name="sort-column-id">0</property>
+                        <property name="sort-column-id">1</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_identifier"/>
                           <attributes>
@@ -746,7 +746,7 @@
                         <property name="resizable">True</property>
                         <property name="fixed-width">250</property>
                         <property name="title">Translation</property>
-                        <property name="sort-column-id">2</property>
+                        <property name="sort-column-id">3</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_translation">
                             <property name="ellipsize">end</property>
@@ -761,7 +761,7 @@
                       <object class="GtkTreeViewColumn" id="column_source">
                         <property name="fixed-width">100</property>
                         <property name="title">Source</property>
-                        <property name="sort-column-id">3</property>
+                        <property name="sort-column-id">4</property>
                         <child>
                           <object class="GtkCellRendererText" id="cell_source"/>
                           <attributes>
