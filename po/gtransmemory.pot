@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
-"POT-Creation-Date: 2022-08-22 21:13+0200\n"
+"POT-Creation-Date: 2022-09-04 19:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,29 +50,29 @@ msgstr ""
 msgid "Translations"
 msgstr ""
 
-#: gtransmemory/ui/main.py:201
+#: gtransmemory/ui/main.py:207
 #, python-brace-format
 msgid "Loading message {STEP} of {COUNT}"
 msgstr ""
 
-#: gtransmemory/ui/main.py:210
+#: gtransmemory/ui/main.py:216
 #, python-brace-format
 msgid "Loaded {COUNT} messages"
 msgstr ""
 
-#: gtransmemory/ui/main.py:283 ui/shortcuts.ui:86
+#: gtransmemory/ui/main.py:305 ui/shortcuts.ui:86
 msgid "Add a new message"
 msgstr ""
 
-#: gtransmemory/ui/main.py:316 ui/shortcuts.ui:93
+#: gtransmemory/ui/main.py:342 ui/shortcuts.ui:93
 msgid "Edit message"
 msgstr ""
 
-#: gtransmemory/ui/main.py:392
+#: gtransmemory/ui/main.py:423
 msgid "GNU gettext translation files"
 msgstr ""
 
-#: gtransmemory/ui/main.py:396
+#: gtransmemory/ui/main.py:427
 msgid "All files"
 msgstr ""
 
@@ -133,11 +133,11 @@ msgstr ""
 msgid "Memories"
 msgstr ""
 
-#: ui/main.ui:70 ui/messages_import_file.ui:24 ui/shortcuts.ui:100
+#: ui/main.ui:70 ui/messages_import_file.ui:25 ui/shortcuts.ui:100
 msgid "Import messages from a file"
 msgstr ""
 
-#: ui/main.ui:87 ui/messages_import_folder.ui:24 ui/shortcuts.ui:107
+#: ui/main.ui:87 ui/messages_import_folder.ui:25 ui/shortcuts.ui:107
 msgid "Import messages from a folder"
 msgstr ""
 
@@ -153,8 +153,12 @@ msgstr ""
 msgid "Deselect all"
 msgstr ""
 
-#: ui/main.ui:652
+#: ui/main.ui:658
 msgid "Memory"
+msgstr ""
+
+#: ui/main.ui:733
+msgid "Identifier"
 msgstr ""
 
 #: ui/memories.ui:55
@@ -177,24 +181,24 @@ msgstr ""
 msgid "_Translation:"
 msgstr ""
 
-#: ui/message.ui:199 ui/messages_import_file.ui:90
-#: ui/messages_import_folder.ui:90
+#: ui/message.ui:199 ui/messages_import_file.ui:91
+#: ui/messages_import_folder.ui:91
 msgid "_Source:"
 msgstr ""
 
-#: ui/messages_import_file.ui:117
+#: ui/messages_import_file.ui:119
 msgid "_File to import:"
 msgstr ""
 
-#: ui/messages_import_file.ui:132
+#: ui/messages_import_file.ui:134
 msgid "Select the file to import"
 msgstr ""
 
-#: ui/messages_import_folder.ui:117
+#: ui/messages_import_folder.ui:119
 msgid "_Folder to import:"
 msgstr ""
 
-#: ui/messages_import_folder.ui:133
+#: ui/messages_import_folder.ui:135
 msgid "Select the folder to import"
 msgstr ""
 
