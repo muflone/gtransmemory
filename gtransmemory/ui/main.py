@@ -401,7 +401,7 @@ class UIMain(UIBase):
                         logging.info(f'Importing file "{filename}" '
                                      f'to memory {database.get_description()} '
                                      f'({database.filename})')
-                        for entry in polib.pofile(filename):
+                        for entry in polib.pofile(str(filename)):
                             # Add the message to the database
                             message = MessageInfo(msgid=entry.msgid,
                                                   translation=entry.msgstr,
