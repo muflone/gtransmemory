@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTransMemory\n"
 "Report-Msgid-Bugs-To: https://github.com/muflone/gtransmemory/issues/\n"
-"POT-Creation-Date: 2022-09-04 19:24+0200\n"
+"POT-Creation-Date: 2022-09-04 23:42+0200\n"
 "PO-Revision-Date: 2016-06-18 20:35+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss(at)fastmail.com>\n"
 "Language-Team: Dutch\n"
@@ -54,29 +54,29 @@ msgstr "Problemen en bugs"
 msgid "Translations"
 msgstr "Vertalingen"
 
-#: gtransmemory/ui/main.py:207
+#: gtransmemory/ui/main.py:220
 #, python-brace-format
 msgid "Loading message {STEP} of {COUNT}"
 msgstr "Bezig met laden van {STEP} van {COUNT}"
 
-#: gtransmemory/ui/main.py:216
+#: gtransmemory/ui/main.py:229
 #, python-brace-format
 msgid "Loaded {COUNT} messages"
 msgstr ""
 
-#: gtransmemory/ui/main.py:305 ui/shortcuts.ui:86
+#: gtransmemory/ui/main.py:318 ui/shortcuts.ui:86
 msgid "Add a new message"
 msgstr "Tekenreeks toevoegen"
 
-#: gtransmemory/ui/main.py:342 ui/shortcuts.ui:93
+#: gtransmemory/ui/main.py:355 ui/shortcuts.ui:93
 msgid "Edit message"
 msgstr "Tekenreeks bewerken"
 
-#: gtransmemory/ui/main.py:423
+#: gtransmemory/ui/main.py:440
 msgid "GNU gettext translation files"
 msgstr "GNU Gettext-vertaalbestanden"
 
-#: gtransmemory/ui/main.py:427
+#: gtransmemory/ui/main.py:444
 msgid "All files"
 msgstr "Alle bestanden"
 
@@ -125,23 +125,23 @@ msgstr "Er is al een gelijkaardige tekenreeks"
 msgid "Keyboard shortcuts"
 msgstr "Sneltoetsen"
 
-#: ui/main.ui:36 ui/main.ui:374 ui/shortcuts.ui:64
+#: ui/main.ui:36 ui/main.ui:376 ui/shortcuts.ui:64
 msgid "Previous memory"
 msgstr "Vorig geheugen"
 
-#: ui/main.ui:43 ui/main.ui:365 ui/shortcuts.ui:71
+#: ui/main.ui:43 ui/main.ui:367 ui/shortcuts.ui:71
 msgid "Next memory"
 msgstr "Volgend geheugen"
 
-#: ui/main.ui:50 ui/main.ui:345 ui/main.ui:438 ui/shortcuts.ui:52
+#: ui/main.ui:50 ui/main.ui:347 ui/main.ui:440 ui/shortcuts.ui:52
 msgid "Memories"
 msgstr "Geheugens"
 
-#: ui/main.ui:70 ui/messages_import_file.ui:25 ui/shortcuts.ui:100
+#: ui/main.ui:70 ui/messages_import_file.ui:25 ui/shortcuts.ui:107
 msgid "Import messages from a file"
 msgstr "Tekenreeksen importeren uit een bestand"
 
-#: ui/main.ui:87 ui/messages_import_folder.ui:25 ui/shortcuts.ui:107
+#: ui/main.ui:87 ui/messages_import_folder.ui:25 ui/shortcuts.ui:114
 msgid "Import messages from a folder"
 msgstr "Berichten importeren uit map"
 
@@ -149,19 +149,19 @@ msgstr "Berichten importeren uit map"
 msgid "Import"
 msgstr "Importeren"
 
-#: ui/main.ui:137 ui/main.ui:143 ui/shortcuts.ui:28
+#: ui/main.ui:138 ui/main.ui:144 ui/shortcuts.ui:28
 msgid "Open the options menu"
 msgstr "Open het optiesmenu"
 
-#: ui/main.ui:189 ui/shortcuts.ui:143
+#: ui/main.ui:191 ui/shortcuts.ui:157
 msgid "Deselect all"
 msgstr "Niets selecteren"
 
-#: ui/main.ui:658
+#: ui/main.ui:660
 msgid "Memory"
 msgstr "Geheugen"
 
-#: ui/main.ui:733
+#: ui/main.ui:735
 msgid "Identifier"
 msgstr ""
 
@@ -218,10 +218,18 @@ msgstr "Toon het geheugenvenster"
 msgid "Messages"
 msgstr "Tekenreeksen"
 
-#: ui/shortcuts.ui:114
+#: ui/shortcuts.ui:100
+msgid "Remove the selected messages"
+msgstr ""
+
+#: ui/shortcuts.ui:121
 msgid "Show the search bar"
 msgstr "Zoekbalk tonen"
 
-#: ui/shortcuts.ui:129
+#: ui/shortcuts.ui:128
+msgid "Hide the search bar"
+msgstr ""
+
+#: ui/shortcuts.ui:143
 msgid "Toggle selection mode"
 msgstr "Selectiemodus aan/uit"
