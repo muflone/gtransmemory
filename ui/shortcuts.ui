@@ -121,6 +121,13 @@
                 <property name="title" translatable="yes">Show the search bar</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="visible">1</property>
+                <property name="accelerator">Escape</property>
+                <property name="title" translatable="yes">Hide the search bar</property>
+              </object>
+            </child>
           </object>
         </child>
 

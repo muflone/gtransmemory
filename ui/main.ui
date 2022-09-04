@@ -156,6 +156,7 @@
         <property name="icon-name">window-close</property>
         <signal name="activate" handler="on_action_search_close_activate" swapped="no"/>
       </object>
+      <accelerator key="Escape"/>
     </child>
     <child>
       <object class="GtkToggleAction" id="action_search">
