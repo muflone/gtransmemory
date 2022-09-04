@@ -43,6 +43,8 @@ from gtransmemory.models.message_info import MessageInfo
 from gtransmemory.models.messages import ModelMessages
 from gtransmemory.models.memory_info import MemoryInfo
 from gtransmemory.models.memories import ModelMemories
+from gtransmemory.models.source_info import SourceInfo
+from gtransmemory.models.sources import ModelSource
 from gtransmemory.ui.about import UIAbout
 from gtransmemory.ui.base import UIBase
 from gtransmemory.ui.shortcuts import UIShortcuts
@@ -78,6 +80,7 @@ class UIMain(UIBase):
         # Prepare the models
         self.model_memories = ModelMemories(self.ui.model_memories)
         self.model_messages = ModelMessages(self.ui.model_messages)
+        self.model_sources = ModelSource(self.ui.model_sources)
         # Complete initialization
         self.startup()
 
@@ -235,6 +238,22 @@ class UIMain(UIBase):
         # Start messages loading in an idle thread
         task = do_reload(self.database.get_messages())
         self.loading_id = GObject.idle_add(task.__next__)
+
+    def do_reload_sources(self):
+        """Load sources from memories folder"""
+        sources = set()
+        self.database.commit()
+        for filename in DIR_MEMORIES.glob('*'):
+            if filename.is_file() and filename.suffix == '.sqlite3':
+                # Open the database file
+                database = MemoryDB(file_path=filename)
+                # Get every sources in the database
+                for source in database.get_sources():
+                    sources.add(source[0])
+                database.close()
+        self.model_sources.clear()
+        for source in sources:
+            self.model_sources.add_data(SourceInfo(source=source))
 
     def do_remove_message(self, message, update_data):
         """Remove a message from the model"""

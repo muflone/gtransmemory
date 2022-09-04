@@ -44,8 +44,12 @@ class MemoryDB(object):
 
     def close(self):
         """Close the database connection"""
-        self.db.commit()
+        self.commit()
         self.db.close()
+
+    def commit(self):
+        """Commit any pending changes"""
+        self.db.commit()
 
     def execute(self, statement, parameters=None):
         """Execute a statement and returns the data from a cursor"""
@@ -111,3 +115,9 @@ class MemoryDB(object):
         """Remove an existing message"""
         self.execute('DELETE FROM messages WHERE message=? and source=?',
                      (message.msgid, message.source))
+
+    def get_sources(self):
+        """Return the sources"""
+        data = self.execute('SELECT DISTINCT source '
+                            'FROM messages ORDER BY source')
+        return data[1]

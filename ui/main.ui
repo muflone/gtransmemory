@@ -800,4 +800,10 @@
       </object>
     </child>
   </object>
+  <object class="GtkListStore" id="model_sources">
+    <columns>
+      <!-- column-name Source -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
 </interface>
