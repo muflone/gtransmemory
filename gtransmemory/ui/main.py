@@ -421,6 +421,10 @@ class UIMain(UIBase):
                                                   source=dialog.source)
                             database.add_message(message=message)
                         database.close()
+                    else:
+                        # No existing database is available for the language
+                        logging.warning(f'No available language found for '
+                                        f'"{filename}"')
                 # Reload the current memory
                 self.ui.tvw_selection_memories.emit('changed')
         dialog.destroy()
