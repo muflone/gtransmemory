@@ -86,7 +86,7 @@ msgstr "Geheugen toevoegen"
 
 #: gtransmemory/ui/memories.py:128
 msgid "Edit memory"
-msgstr ""
+msgstr "Geheugen bewerken"
 
 #: gtransmemory/ui/memories.py:154
 msgid "Remove the memory"
@@ -143,7 +143,7 @@ msgstr "Tekenreeksen importeren uit een bestand"
 
 #: ui/main.ui:87 ui/messages_import_folder.ui:24 ui/shortcuts.ui:107
 msgid "Import messages from a folder"
-msgstr ""
+msgstr "Berichten importeren uit map"
 
 #: ui/main.ui:95
 msgid "Import"
@@ -171,7 +171,7 @@ msgstr "Omschrijving"
 
 #: ui/memories.ui:153
 msgid "Languages"
-msgstr ""
+msgstr "Talen"
 
 #: ui/message.ui:146
 msgid "_Message:"
@@ -196,11 +196,11 @@ msgstr "Kies een te importeren bestand"
 
 #: ui/messages_import_folder.ui:117
 msgid "_Folder to import:"
-msgstr ""
+msgstr "Te importeren _map:"
 
 #: ui/messages_import_folder.ui:133
 msgid "Select the folder to import"
-msgstr ""
+msgstr "Kies de te importeren map"
 
 #: ui/shortcuts.ui:21
 msgid "Show the about dialog"
