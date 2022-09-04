@@ -426,7 +426,8 @@ class UIMain(UIBase):
             create_filefilter(_('All files'),
                               None,
                               ('*', )))
-        response = dialog.show()
+        self.do_reload_sources()
+        response = dialog.show(model_sources=self.ui.model_sources)
         if response == Gtk.ResponseType.OK:
             # Load messages from a gettext PO/POT file
             for entry in polib.pofile(dialog.filename):
