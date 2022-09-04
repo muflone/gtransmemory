@@ -128,6 +128,7 @@
         <property name="icon-name">list-remove</property>
         <signal name="activate" handler="on_action_messages_remove_activate" swapped="no"/>
       </object>
+      <accelerator key="Delete" modifiers="GDK_CONTROL_MASK"/>
     </child>
   </object>
   <object class="GtkActionGroup" id="actions_options">
