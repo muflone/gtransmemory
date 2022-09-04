@@ -60,9 +60,12 @@ class UIMessagesImportFolder(UIBase):
         self.settings.restore_window_position(window=self.ui.dialog,
                                               section=SECTION_WINDOW_NAME)
 
-    def show(self):
+    def show(self, model_sources):
         """Show the dialog"""
         logging.debug(f'{self.__class__.__name__} show')
+        # Set up the completion model
+        self.ui.completion_sources.set_model(model_sources)
+        self.ui.completion_sources.set_text_column(0)
         # Show the dialog
         response = self.ui.dialog.run()
         self.ui.dialog.hide()

@@ -383,7 +383,8 @@ class UIMain(UIBase):
         dialog = UIMessagesImportFolder(parent=self.ui.window,
                                         settings=self.settings,
                                         options=self.options)
-        response = dialog.show()
+        self.do_reload_sources()
+        response = dialog.show(model_sources=self.ui.model_sources)
         if response == Gtk.ResponseType.OK:
             path_directory = pathlib.Path(dialog.directory)
             if path_directory.exists() and path_directory.is_dir():
