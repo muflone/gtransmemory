@@ -37,8 +37,9 @@ def main():
     options = command_line_options.parse_options()
     # Set logging level
     verbose_levels = {0: logging.ERROR,
-                      1: logging.INFO,
-                      2: logging.DEBUG}
+                      1: logging.WARNING,
+                      2: logging.INFO,
+                      3: logging.DEBUG}
     logging.basicConfig(level=verbose_levels[options.verbose_level],
                         format='%(asctime)s '
                                '%(levelname)-8s '

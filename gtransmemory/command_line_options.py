@@ -23,6 +23,7 @@ import argparse
 from gtransmemory.constants import (APP_NAME,
                                     APP_VERSION,
                                     VERBOSE_LEVEL_QUIET,
+                                    VERBOSE_LEVEL_WARNING,
                                     VERBOSE_LEVEL_NORMAL,
                                     VERBOSE_LEVEL_MAX)
 
@@ -44,7 +45,12 @@ class CommandLineOptions(object):
                                  action='store_const',
                                  const=VERBOSE_LEVEL_MAX,
                                  help='show error and information messages')
-        self.parser.add_argument('-q', '--quiet',
+        self.parser.add_argument('-q', '--warning',
+                                 dest='verbose_level',
+                                 action='store_const',
+                                 const=VERBOSE_LEVEL_WARNING,
+                                 help='hide information messages')
+        self.parser.add_argument('-qq', '--quiet',
                                  dest='verbose_level',
                                  action='store_const',
                                  const=VERBOSE_LEVEL_QUIET,

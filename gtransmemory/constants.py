@@ -39,8 +39,9 @@ URL_SOURCES = f'https://github.com/muflone/{APP_DOMAIN}/'
 URL_TRANSLATIONS = f'https://explore.transifex.com/muflone/{APP_DOMAIN}/'
 # Other constants
 VERBOSE_LEVEL_QUIET = 0
-VERBOSE_LEVEL_NORMAL = 1
-VERBOSE_LEVEL_MAX = 2
+VERBOSE_LEVEL_WARNING = 1
+VERBOSE_LEVEL_NORMAL = 2
+VERBOSE_LEVEL_MAX = 3
 
 # Paths constants
 path_xdg_data_home = pathlib.Path(BaseDirectory.xdg_data_home)
