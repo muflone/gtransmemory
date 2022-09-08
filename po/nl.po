@@ -62,7 +62,7 @@ msgstr "Bezig met laden van {STEP} van {COUNT}"
 #: gtransmemory/ui/main.py:229
 #, python-brace-format
 msgid "Loaded {COUNT} messages"
-msgstr ""
+msgstr "{COUNT} berichten geladen"
 
 #: gtransmemory/ui/main.py:318 ui/shortcuts.ui:86
 msgid "Add a new message"
@@ -163,7 +163,7 @@ msgstr "Geheugen"
 
 #: ui/main.ui:735
 msgid "Identifier"
-msgstr ""
+msgstr "Identificatie"
 
 #: ui/memories.ui:55
 msgid "Configure memories"
@@ -220,7 +220,7 @@ msgstr "Tekenreeksen"
 
 #: ui/shortcuts.ui:100
 msgid "Remove the selected messages"
-msgstr ""
+msgstr "Geselecteerde berichten verwijderen"
 
 #: ui/shortcuts.ui:121
 msgid "Show the search bar"
@@ -228,7 +228,7 @@ msgstr "Zoekbalk tonen"
 
 #: ui/shortcuts.ui:128
 msgid "Hide the search bar"
-msgstr ""
+msgstr "Zoekbalk verbergen"
 
 #: ui/shortcuts.ui:143
 msgid "Toggle selection mode"
