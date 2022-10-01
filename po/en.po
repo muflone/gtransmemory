@@ -1,7 +1,7 @@
 # gTransMemory
 # Memory of terms for translators
 # Copyright (C) 2016-2022 Fabio Castelli (Muflone) <muflone@muflone.com>
-# Website: https://www.muflone.com/gtransmemory/
+# Website: http://www.muflone.com/gtransmemory/
 # This file is distributed under the same license of gTransMemory.
 # English translation for gTransMemory
 #
